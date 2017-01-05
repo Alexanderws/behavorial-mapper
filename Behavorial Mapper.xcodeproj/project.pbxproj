@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAD1E1E364900D6E59A /* AppDelegate.swift */; };
+		1174CBB01E1E364900D6E59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAF1E1E364900D6E59A /* ViewController.swift */; };
+		1174CBB31E1E364900D6E59A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB11E1E364900D6E59A /* Main.storyboard */; };
+		1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBB41E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld */; };
+		1174CBB81E1E364900D6E59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB71E1E364900D6E59A /* Assets.xcassets */; };
+		1174CBBB1E1E364900D6E59A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB91E1E364900D6E59A /* LaunchScreen.storyboard */; };
+		1174CBC61E1E364900D6E59A /* Behavorial_MapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBC51E1E364900D6E59A /* Behavorial_MapperTests.swift */; };
+		1174CBD11E1E364900D6E59A /* Behavorial_MapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBD01E1E364900D6E59A /* Behavorial_MapperUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1174CBC21E1E364900D6E59A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1174CBA21E1E364800D6E59A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1174CBA91E1E364800D6E59A;
+			remoteInfo = "Behavorial Mapper";
+		};
+		1174CBCD1E1E364900D6E59A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1174CBA21E1E364800D6E59A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1174CBA91E1E364800D6E59A;
+			remoteInfo = "Behavorial Mapper";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behavorial Mapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1174CBAD1E1E364900D6E59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1174CBAF1E1E364900D6E59A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1174CBB21E1E364900D6E59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1174CBB51E1E364900D6E59A /* Behavorial_Mapper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Behavorial_Mapper.xcdatamodel; sourceTree = "<group>"; };
+		1174CBB71E1E364900D6E59A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1174CBBA1E1E364900D6E59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1174CBBC1E1E364900D6E59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1174CBC11E1E364900D6E59A /* Behavorial MapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Behavorial MapperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1174CBC51E1E364900D6E59A /* Behavorial_MapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavorial_MapperTests.swift; sourceTree = "<group>"; };
+		1174CBC71E1E364900D6E59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1174CBCC1E1E364900D6E59A /* Behavorial MapperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Behavorial MapperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1174CBD01E1E364900D6E59A /* Behavorial_MapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavorial_MapperUITests.swift; sourceTree = "<group>"; };
+		1174CBD21E1E364900D6E59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1174CBA71E1E364800D6E59A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1174CBBE1E1E364900D6E59A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1174CBC91E1E364900D6E59A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1174CBA11E1E364800D6E59A = {
+			isa = PBXGroup;
+			children = (
+				1174CBAC1E1E364900D6E59A /* Behavorial Mapper */,
+				1174CBC41E1E364900D6E59A /* Behavorial MapperTests */,
+				1174CBCF1E1E364900D6E59A /* Behavorial MapperUITests */,
+				1174CBAB1E1E364900D6E59A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1174CBAB1E1E364900D6E59A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */,
+				1174CBC11E1E364900D6E59A /* Behavorial MapperTests.xctest */,
+				1174CBCC1E1E364900D6E59A /* Behavorial MapperUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1174CBAC1E1E364900D6E59A /* Behavorial Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				1174CBAD1E1E364900D6E59A /* AppDelegate.swift */,
+				1174CBAF1E1E364900D6E59A /* ViewController.swift */,
+				1174CBB11E1E364900D6E59A /* Main.storyboard */,
+				1174CBB71E1E364900D6E59A /* Assets.xcassets */,
+				1174CBB91E1E364900D6E59A /* LaunchScreen.storyboard */,
+				1174CBBC1E1E364900D6E59A /* Info.plist */,
+				1174CBB41E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld */,
+			);
+			path = "Behavorial Mapper";
+			sourceTree = "<group>";
+		};
+		1174CBC41E1E364900D6E59A /* Behavorial MapperTests */ = {
+			isa = PBXGroup;
+			children = (
+				1174CBC51E1E364900D6E59A /* Behavorial_MapperTests.swift */,
+				1174CBC71E1E364900D6E59A /* Info.plist */,
+			);
+			path = "Behavorial MapperTests";
+			sourceTree = "<group>";
+		};
+		1174CBCF1E1E364900D6E59A /* Behavorial MapperUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1174CBD01E1E364900D6E59A /* Behavorial_MapperUITests.swift */,
+				1174CBD21E1E364900D6E59A /* Info.plist */,
+			);
+			path = "Behavorial MapperUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1174CBA91E1E364800D6E59A /* Behavorial Mapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1174CBD51E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial Mapper" */;
+			buildPhases = (
+				1174CBA61E1E364800D6E59A /* Sources */,
+				1174CBA71E1E364800D6E59A /* Frameworks */,
+				1174CBA81E1E364800D6E59A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Behavorial Mapper";
+			productName = "Behavorial Mapper";
+			productReference = 1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1174CBC01E1E364900D6E59A /* Behavorial MapperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1174CBD81E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial MapperTests" */;
+			buildPhases = (
+				1174CBBD1E1E364900D6E59A /* Sources */,
+				1174CBBE1E1E364900D6E59A /* Frameworks */,
+				1174CBBF1E1E364900D6E59A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1174CBC31E1E364900D6E59A /* PBXTargetDependency */,
+			);
+			name = "Behavorial MapperTests";
+			productName = "Behavorial MapperTests";
+			productReference = 1174CBC11E1E364900D6E59A /* Behavorial MapperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1174CBCB1E1E364900D6E59A /* Behavorial MapperUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1174CBDB1E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial MapperUITests" */;
+			buildPhases = (
+				1174CBC81E1E364900D6E59A /* Sources */,
+				1174CBC91E1E364900D6E59A /* Frameworks */,
+				1174CBCA1E1E364900D6E59A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1174CBCE1E1E364900D6E59A /* PBXTargetDependency */,
+			);
+			name = "Behavorial MapperUITests";
+			productName = "Behavorial MapperUITests";
+			productReference = 1174CBCC1E1E364900D6E59A /* Behavorial MapperUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1174CBA21E1E364800D6E59A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Alexander;
+				TargetAttributes = {
+					1174CBA91E1E364800D6E59A = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = CJPUPM74U8;
+						ProvisioningStyle = Automatic;
+					};
+					1174CBC01E1E364900D6E59A = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = CJPUPM74U8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1174CBA91E1E364800D6E59A;
+					};
+					1174CBCB1E1E364900D6E59A = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = CJPUPM74U8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1174CBA91E1E364800D6E59A;
+					};
+				};
+			};
+			buildConfigurationList = 1174CBA51E1E364800D6E59A /* Build configuration list for PBXProject "Behavorial Mapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1174CBA11E1E364800D6E59A;
+			productRefGroup = 1174CBAB1E1E364900D6E59A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1174CBA91E1E364800D6E59A /* Behavorial Mapper */,
+				1174CBC01E1E364900D6E59A /* Behavorial MapperTests */,
+				1174CBCB1E1E364900D6E59A /* Behavorial MapperUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1174CBA81E1E364800D6E59A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1174CBBB1E1E364900D6E59A /* LaunchScreen.storyboard in Resources */,
+				1174CBB81E1E364900D6E59A /* Assets.xcassets in Resources */,
+				1174CBB31E1E364900D6E59A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1174CBBF1E1E364900D6E59A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1174CBCA1E1E364900D6E59A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1174CBA61E1E364800D6E59A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */,
+				1174CBB01E1E364900D6E59A /* ViewController.swift in Sources */,
+				1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1174CBBD1E1E364900D6E59A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1174CBC61E1E364900D6E59A /* Behavorial_MapperTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1174CBC81E1E364900D6E59A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1174CBD11E1E364900D6E59A /* Behavorial_MapperUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1174CBC31E1E364900D6E59A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1174CBA91E1E364800D6E59A /* Behavorial Mapper */;
+			targetProxy = 1174CBC21E1E364900D6E59A /* PBXContainerItemProxy */;
+		};
+		1174CBCE1E1E364900D6E59A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1174CBA91E1E364800D6E59A /* Behavorial Mapper */;
+			targetProxy = 1174CBCD1E1E364900D6E59A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1174CBB11E1E364900D6E59A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1174CBB21E1E364900D6E59A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1174CBB91E1E364900D6E59A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1174CBBA1E1E364900D6E59A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1174CBD31E1E364900D6E59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		1174CBD41E1E364900D6E59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1174CBD61E1E364900D6E59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CJPUPM74U8;
+				INFOPLIST_FILE = "Behavorial Mapper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexander.Behavorial-Mapper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1174CBD71E1E364900D6E59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CJPUPM74U8;
+				INFOPLIST_FILE = "Behavorial Mapper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexander.Behavorial-Mapper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		1174CBD91E1E364900D6E59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CJPUPM74U8;
+				INFOPLIST_FILE = "Behavorial MapperTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexander.Behavorial-MapperTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Behavorial Mapper.app/Behavorial Mapper";
+			};
+			name = Debug;
+		};
+		1174CBDA1E1E364900D6E59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CJPUPM74U8;
+				INFOPLIST_FILE = "Behavorial MapperTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexander.Behavorial-MapperTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Behavorial Mapper.app/Behavorial Mapper";
+			};
+			name = Release;
+		};
+		1174CBDC1E1E364900D6E59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = CJPUPM74U8;
+				INFOPLIST_FILE = "Behavorial MapperUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexander.Behavorial-MapperUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Behavorial Mapper";
+			};
+			name = Debug;
+		};
+		1174CBDD1E1E364900D6E59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = CJPUPM74U8;
+				INFOPLIST_FILE = "Behavorial MapperUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexander.Behavorial-MapperUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Behavorial Mapper";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1174CBA51E1E364800D6E59A /* Build configuration list for PBXProject "Behavorial Mapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1174CBD31E1E364900D6E59A /* Debug */,
+				1174CBD41E1E364900D6E59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1174CBD51E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial Mapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1174CBD61E1E364900D6E59A /* Debug */,
+				1174CBD71E1E364900D6E59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1174CBD81E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial MapperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1174CBD91E1E364900D6E59A /* Debug */,
+				1174CBDA1E1E364900D6E59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1174CBDB1E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial MapperUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1174CBDC1E1E364900D6E59A /* Debug */,
+				1174CBDD1E1E364900D6E59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1174CBB41E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1174CBB51E1E364900D6E59A /* Behavorial_Mapper.xcdatamodel */,
+			);
+			currentVersion = 1174CBB51E1E364900D6E59A /* Behavorial_Mapper.xcdatamodel */;
+			path = Behavorial_Mapper.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1174CBA21E1E364800D6E59A /* Project object */;
+}
