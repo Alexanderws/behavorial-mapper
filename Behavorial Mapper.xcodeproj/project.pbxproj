@@ -15,6 +15,11 @@
 		1174CBBB1E1E364900D6E59A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB91E1E364900D6E59A /* LaunchScreen.storyboard */; };
 		1174CBC61E1E364900D6E59A /* Behavorial_MapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBC51E1E364900D6E59A /* Behavorial_MapperTests.swift */; };
 		1174CBD11E1E364900D6E59A /* Behavorial_MapperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBD01E1E364900D6E59A /* Behavorial_MapperUITests.swift */; };
+		1174CBE21E1E3A9D00D6E59A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE11E1E3A9D00D6E59A /* Project.swift */; };
+		1174CBE41E1E419D00D6E59A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE31E1E419D00D6E59A /* Map.swift */; };
+		1174CBE61E1E41C100D6E59A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE51E1E41C100D6E59A /* Location.swift */; };
+		1174CBE81E1E435100D6E59A /* Legend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE71E1E435100D6E59A /* Legend.swift */; };
+		1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE91E1E47AC00D6E59A /* Entry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		1174CBCC1E1E364900D6E59A /* Behavorial MapperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Behavorial MapperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1174CBD01E1E364900D6E59A /* Behavorial_MapperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Behavorial_MapperUITests.swift; sourceTree = "<group>"; };
 		1174CBD21E1E364900D6E59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1174CBE11E1E3A9D00D6E59A /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		1174CBE31E1E419D00D6E59A /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		1174CBE51E1E41C100D6E59A /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1174CBE71E1E435100D6E59A /* Legend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Legend.swift; sourceTree = "<group>"; };
+		1174CBE91E1E47AC00D6E59A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +109,10 @@
 		1174CBAC1E1E364900D6E59A /* Behavorial Mapper */ = {
 			isa = PBXGroup;
 			children = (
+				1174CBE01E1E38A700D6E59A /* Model */,
+				1174CBDF1E1E38A100D6E59A /* View */,
+				1174CBDE1E1E389100D6E59A /* Controller */,
 				1174CBAD1E1E364900D6E59A /* AppDelegate.swift */,
-				1174CBAF1E1E364900D6E59A /* ViewController.swift */,
 				1174CBB11E1E364900D6E59A /* Main.storyboard */,
 				1174CBB71E1E364900D6E59A /* Assets.xcassets */,
 				1174CBB91E1E364900D6E59A /* LaunchScreen.storyboard */,
@@ -126,6 +138,33 @@
 				1174CBD21E1E364900D6E59A /* Info.plist */,
 			);
 			path = "Behavorial MapperUITests";
+			sourceTree = "<group>";
+		};
+		1174CBDE1E1E389100D6E59A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1174CBAF1E1E364900D6E59A /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1174CBDF1E1E38A100D6E59A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1174CBE01E1E38A700D6E59A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1174CBE11E1E3A9D00D6E59A /* Project.swift */,
+				1174CBE31E1E419D00D6E59A /* Map.swift */,
+				1174CBE51E1E41C100D6E59A /* Location.swift */,
+				1174CBE71E1E435100D6E59A /* Legend.swift */,
+				1174CBE91E1E47AC00D6E59A /* Entry.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +304,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */,
+				1174CBE41E1E419D00D6E59A /* Map.swift in Sources */,
 				1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */,
 				1174CBB01E1E364900D6E59A /* ViewController.swift in Sources */,
+				1174CBE81E1E435100D6E59A /* Legend.swift in Sources */,
 				1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */,
+				1174CBE61E1E41C100D6E59A /* Location.swift in Sources */,
+				1174CBE21E1E3A9D00D6E59A /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
