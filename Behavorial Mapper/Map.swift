@@ -23,9 +23,25 @@ class Map {
         }
     }
     
+    var entries: [Entry] {
+        get {
+            return _entries
+        } set {
+            _entries = newValue
+        }
+    }
     
+    var background: UIImage {
+        get {
+            return _background
+        } set {
+            _background = newValue
+        }
+    }
     
-
-    
-    
+    init(background: UIImage) {
+        self._background = background
+        self._entries = [Entry]()
+        self._locations = [Location]()
+    }
 }
