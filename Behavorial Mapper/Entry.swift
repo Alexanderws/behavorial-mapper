@@ -14,7 +14,7 @@ class Entry {
     private var _start: Location!
     private var _end: Location!
     private var _legend: Legend!
-    private var _note: String?
+    private var _note: String!
     
     var time: Date {
         get {
@@ -50,10 +50,7 @@ class Entry {
     
     var note: String {
         get {
-            if let note = _note {
-                    return note
-            }
-            return ""
+            return _note
         } set {
             _note = newValue
         }
@@ -64,6 +61,7 @@ class Entry {
         self._start = start
         self._end = end
         self._legend = legend
+        self._note = ""
     }
     
 }

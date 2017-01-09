@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAD1E1E364900D6E59A /* AppDelegate.swift */; };
-		1174CBB01E1E364900D6E59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAF1E1E364900D6E59A /* ViewController.swift */; };
+		1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAF1E1E364900D6E59A /* StartVC.swift */; };
 		1174CBB31E1E364900D6E59A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB11E1E364900D6E59A /* Main.storyboard */; };
 		1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBB41E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld */; };
 		1174CBB81E1E364900D6E59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB71E1E364900D6E59A /* Assets.xcassets */; };
@@ -20,6 +20,10 @@
 		1174CBE61E1E41C100D6E59A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE51E1E41C100D6E59A /* Location.swift */; };
 		1174CBE81E1E435100D6E59A /* Legend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE71E1E435100D6E59A /* Legend.swift */; };
 		1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE91E1E47AC00D6E59A /* Entry.swift */; };
+		11E06EC61E2374F400B43047 /* CreateProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC51E2374F400B43047 /* CreateProjectVC.swift */; };
+		11E06EC81E237BE600B43047 /* CreateProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC71E237BE600B43047 /* CreateProjectView.swift */; };
+		11E06ECA1E2393ED00B43047 /* LegendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC91E2393ED00B43047 /* LegendButton.swift */; };
+		11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +46,7 @@
 /* Begin PBXFileReference section */
 		1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behavorial Mapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1174CBAD1E1E364900D6E59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1174CBAF1E1E364900D6E59A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1174CBAF1E1E364900D6E59A /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		1174CBB21E1E364900D6E59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1174CBB51E1E364900D6E59A /* Behavorial_Mapper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Behavorial_Mapper.xcdatamodel; sourceTree = "<group>"; };
 		1174CBB71E1E364900D6E59A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +63,10 @@
 		1174CBE51E1E41C100D6E59A /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1174CBE71E1E435100D6E59A /* Legend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Legend.swift; sourceTree = "<group>"; };
 		1174CBE91E1E47AC00D6E59A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		11E06EC51E2374F400B43047 /* CreateProjectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectVC.swift; sourceTree = "<group>"; };
+		11E06EC71E237BE600B43047 /* CreateProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectView.swift; sourceTree = "<group>"; };
+		11E06EC91E2393ED00B43047 /* LegendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegendButton.swift; sourceTree = "<group>"; };
+		11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +151,8 @@
 		1174CBDE1E1E389100D6E59A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1174CBAF1E1E364900D6E59A /* ViewController.swift */,
+				1174CBAF1E1E364900D6E59A /* StartVC.swift */,
+				11E06EC51E2374F400B43047 /* CreateProjectVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -151,6 +160,9 @@
 		1174CBDF1E1E38A100D6E59A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */,
+				11E06EC71E237BE600B43047 /* CreateProjectView.swift */,
+				11E06EC91E2393ED00B43047 /* LegendButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -304,13 +316,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11E06ECA1E2393ED00B43047 /* LegendButton.swift in Sources */,
+				11E06EC61E2374F400B43047 /* CreateProjectVC.swift in Sources */,
 				1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */,
 				1174CBE41E1E419D00D6E59A /* Map.swift in Sources */,
 				1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */,
-				1174CBB01E1E364900D6E59A /* ViewController.swift in Sources */,
+				1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */,
 				1174CBE81E1E435100D6E59A /* Legend.swift in Sources */,
 				1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */,
+				11E06EC81E237BE600B43047 /* CreateProjectView.swift in Sources */,
 				1174CBE61E1E41C100D6E59A /* Location.swift in Sources */,
+				11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */,
 				1174CBE21E1E3A9D00D6E59A /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,6 +578,7 @@
 				1174CBD71E1E364900D6E59A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1174CBD81E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial MapperTests" */ = {
 			isa = XCConfigurationList;
@@ -570,6 +587,7 @@
 				1174CBDA1E1E364900D6E59A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1174CBDB1E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial MapperUITests" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +596,7 @@
 				1174CBDD1E1E364900D6E59A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

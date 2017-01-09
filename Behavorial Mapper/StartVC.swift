@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class StartVC: UIViewController {
 
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -18,6 +21,18 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func StartNewProjectPressed(_ sender: Any) {
+        
+        
+    }
+    
+    
+    @IBAction func LoadProjectPressed(_ sender: Any) {
+        
+        
+        
     }
 
 
