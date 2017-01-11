@@ -235,30 +235,30 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="LN8-uK-xGJ">
                                                         <rect key="frame" x="0.0" y="30" width="276" height="88"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MbQ-Kj-rrG">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfi-sA-tG1">
                                                                 <rect key="frame" x="0.0" y="0.0" width="88" height="88"/>
-                                                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="88" id="dRz-XL-s1i"/>
-                                                                    <constraint firstAttribute="width" constant="88" id="jHZ-rh-m2r"/>
+                                                                    <constraint firstAttribute="height" constant="88" id="551-aG-ehd"/>
+                                                                    <constraint firstAttribute="width" constant="88" id="XjQ-ko-3ig"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-icon-16" translatesAutoresizingMaskIntoConstraints="NO" id="YIS-C0-aF2">
+                                                                <state key="normal" image="ImageIcon"/>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVn-Ne-bs4">
                                                                 <rect key="frame" x="94" y="0.0" width="88" height="88"/>
-                                                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="88" id="McR-vH-ZLg"/>
-                                                                    <constraint firstAttribute="height" constant="88" id="Mru-5E-7td"/>
+                                                                    <constraint firstAttribute="height" constant="88" id="Qcx-Ef-dHy"/>
+                                                                    <constraint firstAttribute="width" constant="88" id="Qhb-AL-xjK"/>
                                                                 </constraints>
-                                                            </imageView>
-                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-icon-16" translatesAutoresizingMaskIntoConstraints="NO" id="rHf-IH-qlM">
+                                                                <state key="normal" image="maps-icon-16"/>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6U-a0-Hg3">
                                                                 <rect key="frame" x="188" y="0.0" width="88" height="88"/>
-                                                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="88" id="Cgo-39-hHf"/>
-                                                                    <constraint firstAttribute="height" constant="88" id="Qbf-oX-jRq"/>
+                                                                    <constraint firstAttribute="width" constant="88" id="0mQ-Dh-jzX"/>
+                                                                    <constraint firstAttribute="height" constant="88" id="5cl-CM-8Td"/>
                                                                 </constraints>
-                                                            </imageView>
+                                                                <state key="normal" title="Blank"/>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -416,13 +416,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="blankBackgroundImage" destination="rHf-IH-qlM" id="8ak-Sy-Vcj"/>
-                        <outlet property="createMapImage" destination="YIS-C0-aF2" id="x5X-S8-zFi"/>
+                        <outlet property="blankBackgroundButton" destination="P6U-a0-Hg3" id="4ii-ed-He0"/>
+                        <outlet property="createMapButton" destination="BVn-Ne-bs4" id="eSF-yN-Uxp"/>
                         <outlet property="legendColorImage" destination="pEj-Jx-IlF" id="a7f-2X-jdA"/>
                         <outlet property="legendIconImage" destination="3AP-c5-94R" id="IKi-G6-Hzf"/>
                         <outlet property="legendNameTxtFld" destination="KC9-lj-CNT" id="fTX-X4-lNF"/>
                         <outlet property="legendTableView" destination="zFi-p8-EFJ" id="q4u-pC-vRf"/>
-                        <outlet property="loadPictureImage" destination="MbQ-Kj-rrG" id="IEk-sH-dFZ"/>
+                        <outlet property="loadPictureButton" destination="Sfi-sA-tG1" id="0Tx-Yb-wdL"/>
                         <outlet property="projectNameTxtFld" destination="Ruo-UC-i5N" id="Tfo-0p-5XA"/>
                         <outlet property="projectNotesTxtView" destination="hoR-K6-3Wi" id="AOD-g8-EIW"/>
                     </connections>
