@@ -18,9 +18,9 @@ class CreateProjectVC: UIViewController {
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
     
-    @IBOutlet weak var loadPictureImage: UIImageView!
-    @IBOutlet weak var createMapImage: UIImageView!
-    @IBOutlet weak var blankBackgroundImage: UIImageView!
+    @IBOutlet weak var loadPictureButton: UIButton!
+    @IBOutlet weak var createMapButton: UIButton!
+    @IBOutlet weak var blankBackgroundButton: UIButton!
     
     @IBOutlet weak var legendNameTxtFld: UITextField!
     @IBOutlet weak var legendIconImage: UIButton!
