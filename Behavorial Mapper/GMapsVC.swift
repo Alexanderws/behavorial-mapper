@@ -10,8 +10,9 @@ import UIKit
 import GoogleMaps
 
 class GMapsVC: UIViewController {
-    
+        
     private var _camera = GMSCameraPosition.camera(withLatitude: 58.938100, longitude: 5.693730, zoom: 15) // UIS
+    
     private let _toolBarHeight: CGFloat = 50.0
     private var _toolBarItems = [UIBarButtonItem]()
     
@@ -43,6 +44,8 @@ class GMapsVC: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // This function dismissed the GMapsVC
+    // TODO: Check where screenshot should be saved
     func takeScreenshot() {
         _toolBar.isHidden = true
         UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 0)
@@ -55,6 +58,12 @@ class GMapsVC: UIViewController {
         print(image?.size ?? 0)
         UIGraphicsEndImageContext()
         _toolBar.isHidden = false
+        
+        
+        if let vc = self.presentingViewController as? CreateProjectVC {
+            vc.createMapButton.setImage(image!, for: .normal)
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     

@@ -14,6 +14,8 @@ class CreateProjectVC: UIViewController {
     var selectedColor = 0
     var selectedIcon = 0
     
+    private var _mapScreenshot = UIImage()
+    
     
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
