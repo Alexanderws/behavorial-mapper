@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-target 'gmaps' do
+target 'Behavorial Mapper' do
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 end
