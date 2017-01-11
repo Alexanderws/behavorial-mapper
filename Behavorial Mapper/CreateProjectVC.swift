@@ -62,6 +62,9 @@ class CreateProjectVC: UIViewController {
         
     }
     
+    @IBAction func createMapPressed(sender: UIButton) {
+        performSegue(withIdentifier: "GMapsSegue", sender: sender)
+    }
     
     /*
     // MARK: - Navigation
