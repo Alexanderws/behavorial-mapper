@@ -11,8 +11,8 @@ import UIKit
 class CreateProjectVC: UIViewController {
 
     var legendArray = [Legend]()
-    var selectedColor = 0
-    var selectedIcon = 0
+    var selectedIconId = nil
+    
     
     
     @IBOutlet weak var projectNameTxtFld: UITextField!
@@ -24,7 +24,6 @@ class CreateProjectVC: UIViewController {
     
     @IBOutlet weak var legendNameTxtFld: UITextField!
     @IBOutlet weak var legendIconImage: UIButton!
-    @IBOutlet weak var legendColorImage: UIButton!
     
     @IBOutlet weak var legendTableView: UITableView!
     
@@ -35,23 +34,29 @@ class CreateProjectVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    func enterLegendIcon(iconId: Int) {
+        legendIconImage.setTitle("", for: .normal)
+        legendIconImage.setImage(UIImage(named: "\(iconId)"), for: .normal)
+        selectedIconId = iconId
     }
     
-    
-    
-    @IBAction func legendIconPressed(_ sender: Any) {
-        
+    func addLegend() {
+//        if selectedIcon != nil {
+//            
+//            if let legendName = legendNameTxtFld.text {
+//            
+//            }
+//        }
     }
     
-    @IBAction func legendColorPressed(_ sender: Any) {
+    @IBAction func legendIconPressed(_ sender: UIButton) {
         
     }
     
     @IBAction func legendAddPressed(_ sender: Any) {
-        
+        addLegend()
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
@@ -62,15 +67,20 @@ class CreateProjectVC: UIViewController {
         
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func checkInputs() -> String {
+        return ""
     }
-    */
+    
+    func checkLegendList() -> Bool {
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popoverIconSelectVC" {
+            let vc = segue.destination as! IconSelectVC
+            vc.preferredContentSize = CGSize(width: 260, height: 140)
+        }
+    }
+
 
 }

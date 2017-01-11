@@ -22,10 +22,9 @@ class StartVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func StartNewProjectPressed(_ sender: Any) {
-        
-        
+        performSegue(withIdentifier: "showCreateProjectVC", sender: sender)
     }
     
     
