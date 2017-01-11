@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class StartVC: UIViewController {
 
-    
-    
+    private let _APIKEY = "AIzaSyAWl80sWS2kbP-REQex8HK5FL6bM1DxgVE"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        GMSServices.provideAPIKey(_APIKEY)
     }
 
     override func didReceiveMemoryWarning() {

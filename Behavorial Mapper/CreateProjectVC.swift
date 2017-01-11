@@ -14,6 +14,8 @@ class CreateProjectVC: UIViewController {
     var selectedIconId = nil
     
     
+    private var _mapScreenshot = UIImage()
+    
     
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!

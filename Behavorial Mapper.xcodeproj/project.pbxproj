@@ -27,7 +27,8 @@
 		11E06EF61E261EBB00B43047 /* IconSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EF51E261EBB00B43047 /* IconSelectVC.swift */; };
 		11E06EF81E26294100B43047 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EF71E26294100B43047 /* IconCell.swift */; };
 		11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */; };
-		5E6601AEB39AF9C4AAB4BAB1 /* libPods-Behavorial Mapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DFAA1A74FC7B5EE59297853 /* libPods-Behavorial Mapper.a */; };
+		3C67D12518208DBF2342FDCD /* libPods-Behavorial Mapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */; };
+		A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882FC331E26178C00C7C1E0 /* GMapsVC.swift */; };
 		A8EC9BAB1E26149000359E80 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A8EC9BAA1E26149000359E80 /* Podfile */; };
 /* End PBXBuildFile section */
 
@@ -76,9 +77,11 @@
 		11E06EF51E261EBB00B43047 /* IconSelectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconSelectVC.swift; sourceTree = "<group>"; };
 		11E06EF71E26294100B43047 /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenMenu.swift; sourceTree = "<group>"; };
+		38458F48E9A1FC85C43A5D13 /* Pods-Behavorial Mapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.release.xcconfig"; sourceTree = "<group>"; };
+		A882FC331E26178C00C7C1E0 /* GMapsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsVC.swift; sourceTree = "<group>"; };
 		A8EC9BAA1E26149000359E80 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
-		D71CAD76FBDCB126901510A8 /* Pods-Behavorial Mapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.release.xcconfig"; sourceTree = "<group>"; };
-		E6380CFE1A1DD5EBA2009481 /* Pods-Behavorial Mapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.debug.xcconfig"; sourceTree = "<group>"; };
+		BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Behavorial Mapper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F325F1C274A16887904AB249 /* Pods-Behavorial Mapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E6601AEB39AF9C4AAB4BAB1 /* libPods-Behavorial Mapper.a in Frameworks */,
+				3C67D12518208DBF2342FDCD /* libPods-Behavorial Mapper.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,12 +110,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09BD194B0FC289B24FE2B2DE /* Frameworks */ = {
+		0470294E81130E68DFBC1DB4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0DFAA1A74FC7B5EE59297853 /* libPods-Behavorial Mapper.a */,
+				F325F1C274A16887904AB249 /* Pods-Behavorial Mapper.debug.xcconfig */,
+				38458F48E9A1FC85C43A5D13 /* Pods-Behavorial Mapper.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		112605161E26458D00DC3381 /* Util */ = {
@@ -131,8 +135,8 @@
 				1174CBC41E1E364900D6E59A /* Behavorial MapperTests */,
 				1174CBCF1E1E364900D6E59A /* Behavorial MapperUITests */,
 				1174CBAB1E1E364900D6E59A /* Products */,
-				732D15969EF383DF536233A3 /* Pods */,
-				09BD194B0FC289B24FE2B2DE /* Frameworks */,
+				0470294E81130E68DFBC1DB4 /* Pods */,
+				750F04E1925BEB00463CF25C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,13 +218,12 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		732D15969EF383DF536233A3 /* Pods */ = {
+		750F04E1925BEB00463CF25C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E6380CFE1A1DD5EBA2009481 /* Pods-Behavorial Mapper.debug.xcconfig */,
-				D71CAD76FBDCB126901510A8 /* Pods-Behavorial Mapper.release.xcconfig */,
+				BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,12 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1174CBD51E1E364900D6E59A /* Build configuration list for PBXNativeTarget "Behavorial Mapper" */;
 			buildPhases = (
-				FAA67AEC60477D9883D7F670 /* [CP] Check Pods Manifest.lock */,
+				FA4E010EAFCB9D95A63BB2B9 /* [CP] Check Pods Manifest.lock */,
 				1174CBA61E1E364800D6E59A /* Sources */,
 				1174CBA71E1E364800D6E59A /* Frameworks */,
 				1174CBA81E1E364800D6E59A /* Resources */,
-				245CFBECF840ABC2786D296A /* [CP] Embed Pods Frameworks */,
-				86355CD5DFFC31B844276653 /* [CP] Copy Pods Resources */,
+				D449D116B9C7E33F78D3DFCB /* [CP] Embed Pods Frameworks */,
+				4AE97D71C77AB4D02F60EEAE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -360,22 +363,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		245CFBECF840ABC2786D296A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		86355CD5DFFC31B844276653 /* [CP] Copy Pods Resources */ = {
+		4AE97D71C77AB4D02F60EEAE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -390,7 +378,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FAA67AEC60477D9883D7F670 /* [CP] Check Pods Manifest.lock */ = {
+		D449D116B9C7E33F78D3DFCB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA4E010EAFCB9D95A63BB2B9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -420,6 +423,7 @@
 				112605181E2645A100DC3381 /* Constants.swift in Sources */,
 				1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */,
 				1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */,
+				A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */,
 				1174CBE81E1E435100D6E59A /* Legend.swift in Sources */,
 				11E06EF81E26294100B43047 /* IconCell.swift in Sources */,
 				1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */,
@@ -576,7 +580,7 @@
 		};
 		1174CBD61E1E364900D6E59A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6380CFE1A1DD5EBA2009481 /* Pods-Behavorial Mapper.debug.xcconfig */;
+			baseConfigurationReference = F325F1C274A16887904AB249 /* Pods-Behavorial Mapper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CJPUPM74U8;
@@ -590,7 +594,7 @@
 		};
 		1174CBD71E1E364900D6E59A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D71CAD76FBDCB126901510A8 /* Pods-Behavorial Mapper.release.xcconfig */;
+			baseConfigurationReference = 38458F48E9A1FC85C43A5D13 /* Pods-Behavorial Mapper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CJPUPM74U8;
