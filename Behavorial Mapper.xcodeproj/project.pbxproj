@@ -24,6 +24,7 @@
 		11E06EC81E237BE600B43047 /* CreateProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC71E237BE600B43047 /* CreateProjectView.swift */; };
 		11E06ECA1E2393ED00B43047 /* LegendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC91E2393ED00B43047 /* LegendButton.swift */; };
 		11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */; };
+		A8EC9BAB1E26149000359E80 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A8EC9BAA1E26149000359E80 /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		11E06EC71E237BE600B43047 /* CreateProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectView.swift; sourceTree = "<group>"; };
 		11E06EC91E2393ED00B43047 /* LegendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegendButton.swift; sourceTree = "<group>"; };
 		11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenMenu.swift; sourceTree = "<group>"; };
+		A8EC9BAA1E26149000359E80 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		1174CBA11E1E364800D6E59A = {
 			isa = PBXGroup;
 			children = (
+				A8EC9BAA1E26149000359E80 /* Podfile */,
 				1174CBAC1E1E364900D6E59A /* Behavorial Mapper */,
 				1174CBC41E1E364900D6E59A /* Behavorial MapperTests */,
 				1174CBCF1E1E364900D6E59A /* Behavorial MapperUITests */,
@@ -291,6 +294,7 @@
 			files = (
 				1174CBBB1E1E364900D6E59A /* LaunchScreen.storyboard in Resources */,
 				1174CBB81E1E364900D6E59A /* Assets.xcassets in Resources */,
+				A8EC9BAB1E26149000359E80 /* Podfile in Resources */,
 				1174CBB31E1E364900D6E59A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
