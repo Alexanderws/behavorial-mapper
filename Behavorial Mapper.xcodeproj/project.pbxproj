@@ -190,6 +190,7 @@
 			children = (
 				1174CBAF1E1E364900D6E59A /* StartVC.swift */,
 				11E06EC51E2374F400B43047 /* CreateProjectVC.swift */,
+				A882FC331E26178C00C7C1E0 /* GMapsVC.swift */,
 				11E06EF51E261EBB00B43047 /* IconSelectVC.swift */,
 			);
 			name = Controller;

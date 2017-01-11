@@ -11,8 +11,7 @@ import UIKit
 class CreateProjectVC: UIViewController {
 
     var legendArray = [Legend]()
-    var selectedIconId = nil
-    
+    var selectedIconId: Int!
     
     private var _mapScreenshot = UIImage()
     
@@ -67,6 +66,10 @@ class CreateProjectVC: UIViewController {
     
     @IBAction func createPressed(_ sender: Any) {
         
+    }
+    
+    @IBAction func createMapPressed(sender: UIButton) {
+        performSegue(withIdentifier: "GMapsSegue", sender: sender)
     }
     
     func checkInputs() -> String {
