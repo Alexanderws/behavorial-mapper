@@ -20,11 +20,13 @@ func getWhiteBackground(width: CGFloat, height: CGFloat) -> UIImage {
     return image
 }
 
-/*extension UIColor {
-    init?(rgbHex: Int) {
-        
+extension UIColor {
+    class func fromHex(hex: Int) -> UIColor {
+        let red: CGFloat = CGFloat((hex >> 16) & 0xFF) / 255.0
+        let green: CGFloat = CGFloat((hex >> 8) & 0xFF) / 255.0
+        let blue: CGFloat = CGFloat(hex & 0xFF) / 255.0
+        return UIColor.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
-}*/
-    
+}
     
     
