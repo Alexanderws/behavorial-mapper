@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Legend {
+class Legend: CSVSerializable {
     
     private var _name: String!
     private var _icon: Int!

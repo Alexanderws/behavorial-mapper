@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Location {
+class Location: CSVSerializable {
     
     private var _name: String!
     private var _xCor: Int!
