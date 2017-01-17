@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Project {
     
@@ -14,7 +15,8 @@ class Project {
     private var _created: Date!
     private var _note: String!
     private var _legend: [Legend]!
-    private var _map: Map!
+    private var _entries: [Entry]!
+    private var _background: UIImage!
     
     var note: String {
         get {
@@ -32,18 +34,26 @@ class Project {
         }
     }
     
-    init (name: String, map: Map, legend: [Legend]) {
-        self._name = name
-        self._created = Date()
-        self._map = map
-        self._legend = legend
-        self._note = ""
+    var entries: [Entry] {
+        get {
+            return _entries
+        } set {
+            _entries = newValue
+        }
     }
     
-    init (name: String, map: Map, legend: [Legend], note: String) {
+    var background: UIImage {
+        get {
+            return _background
+        } set {
+            _background = newValue
+        }
+    }
+
+    init (name: String, background: UIImage, legend: [Legend], note: String) {
         self._name = name
         self._created = Date()
-        self._map = map
+        self._background = background
         self._legend = legend
         self._note = note
     }
