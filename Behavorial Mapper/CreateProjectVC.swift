@@ -10,6 +10,19 @@ import UIKit
 
 class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var projectNameTxtFld: UITextField!
+    @IBOutlet weak var projectNotesTxtView: UITextView!
+    
+    @IBOutlet weak var loadPictureButton: UIButton!
+    @IBOutlet weak var createMapButton: UIButton!
+    @IBOutlet weak var blankBackgroundButton: UIButton!
+    
+    @IBOutlet weak var legendNameTxtFld: UITextField!
+    @IBOutlet weak var legendIconImage: UIButton!
+    
+    @IBOutlet weak var legendTableView: UITableView!
+
+    
     var legendArray = [Legend]()
     var selectedIconId = 0
     
@@ -22,18 +35,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var _uploadedImage = UIImage()
     
     private var chosenBackground = BACKGROUND_BLANK
-    
-    @IBOutlet weak var projectNameTxtFld: UITextField!
-    @IBOutlet weak var projectNotesTxtView: UITextView!
-    
-    @IBOutlet weak var loadPictureButton: UIButton!
-    @IBOutlet weak var createMapButton: UIButton!
-    @IBOutlet weak var blankBackgroundButton: UIButton!
-    
-    @IBOutlet weak var legendNameTxtFld: UITextField!
-    @IBOutlet weak var legendIconImage: UIButton!
-    
-    @IBOutlet weak var legendTableView: UITableView!
     
     
     override func viewDidLoad() {
@@ -54,7 +55,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func addLegend() {
         if legendNameTxtFld.hasText {
-        
             if let name = legendNameTxtFld.text {
                 let legend = Legend(name: name, icon: selectedIconId)
                 legendArray.append(legend)
@@ -69,24 +69,31 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.legendTableView.reloadData()
     }
     
-    func createProject() {
-        if let name = projectNameTxtFld.text {
-            projectName = name
+    func createProject() -> Bool {
+        if !(projectNameTxtFld.text!.isEmpty) {
+            projectName = projectNameTxtFld.text!
         } else {
             warningMessage(title: NO_PROJECT_NAME_TITLE, message: NO_PROJECT_NAME_MSG)
-            return
+            return false
         }
         if legendArray.count < 1 {
             warningMessage(title: NO_LEGEND_ENTERED_TITLE, message: NO_LEGEND_ENTERED_MSG)
-            return
+            return false
         }
-        if let note = projectNotesTxtView.text {
-            projectNote = note
+        if !(projectNotesTxtView.text!.isEmpty) {
+            projectNote = projectNotesTxtView.text!
         } else {
             projectNote = ""
         }
         
+        setBackground()
+        
         project = Project(name: projectName, background: projectBackground, legend: legendArray, note: projectNote)
+        return true
+    }
+    
+    func containsText(object: UITextField) -> Bool {
+        return !(object.text!.isEmpty)
     }
     
     func setBackground() {
@@ -122,7 +129,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @IBAction func createPressed(_ sender: UIButton) {
-        
+        if createProject() {
+            performSegue(withIdentifier: "showDetailMappingVC", sender: sender)
+        }
     }
     
     @IBAction func createMapPressed(sender: UIButton) {
@@ -138,6 +147,15 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailMappingVC" {
+            if let mappingVC = segue.destination as? MappingVC {
+                mappingVC.project = project
+            }
+        }
+    }
+    
+    
     
     // TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -145,7 +163,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = legendTableView.dequeueReusableCell(withIdentifier: "CreateLegendCell", for: indexPath) as! CreateLegendCell
+        let cell = legendTableView.dequeueReusableCell(withIdentifier: "LegendCell", for: indexPath) as! LegendCell
         cell.configureCell(legend: legendArray[indexPath.row])
         return cell
     }

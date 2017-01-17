@@ -49,6 +49,14 @@ class Project {
             _background = newValue
         }
     }
+    
+    var legend: [Legend]! {
+        get {
+            return _legend
+        } set {
+            _legend = newValue
+        }
+    }
 
     init (name: String, background: UIImage, legend: [Legend], note: String) {
         self._name = name

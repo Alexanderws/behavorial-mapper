@@ -8,10 +8,10 @@
 
 import UIKit
 
-class CreateLegendCell: UITableViewCell {
+class LegendCell: UITableViewCell {
     
     @IBOutlet weak var iconImg: UIImageView!
-    @IBOutlet weak var legendName: UILabel!
+    @IBOutlet weak var legendNameLbl: UILabel!
     
     private var legend: Legend!
     
@@ -29,7 +29,7 @@ class CreateLegendCell: UITableViewCell {
     func configureCell (legend: Legend) {
         self.legend = legend
         self.iconImg.image = UIImage(named: "\(legend.icon)")
-        self.legendName.text = legend.name
+        self.legendNameLbl.text = legend.name
     }
     
 }

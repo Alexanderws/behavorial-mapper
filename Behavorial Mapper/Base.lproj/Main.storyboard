@@ -181,7 +181,7 @@
                         <viewControllerLayoutGuide type="bottom" id="QPy-km-ufK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XeE-Ez-mvC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iun-K4-z34">
@@ -226,6 +226,47 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="0xo-TG-tXr"/>
                                 </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LegendCell" id="MdC-uV-FsA" customClass="LegendCell" customModule="Behavorial_Mapper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="200" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MdC-uV-FsA" id="KyP-0u-dCP">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-OE-RKh">
+                                                    <rect key="frame" x="8" y="8" width="27" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="27" id="UAw-uv-urY"/>
+                                                        <constraint firstAttribute="height" constant="27" id="yZc-kl-o0F"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ocg-vs-hKG">
+                                                    <rect key="frame" x="43" y="8" width="157" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="vaP-l7-lDi"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uIA-OE-RKh" firstAttribute="top" secondItem="KyP-0u-dCP" secondAttribute="topMargin" id="1TV-kB-RFo"/>
+                                                <constraint firstItem="Ocg-vs-hKG" firstAttribute="top" secondItem="KyP-0u-dCP" secondAttribute="top" constant="8" id="1ZA-JL-1y2"/>
+                                                <constraint firstItem="uIA-OE-RKh" firstAttribute="leading" secondItem="KyP-0u-dCP" secondAttribute="leadingMargin" id="CqI-fb-JCJ"/>
+                                                <constraint firstItem="Ocg-vs-hKG" firstAttribute="leading" secondItem="uIA-OE-RKh" secondAttribute="trailing" constant="8" id="HuH-q5-8a0"/>
+                                                <constraint firstItem="uIA-OE-RKh" firstAttribute="bottom" secondItem="KyP-0u-dCP" secondAttribute="bottomMargin" id="VwJ-f1-qat"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ocg-vs-hKG" secondAttribute="trailing" id="b6A-CF-b7T"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ocg-vs-hKG" secondAttribute="bottom" constant="8" id="bw3-nY-PqW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="iconImg" destination="uIA-OE-RKh" id="hC0-ka-Cls"/>
+                                            <outlet property="legendNameLbl" destination="Ocg-vs-hKG" id="jRh-OF-Mxc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaC-I7-5Xw">
                                 <rect key="frame" x="0.0" y="371" width="200" height="26"/>
@@ -251,9 +292,19 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Qr9-du-H2c"/>
                                 </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Dyh-M0-guC">
+                                        <rect key="frame" x="0.0" y="28" width="200" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dyh-M0-guC" id="tXc-wh-1fe">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-jI-vEM">
-                                <rect key="frame" x="200" y="0.0" width="824" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -277,10 +328,18 @@
                             <constraint firstItem="BMH-jI-vEM" firstAttribute="leading" secondItem="JaA-oB-dEX" secondAttribute="trailing" id="zVO-X7-UyP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="entryTableView" destination="JaA-oB-dEX" id="JfX-1Z-0YK"/>
+                        <outlet property="historyTitleView" destination="BaC-I7-5Xw" id="4rb-RY-cHQ"/>
+                        <outlet property="legendTableView" destination="rdh-Jp-jrL" id="bq0-yU-D6H"/>
+                        <outlet property="legendTitleView" destination="d78-Uf-AXt" id="Sxk-eZ-mdg"/>
+                        <outlet property="mappingImageView" destination="BMH-jI-vEM" id="9dL-GW-rsZ"/>
+                        <outlet property="menuButton" destination="ZF0-9E-310" id="hE7-us-aQz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ub3-Sb-wgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1141" y="-182"/>
+            <point key="canvasLocation" x="1140.8203125" y="-182.03125"/>
         </scene>
         <!--Create ProjectVC-->
         <scene sceneID="Okw-k5-laG">
@@ -500,11 +559,11 @@
                                                     <constraint firstAttribute="width" constant="276" id="wBG-Y0-HVC"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateLegendCell" id="VV2-ji-3LC" customClass="CreateLegendCell" customModule="Behavorial_Mapper" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LegendCell" id="VV2-ji-3LC" customClass="LegendCell" customModule="Behavorial_Mapper" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="276" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VV2-ji-3LC" id="5ba-Qw-Whj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="276" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="276" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mSh-ja-dbM">
@@ -538,7 +597,7 @@
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="iconImg" destination="mSh-ja-dbM" id="1rc-eH-fZA"/>
-                                                            <outlet property="legendName" destination="Icc-oc-X9A" id="bcK-DQ-feI"/>
+                                                            <outlet property="legendNameLbl" destination="Icc-oc-X9A" id="vj7-G0-uzF"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -596,11 +655,12 @@
                         <outlet property="projectNameTxtFld" destination="Ruo-UC-i5N" id="Tfo-0p-5XA"/>
                         <outlet property="projectNotesTxtView" destination="hoR-K6-3Wi" id="AOD-g8-EIW"/>
                         <segue destination="Nds-kz-LDv" kind="show" identifier="GMapsSegue" id="x71-WJ-mOJ"/>
+                        <segue destination="HOk-Ee-XZE" kind="showDetail" identifier="showDetailMappingVC" id="nJ9-pg-ckg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwb-9A-m62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="-182"/>
+            <point key="canvasLocation" x="386" y="-202"/>
         </scene>
         <!--MapsVC-->
         <scene sceneID="8Ix-al-zZc">
