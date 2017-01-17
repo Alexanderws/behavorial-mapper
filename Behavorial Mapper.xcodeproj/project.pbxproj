@@ -30,6 +30,7 @@
 		3C67D12518208DBF2342FDCD /* libPods-Behavorial Mapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */; };
 		A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882FC331E26178C00C7C1E0 /* GMapsVC.swift */; };
 		A8EC9BAB1E26149000359E80 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A8EC9BAA1E26149000359E80 /* Podfile */; };
+		A8EEA7271E2774D200FDE6E8 /* CSVSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EEA7261E2774D200FDE6E8 /* CSVSerializable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0DFAA1A74FC7B5EE59297853 /* libPods-Behavorial Mapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Behavorial Mapper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		112605171E2645A100DC3381 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behavorial Mapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1174CBAD1E1E364900D6E59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +80,7 @@
 		38458F48E9A1FC85C43A5D13 /* Pods-Behavorial Mapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.release.xcconfig"; sourceTree = "<group>"; };
 		A882FC331E26178C00C7C1E0 /* GMapsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsVC.swift; sourceTree = "<group>"; };
 		A8EC9BAA1E26149000359E80 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		A8EEA7261E2774D200FDE6E8 /* CSVSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVSerializable.swift; sourceTree = "<group>"; };
 		BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Behavorial Mapper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F325F1C274A16887904AB249 /* Pods-Behavorial Mapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,6 +211,7 @@
 		1174CBE01E1E38A700D6E59A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A8EEA7251E2774BE00FDE6E8 /* Protocols */,
 				1174CBE11E1E3A9D00D6E59A /* Project.swift */,
 				1174CBE31E1E419D00D6E59A /* Map.swift */,
 				1174CBE51E1E41C100D6E59A /* Location.swift */,
@@ -225,6 +227,14 @@
 				BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8EEA7251E2774BE00FDE6E8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A8EEA7261E2774D200FDE6E8 /* CSVSerializable.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,6 +434,7 @@
 				112605181E2645A100DC3381 /* Constants.swift in Sources */,
 				1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */,
 				1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */,
+				A8EEA7271E2774D200FDE6E8 /* CSVSerializable.swift in Sources */,
 				A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */,
 				1174CBE81E1E435100D6E59A /* Legend.swift in Sources */,
 				11E06EF81E26294100B43047 /* IconCell.swift in Sources */,

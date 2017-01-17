@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Entry {
+class Entry: CSVSerializable {
     
     private var _time: Date!
     private var _start: Location!

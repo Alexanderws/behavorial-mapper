@@ -55,7 +55,6 @@ class GMapsVC: UIViewController {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let imagePath = paths[0].appendingPathComponent("map.png")
         try? data?.write(to: imagePath)
-        print(image?.size ?? 0)
         UIGraphicsEndImageContext()
         _toolBar.isHidden = false
         
