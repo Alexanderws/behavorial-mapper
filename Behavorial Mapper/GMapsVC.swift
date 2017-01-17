@@ -18,6 +18,7 @@ class GMapsVC: UIViewController {
     
     private var _toolBar = UIToolbar()
     private var _screenshotButton = UIBarButtonItem()
+    private var _cancelButton = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,18 @@ class GMapsVC: UIViewController {
                                                 height: _toolBarHeight))
         
         _screenshotButton = UIBarButtonItem(title: "Take Screenshot",
-                                            style: UIBarButtonItemStyle.plain,
+                                            style: .done,
                                             target: self,
                                             action: #selector(takeScreenshot))
         
+        _cancelButton = UIBarButtonItem(title: "Cancel",
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(cancelButtonClicked))
+        _cancelButton.tintColor = UIColor.red
+        
         _toolBarItems.append(_screenshotButton)
+        _toolBarItems.append(_cancelButton)
         _toolBar.setItems(_toolBarItems, animated: false)
         self.view.insertSubview(_toolBar, at: 2)
     }
@@ -63,6 +71,10 @@ class GMapsVC: UIViewController {
             vc.createMapButton.setImage(image!, for: .normal)
         }
         
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonClicked() {
         dismiss(animated: true, completion: nil)
     }
     
