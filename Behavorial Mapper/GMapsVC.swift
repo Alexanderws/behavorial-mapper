@@ -14,38 +14,25 @@ class GMapsVC: UIViewController {
     private var _camera = GMSCameraPosition.camera(withLatitude: 58.938100, longitude: 5.693730, zoom: 15) // UIS
     
     private let _toolBarHeight: CGFloat = 50.0
-    private var _toolBarItems = [UIBarButtonItem]()
     
-    private var _toolBar = UIToolbar()
-    private var _screenshotButton = UIBarButtonItem()
-    private var _cancelButton = UIBarButtonItem()
+    @IBOutlet weak var _toolBar: UIToolbar!
+    @IBOutlet weak var _screenshotButton: UIBarButtonItem!
+    @IBOutlet weak var _cancelButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let mapView = GMSMapView.map(withFrame: self.view.bounds, camera: _camera)
-        self.view = mapView
+        self.view.insertSubview(mapView, at: 0)
         
-        _toolBar = UIToolbar(frame: CGRect.init(x: 0,
-                                                y: self.view.bounds.height-_toolBarHeight,
-                                                width: self.view.bounds.width,
-                                                height: _toolBarHeight))
+        _screenshotButton.style = .done
+        _screenshotButton.title = "Take Screenshot"
+        _screenshotButton.action = #selector(GMapsVC.takeScreenshot)
         
-        _screenshotButton = UIBarButtonItem(title: "Take Screenshot",
-                                            style: .done,
-                                            target: self,
-                                            action: #selector(takeScreenshot))
-        
-        _cancelButton = UIBarButtonItem(title: "Cancel",
-                                        style: .done,
-                                        target: self,
-                                        action: #selector(cancelButtonClicked))
+        _cancelButton.style = .done
+        _cancelButton.title = "Cancel"
         _cancelButton.tintColor = UIColor.red
-        
-        _toolBarItems.append(_screenshotButton)
-        _toolBarItems.append(_cancelButton)
-        _toolBar.setItems(_toolBarItems, animated: false)
-        self.view.insertSubview(_toolBar, at: 2)
+        _cancelButton.action = #selector(GMapsVC.cancelButtonClicked)
     }
     
     override func didReceiveMemoryWarning() {

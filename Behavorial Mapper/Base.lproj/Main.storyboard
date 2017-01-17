@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -133,7 +133,7 @@
         <scene sceneID="BsR-fs-c5R">
             <objects>
                 <collectionViewController id="3nW-lN-YzF" customClass="IconSelectVC" customModule="Behavorial_Mapper" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="cch-Tl-0Z1">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cch-Tl-0Z1">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -504,7 +504,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="276" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VV2-ji-3LC" id="5ba-Qw-Whj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="276" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="276" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mSh-ja-dbM">
@@ -623,11 +623,17 @@
                                             <action selector="takeScreenshotWithSender:" destination="Nds-kz-LDv" id="VV4-4I-Y4u"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Item" id="xsv-dK-nom"/>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="_cancelButton" destination="xsv-dK-nom" id="Xi2-sC-qUP"/>
+                        <outlet property="_screenshotButton" destination="SQc-Oi-xlN" id="ojl-g1-xkO"/>
+                        <outlet property="_toolBar" destination="Atn-u6-teF" id="Wsw-Xa-Qij"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1j-6Y-zfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
