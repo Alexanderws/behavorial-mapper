@@ -60,7 +60,7 @@ extension CSVSerializable {
         case let main as Location:
             body += main.name + ";" + String(main.xCor) + ";" + String(main.yCor) + ";"
         case let main as Legend:
-            body += main.name + ";" + String(main.icon) + ";" + String(main.color) + ";"
+            body += main.name + ";" + String(main.icon) + ";"
         case let main as Entry:
             body += String(describing: main.time) + ";"
             body += main.note + ";"
@@ -73,7 +73,7 @@ extension CSVSerializable {
             case let value as Location:
                 body += value.name + ";" + String(value.xCor) + ";" + String(value.yCor) + ";"
             case let value as Legend:
-                body += value.name + ";" + String(value.icon) + ";" + String(value.color) + ";"
+                body += value.name + ";" + String(value.icon) + ";"
             case let value as Entry:
                 body += String(describing: value.time) + ";"
                 body += value.note + ";"
