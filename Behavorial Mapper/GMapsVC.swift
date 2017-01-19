@@ -37,7 +37,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         _cancelButton.action = #selector(GMapsVC.cancelButtonClicked)
         
         _mapView.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleLeftMargin,
-                                      .flexibleRightMargin, .flexibleTopMargin, .flexibleWidth]
+                                     .flexibleRightMargin, .flexibleTopMargin, .flexibleWidth]
     }
     
     override func didReceiveMemoryWarning() {
