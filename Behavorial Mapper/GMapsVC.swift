@@ -35,6 +35,9 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         _cancelButton.title = "Cancel"
         _cancelButton.tintColor = UIColor.red
         _cancelButton.action = #selector(GMapsVC.cancelButtonClicked)
+        
+        _mapView.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleLeftMargin,
+                                      .flexibleRightMargin, .flexibleTopMargin, .flexibleWidth]
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +83,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        viewController.dismiss(animated: true, completion: nil)
         print("Error: \(error)")
     }
     
