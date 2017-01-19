@@ -8,10 +8,12 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
-class GMapsVC: UIViewController {
+class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControllerDelegate {
         
     private var _camera = GMSCameraPosition.camera(withLatitude: 58.938100, longitude: 5.693730, zoom: 15) // UIS
+    private var _mapView = GMSMapView()
     
     private let _toolBarHeight: CGFloat = 50.0
     
@@ -22,8 +24,8 @@ class GMapsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let mapView = GMSMapView.map(withFrame: self.view.bounds, camera: _camera)
-        self.view.insertSubview(mapView, at: 0)
+        _mapView = GMSMapView.map(withFrame: self.view.bounds, camera: _camera)
+        self.view.insertSubview(_mapView, at: 0)
         
         _screenshotButton.style = .done
         _screenshotButton.title = "Take Screenshot"
@@ -68,4 +70,28 @@ class GMapsVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        _camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude,
+                                           longitude: place.coordinate.longitude,
+                                           zoom: 15)
+        self._mapView.camera = _camera
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: \(error)")
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func searchLocation(_ sender: Any) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        
+        self.present(autocompleteController, animated: true, completion: nil)
+    }
 }

@@ -620,6 +620,12 @@
                                 <items>
                                     <barButtonItem title="Item" id="xsv-dK-nom"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="0QD-W3-8TF"/>
+                                    <barButtonItem systemItem="search" id="ZHC-RV-PzO">
+                                        <connections>
+                                            <action selector="searchLocation:" destination="Nds-kz-LDv" id="zQB-ad-BUq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="18S-Fk-MNO"/>
                                     <barButtonItem title="Item" id="SQc-Oi-xlN">
                                         <connections>
                                             <action selector="takeScreenshotWithSender:" destination="Nds-kz-LDv" id="VV4-4I-Y4u"/>
