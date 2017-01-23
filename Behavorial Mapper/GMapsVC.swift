@@ -61,6 +61,8 @@ class GMapsVC: UIViewController {
         
         if let vc = self.presentingViewController as? CreateProjectVC {
             vc.createMapButton.setImage(image!, for: .normal)
+            vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
+            vc.mapScreenShot = image!
         }
         
         dismiss(animated: true, completion: nil)

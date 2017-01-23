@@ -34,7 +34,31 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var _mapScreenshot = UIImage()
     private var _uploadedImage = UIImage()
     
-    private var chosenBackground = BACKGROUND_BLANK
+    private var _chosenBackground = BACKGROUND_BLANK
+    
+    var chosenBackground: Int {
+        get {
+            return _chosenBackground
+        } set {
+            _chosenBackground = newValue
+        }
+    }
+    
+    var mapScreenShot: UIImage {
+        get {
+            return _mapScreenshot
+        } set {
+            _mapScreenshot = newValue
+        }
+    }
+    
+    var uploadedImage: UIImage {
+        get {
+            return _uploadedImage
+        } set {
+            _uploadedImage = newValue
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -43,8 +67,11 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         legendTableView.delegate = self
         legendTableView.dataSource = self
         
+        let d = Date()
+        let df = DateFormatter()
+        print(df.string(from: d))
+        
     }
-
     
     
     func enterLegendIcon(iconId: Int) {
@@ -70,7 +97,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func createProject() -> Bool {
-        if !(projectNameTxtFld.text!.isEmpty) {
+        if containsText(object: projectNameTxtFld) {
             projectName = projectNameTxtFld.text!
         } else {
             warningMessage(title: NO_PROJECT_NAME_TITLE, message: NO_PROJECT_NAME_MSG)
@@ -80,7 +107,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             warningMessage(title: NO_LEGEND_ENTERED_TITLE, message: NO_LEGEND_ENTERED_MSG)
             return false
         }
-        if !(projectNotesTxtView.text!.isEmpty) {
+        if containsText(object: projectNotesTxtView) {
             projectNote = projectNotesTxtView.text!
         } else {
             projectNote = ""
@@ -91,17 +118,14 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         project = Project(name: projectName, background: projectBackground, legend: legendArray, note: projectNote)
         return true
     }
-    
-    func containsText(object: UITextField) -> Bool {
-        return !(object.text!.isEmpty)
-    }
+
     
     func setBackground() {
         switch chosenBackground {
         case BACKGROUND_GOOGLE_MAPS:
-            projectBackground = _mapScreenshot
+            projectBackground = mapScreenShot
         case BACKGROUND_IMAGE_UPLOADED:
-            projectBackground = _uploadedImage
+            projectBackground = uploadedImage
         default:
             projectBackground = getWhiteBackground(width: 2000, height: 2000)
         }

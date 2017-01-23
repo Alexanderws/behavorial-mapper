@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+
+protocol ProjectDelegate {
+    func entryDeleted(tagId: Int)
+}
+
 class Project {
     
     private var _name: String!
@@ -17,6 +22,8 @@ class Project {
     private var _legend: [Legend]!
     private var _entries: [Entry]!
     private var _background: UIImage!
+    
+    var projectDelegate: ProjectDelegate?
     
     var note: String {
         get {
@@ -64,6 +71,19 @@ class Project {
         self._background = background
         self._legend = legend
         self._note = note
+        self._entries = [Entry]()
+    }
+    
+    func addEntry(legend: Legend, angleInDegrees: CGFloat, position: CGPoint, tagId: Int) {
+        _entries.append(Entry(start: position, angleInDegrees: angleInDegrees, legend: legend, tagId: tagId))
+    }
+    
+    func removeEntry(index: Int){
+        let entry = entries[index]
+        print("removeEntry: index = \(index)")
+        entries.remove(at: index)
+        print("removeEntry: tagId = \(entry.tagId)")
+        projectDelegate?.entryDeleted(tagId: entry.tagId)
     }
     
 }

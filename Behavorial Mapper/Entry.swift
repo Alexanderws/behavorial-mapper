@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
 class Entry: CSVSerializable {
     
     private var _time: Date!
-    private var _start: Location!
-    private var _end: Location!
+    private var _start: CGPoint!
+    private var _angleInDegrees: CGFloat!
     private var _legend: Legend!
     private var _note: String!
+    private var _tagId: Int!
     
     var time: Date {
         get {
@@ -24,7 +26,7 @@ class Entry: CSVSerializable {
         }
     }
     
-    var start: Location {
+    var start: CGPoint {
         get {
             return _start
         } set {
@@ -32,11 +34,11 @@ class Entry: CSVSerializable {
         }
     }
     
-    var end: Location {
-        get {
-            return _end
+    var angleInDegrees: CGFloat {
+        get{
+            return _angleInDegrees
         } set {
-            _end = newValue
+            _angleInDegrees = newValue
         }
     }
     
@@ -56,12 +58,19 @@ class Entry: CSVSerializable {
         }
     }
     
-    init(start: Location, end: Location, legend: Legend) {
+    var tagId: Int {
+        get {
+            return _tagId
+        }
+    }
+    
+    init(start: CGPoint, angleInDegrees: CGFloat, legend: Legend, tagId: Int) {
         self._time = Date()
         self._start = start
-        self._end = end
+        self._angleInDegrees = angleInDegrees
         self._legend = legend
         self._note = ""
+        self._tagId = tagId
     }
     
 }
