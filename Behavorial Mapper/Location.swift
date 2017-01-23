@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Location: CSVSerializable {
+class Location: JSONSerializable, CSVSerializable {
     
     private var _name: String!
     private var _xCor: Int!
@@ -44,4 +44,31 @@ class Location: CSVSerializable {
         self._yCor = yCor
     }
     
+    init?(json: [String: Any]) {
+        guard let name = json["_name"],
+            let xCor = json["_xCor"],
+            let yCor = json["_yCor"]
+            else {
+                return nil
+        }
+        self._name = name as! String
+        self._xCor = xCor as! Int
+        self._yCor = yCor as! Int
+    }
+    
+    init?(jsonStr: String) {
+        if let json = try? JSONSerialization.jsonObject(with: jsonStr.data(using: .utf8)!, options: []) {
+            guard let name = (json as! [String: Any])["_name"],
+                let xCor = (json as! [String: Any])["_xCor"],
+                let yCor = (json as! [String: Any])["_yCor"]
+                else {
+                    return nil
+            }
+            self._name = name as! String
+            self._xCor = xCor as! Int
+            self._yCor = yCor as! Int
+        } else {
+            return nil
+        }
+    }
 }

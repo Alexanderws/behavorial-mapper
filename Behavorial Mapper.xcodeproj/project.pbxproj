@@ -31,6 +31,7 @@
 		11E06EF81E26294100B43047 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EF71E26294100B43047 /* IconCell.swift */; };
 		11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */; };
 		3C67D12518208DBF2342FDCD /* libPods-Behavorial Mapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */; };
+		A841F3121E3609C300FD0120 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A841F3111E3609C300FD0120 /* JSONSerializable.swift */; };
 		A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A882FC331E26178C00C7C1E0 /* GMapsVC.swift */; };
 		A8EC9BAB1E26149000359E80 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A8EC9BAA1E26149000359E80 /* Podfile */; };
 		A8EEA7271E2774D200FDE6E8 /* CSVSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EEA7261E2774D200FDE6E8 /* CSVSerializable.swift */; };
@@ -84,6 +85,7 @@
 		11E06EF71E26294100B43047 /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenMenu.swift; sourceTree = "<group>"; };
 		38458F48E9A1FC85C43A5D13 /* Pods-Behavorial Mapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.release.xcconfig"; sourceTree = "<group>"; };
+		A841F3111E3609C300FD0120 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		A882FC331E26178C00C7C1E0 /* GMapsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsVC.swift; sourceTree = "<group>"; };
 		A8EC9BAA1E26149000359E80 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		A8EEA7261E2774D200FDE6E8 /* CSVSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVSerializable.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				A8EEA7261E2774D200FDE6E8 /* CSVSerializable.swift */,
+				A841F3111E3609C300FD0120 /* JSONSerializable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */,
 				A8EEA7271E2774D200FDE6E8 /* CSVSerializable.swift in Sources */,
 				A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */,
+				A841F3121E3609C300FD0120 /* JSONSerializable.swift in Sources */,
 				1126051C1E27769400DC3381 /* MappingVC.swift in Sources */,
 				1174CBE81E1E435100D6E59A /* Legend.swift in Sources */,
 				11E06EF81E26294100B43047 /* IconCell.swift in Sources */,

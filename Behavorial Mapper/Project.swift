@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Project {
+class Project: JSONSerializable {
     
     private var _name: String!
     private var _created: Date!
