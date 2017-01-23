@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+
+protocol ProjectDelegate {
+    func entryDeleted(tagId: Int)
+}
+
 class Project: JSONSerializable {
     
     private var _name: String!
