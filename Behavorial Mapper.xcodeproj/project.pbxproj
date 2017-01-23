@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		112605181E2645A100DC3381 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112605171E2645A100DC3381 /* Constants.swift */; };
-		1126051A1E27708200DC3381 /* CreateLegendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112605191E27708200DC3381 /* CreateLegendCell.swift */; };
+		1126051A1E27708200DC3381 /* LegendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112605191E27708200DC3381 /* LegendCell.swift */; };
 		1126051C1E27769400DC3381 /* MappingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051B1E27769400DC3381 /* MappingVC.swift */; };
 		1126051E1E278A7300DC3381 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051D1E278A7300DC3381 /* Functions.swift */; };
 		112605201E279DE000DC3381 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051F1E279DE000DC3381 /* Style.swift */; };
+		1158F1CA1E2E2032002B3FEB /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1C91E2E2032002B3FEB /* EntryCell.swift */; };
+		1158F1CC1E2E3336002B3FEB /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1CB1E2E3336002B3FEB /* MappingView.swift */; };
 		1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAD1E1E364900D6E59A /* AppDelegate.swift */; };
 		1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAF1E1E364900D6E59A /* StartVC.swift */; };
 		1174CBB31E1E364900D6E59A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB11E1E364900D6E59A /* Main.storyboard */; };
@@ -56,10 +58,12 @@
 
 /* Begin PBXFileReference section */
 		112605171E2645A100DC3381 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		112605191E27708200DC3381 /* CreateLegendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLegendCell.swift; sourceTree = "<group>"; };
+		112605191E27708200DC3381 /* LegendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegendCell.swift; sourceTree = "<group>"; };
 		1126051B1E27769400DC3381 /* MappingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingVC.swift; sourceTree = "<group>"; };
 		1126051D1E278A7300DC3381 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		1126051F1E279DE000DC3381 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		1158F1C91E2E2032002B3FEB /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
+		1158F1CB1E2E3336002B3FEB /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behavorial Mapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1174CBAD1E1E364900D6E59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1174CBAF1E1E364900D6E59A /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
@@ -215,7 +219,9 @@
 				11E06EC71E237BE600B43047 /* CreateProjectView.swift */,
 				11E06EC91E2393ED00B43047 /* LegendButton.swift */,
 				11E06EF71E26294100B43047 /* IconCell.swift */,
-				112605191E27708200DC3381 /* CreateLegendCell.swift */,
+				112605191E27708200DC3381 /* LegendCell.swift */,
+				1158F1C91E2E2032002B3FEB /* EntryCell.swift */,
+				1158F1CB1E2E3336002B3FEB /* MappingView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -442,8 +448,10 @@
 				11E06EC61E2374F400B43047 /* CreateProjectVC.swift in Sources */,
 				11E06EF61E261EBB00B43047 /* IconSelectVC.swift in Sources */,
 				1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */,
+				1158F1CA1E2E2032002B3FEB /* EntryCell.swift in Sources */,
 				112605181E2645A100DC3381 /* Constants.swift in Sources */,
 				1174CBB61E1E364900D6E59A /* Behavorial_Mapper.xcdatamodeld in Sources */,
+				1158F1CC1E2E3336002B3FEB /* MappingView.swift in Sources */,
 				1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */,
 				A8EEA7271E2774D200FDE6E8 /* CSVSerializable.swift in Sources */,
 				A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */,
@@ -458,7 +466,7 @@
 				1174CBE61E1E41C100D6E59A /* Location.swift in Sources */,
 				11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */,
 				1174CBE21E1E3A9D00D6E59A /* Project.swift in Sources */,
-				1126051A1E27708200DC3381 /* CreateLegendCell.swift in Sources */,
+				1126051A1E27708200DC3381 /* LegendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

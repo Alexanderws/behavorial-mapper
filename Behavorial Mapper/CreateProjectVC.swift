@@ -10,19 +10,6 @@ import UIKit
 
 class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var legendArray = [Legend]()
-    var selectedIconId = 0
-    
-    private var project: Project!
-    private var projectName: String!
-    private var projectNote: String!
-    private var projectBackground: UIImage!
-    
-    private var _mapScreenshot = UIImage()
-    private var _uploadedImage = UIImage()
-    
-    private var chosenBackground = BACKGROUND_BLANK
-    
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
     
@@ -34,6 +21,44 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var legendIconImage: UIButton!
     
     @IBOutlet weak var legendTableView: UITableView!
+
+    
+    var legendArray = [Legend]()
+    var selectedIconId = 0
+    
+    private var project: Project!
+    private var projectName: String!
+    private var projectNote: String!
+    private var projectBackground: UIImage!
+    
+    private var _mapScreenshot = UIImage()
+    private var _uploadedImage = UIImage()
+    
+    private var _chosenBackground = BACKGROUND_BLANK
+    
+    var chosenBackground: Int {
+        get {
+            return _chosenBackground
+        } set {
+            _chosenBackground = newValue
+        }
+    }
+    
+    var mapScreenShot: UIImage {
+        get {
+            return _mapScreenshot
+        } set {
+            _mapScreenshot = newValue
+        }
+    }
+    
+    var uploadedImage: UIImage {
+        get {
+            return _uploadedImage
+        } set {
+            _uploadedImage = newValue
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -42,8 +67,11 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         legendTableView.delegate = self
         legendTableView.dataSource = self
         
+        let d = Date()
+        let df = DateFormatter()
+        print(df.string(from: d))
+        
     }
-
     
     
     func enterLegendIcon(iconId: Int) {
@@ -54,7 +82,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func addLegend() {
         if legendNameTxtFld.hasText {
-        
             if let name = legendNameTxtFld.text {
                 let legend = Legend(name: name, icon: selectedIconId)
                 legendArray.append(legend)
@@ -69,32 +96,36 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.legendTableView.reloadData()
     }
     
-    func createProject() {
-        if let name = projectNameTxtFld.text {
-            projectName = name
+    func createProject() -> Bool {
+        if containsText(object: projectNameTxtFld) {
+            projectName = projectNameTxtFld.text!
         } else {
             warningMessage(title: NO_PROJECT_NAME_TITLE, message: NO_PROJECT_NAME_MSG)
-            return
+            return false
         }
         if legendArray.count < 1 {
             warningMessage(title: NO_LEGEND_ENTERED_TITLE, message: NO_LEGEND_ENTERED_MSG)
-            return
+            return false
         }
-        if let note = projectNotesTxtView.text {
-            projectNote = note
+        if containsText(object: projectNotesTxtView) {
+            projectNote = projectNotesTxtView.text!
         } else {
             projectNote = ""
         }
         
+        setBackground()
+        
         project = Project(name: projectName, background: projectBackground, legend: legendArray, note: projectNote)
+        return true
     }
+
     
     func setBackground() {
         switch chosenBackground {
         case BACKGROUND_GOOGLE_MAPS:
-            projectBackground = _mapScreenshot
+            projectBackground = mapScreenShot
         case BACKGROUND_IMAGE_UPLOADED:
-            projectBackground = _uploadedImage
+            projectBackground = uploadedImage
         default:
             projectBackground = getWhiteBackground(width: 2000, height: 2000)
         }
@@ -122,7 +153,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @IBAction func createPressed(_ sender: UIButton) {
-        
+        if createProject() {
+            performSegue(withIdentifier: "showDetailMappingVC", sender: sender)
+        }
     }
     
     @IBAction func createMapPressed(sender: UIButton) {
@@ -138,6 +171,15 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailMappingVC" {
+            if let mappingVC = segue.destination as? MappingVC {
+                mappingVC.project = project
+            }
+        }
+    }
+    
+    
     
     // TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -145,7 +187,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = legendTableView.dequeueReusableCell(withIdentifier: "CreateLegendCell", for: indexPath) as! CreateLegendCell
+        let cell = legendTableView.dequeueReusableCell(withIdentifier: "LegendCell", for: indexPath) as! LegendCell
         cell.configureCell(legend: legendArray[indexPath.row])
         return cell
     }

@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 // Icons in CreateProjectVC
 let NUMBER_OF_ICONS = 10
 let ICON_CELL_SIZE = 25
+let CENTER_ICON_SIZE: CGFloat = 14
+let ARROW_ICON_SIZE: CGFloat = 38
 
 // Map selection in CreateProjectVC
 let BACKGROUND_IMAGE_UPLOADED = 1
@@ -25,3 +28,7 @@ let NO_LEGEND_NAME_MSG = "Enter a name for the legend entry."
 let NO_LEGEND_ENTERED_TITLE = "No legends entered"
 let NO_LEGEND_ENTERED_MSG = "You need at least 1 legend."
 let ALERT_CANCEL_TITLE = "Dismiss"
+
+// Sizes
+let LEGEND_TABLEVIEW_CELL_HEIGHT = 44
+let ENTRY_TABLEVIEW_CELL_HEIGHT = 87

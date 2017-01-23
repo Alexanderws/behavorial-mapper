@@ -28,3 +28,29 @@ extension UIColor {
         return UIColor.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
+
+func containsText(object: Any) -> Bool {
+    return !((object as AnyObject).text!.isEmpty)
+}
+
+func dateFormat(date: Date)-> String {
+    let df = DateFormatter()
+    df.dateFormat = "dd MMM yyyy"
+    return df.string(from: date)
+}
+
+func timeFormat(date: Date)-> String {
+    let df = DateFormatter()
+    df.dateFormat = "hh:mm:ss"
+    return df.string(from: date)
+}
+
+func bearingPoint(point0: CGPoint, point1: CGPoint) -> CGPoint {
+    let newPoint = CGPoint(x:(point1.x - point0.x), y:(point0.y - point1.y))
+    return newPoint
+}
+
+func pointToDegrees(x: CGFloat, y: CGFloat) -> CGFloat {
+    let bearingRadian = atan2f(Float(y), Float(x))
+    return CGFloat(bearingRadian) * (180 / CGFloat(M_PI))
+}

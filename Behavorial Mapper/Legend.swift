@@ -12,6 +12,7 @@ class Legend: JSONSerializable, CSVSerializable {
     
     private var _name: String!
     private var _icon: Int!
+
     
     var name: String {
         get {
