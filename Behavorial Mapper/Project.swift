@@ -14,7 +14,7 @@ protocol ProjectDelegate {
     func entryDeleted(tagId: Int)
 }
 
-class Project {
+class Project: JSONSerializable {
     
     private var _name: String!
     private var _created: Date!

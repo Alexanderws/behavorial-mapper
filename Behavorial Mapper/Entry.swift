@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Entry: CSVSerializable {
+class Entry: JSONSerializable, CSVSerializable {
     
     private var _time: Date!
     private var _start: CGPoint!
