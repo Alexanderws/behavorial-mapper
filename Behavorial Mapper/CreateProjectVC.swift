@@ -85,6 +85,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             if let name = legendNameTxtFld.text {
                 let legend = Legend(name: name, icon: selectedIconId)
                 legendArray.append(legend)
+                legendNameTxtFld.text = ""
                 updateLegendList()
             }
         } else {

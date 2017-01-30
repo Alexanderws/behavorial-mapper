@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -133,7 +133,7 @@
         <scene sceneID="BsR-fs-c5R">
             <objects>
                 <collectionViewController id="3nW-lN-YzF" customClass="IconSelectVC" customModule="Behavorial_Mapper" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="cch-Tl-0Z1">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cch-Tl-0Z1">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -170,7 +170,82 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUM-OB-fQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="-678"/>
+            <point key="canvasLocation" x="821" y="-622"/>
+        </scene>
+        <!--Entry NoteVC-->
+        <scene sceneID="Doh-Rf-Ldr">
+            <objects>
+                <viewController storyboardIdentifier="EntryNoteVC" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5jL-jn-4Yj" customClass="EntryNoteVC" customModule="Behavorial_Mapper" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ah7-YH-gkT"/>
+                        <viewControllerLayoutGuide type="bottom" id="xer-7Z-6g2"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="LTi-Tc-9oV">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="190"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAV-DX-qnc">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="190"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cs-oq-oXw">
+                                <rect key="frame" x="88" y="20" width="124" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="wAc-TC-TuW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cex-v6-YdD">
+                                <rect key="frame" x="30" y="48" width="240" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="gNW-cB-wq0"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1G1-P4-Ouv">
+                                <rect key="frame" x="238" y="152" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="yFh-B1-xah"/>
+                                    <constraint firstAttribute="height" constant="30" id="zmA-OD-EsT"/>
+                                </constraints>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveBtnPressed:" destination="5jL-jn-4Yj" eventType="touchUpInside" id="SkO-QU-Kye"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bAV-DX-qnc" firstAttribute="leading" secondItem="LTi-Tc-9oV" secondAttribute="leading" id="0FI-0F-oT1"/>
+                            <constraint firstItem="xer-7Z-6g2" firstAttribute="top" secondItem="bAV-DX-qnc" secondAttribute="bottom" id="2Mc-Ro-Rfb"/>
+                            <constraint firstItem="2cs-oq-oXw" firstAttribute="top" secondItem="Ah7-YH-gkT" secondAttribute="bottom" id="3nR-Bp-CvA"/>
+                            <constraint firstItem="1G1-P4-Ouv" firstAttribute="trailing" secondItem="LTi-Tc-9oV" secondAttribute="trailingMargin" id="7MS-Ef-MAW"/>
+                            <constraint firstItem="2cs-oq-oXw" firstAttribute="centerX" secondItem="LTi-Tc-9oV" secondAttribute="centerX" id="OzG-Bi-sKr"/>
+                            <constraint firstItem="xer-7Z-6g2" firstAttribute="top" secondItem="1G1-P4-Ouv" secondAttribute="bottom" constant="8" id="Qi9-Ln-tBU"/>
+                            <constraint firstItem="cex-v6-YdD" firstAttribute="top" secondItem="2cs-oq-oXw" secondAttribute="bottom" constant="8" id="nyc-5l-3Ga"/>
+                            <constraint firstItem="cex-v6-YdD" firstAttribute="centerX" secondItem="LTi-Tc-9oV" secondAttribute="centerX" id="ozP-Hl-Fbp"/>
+                            <constraint firstItem="bAV-DX-qnc" firstAttribute="top" secondItem="LTi-Tc-9oV" secondAttribute="top" id="wQ1-hV-HoY"/>
+                            <constraint firstItem="1G1-P4-Ouv" firstAttribute="top" secondItem="cex-v6-YdD" secondAttribute="bottom" constant="8" id="wS9-9H-tOQ"/>
+                            <constraint firstAttribute="trailing" secondItem="bAV-DX-qnc" secondAttribute="trailing" id="zTG-YU-tvr"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="190"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="190"/>
+                    <connections>
+                        <outlet property="noteTxtView" destination="cex-v6-YdD" id="b5f-ar-7gX"/>
+                        <outlet property="saveBtn" destination="1G1-P4-Ouv" id="TXf-t6-dYY"/>
+                        <outlet property="titleLbl" destination="2cs-oq-oXw" id="frd-ie-kV3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="erK-um-4qN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="-678"/>
         </scene>
         <!--MappingVC-->
         <scene sceneID="1GW-Uw-xmd">
@@ -185,10 +260,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-jI-vEM">
-                                <rect key="frame" x="200" y="0.0" width="502.5" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vb-fr-DVe" customClass="MappingView" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                <rect key="frame" x="200" y="0.0" width="502.5" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iun-K4-z34">
@@ -420,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ub3-Sb-wgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108.59375" y="-202.34375"/>
+            <point key="canvasLocation" x="1555" y="-202"/>
         </scene>
         <!--Create ProjectVC-->
         <scene sceneID="Okw-k5-laG">
@@ -612,7 +687,7 @@
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="legendIconPressed:" destination="7cN-ro-JtM" eventType="touchUpInside" id="efH-bp-Xqs"/>
-                                                                    <segue destination="3nW-lN-YzF" kind="popoverPresentation" identifier="showIconSelectVC" popoverAnchorView="3AP-c5-94R" id="Bme-E5-FS8">
+                                                                    <segue destination="3nW-lN-YzF" kind="popoverPresentation" identifier="popoverIconSelectVC" popoverAnchorView="3AP-c5-94R" id="Bme-E5-FS8">
                                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                                     </segue>
                                                                 </connections>

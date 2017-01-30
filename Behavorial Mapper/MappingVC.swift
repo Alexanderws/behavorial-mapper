@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate {
+class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate {
 
     
     @IBOutlet weak var legendTableView: UITableView!
@@ -27,6 +27,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
 
     private var _project: Project!
     private var _selectedLegend: Legend!
+    private var _selectedEntry: Entry!
+    private var _selectedIndex: Int!
     
     private var _tagNumber = 0
     
@@ -74,6 +76,11 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         print("entryDeleted: tagId = \(tagId)")
         mappingView.viewWithTag(tagId)?.removeFromSuperview()
         mappingView.viewWithTag(tagId)?.removeFromSuperview()
+    }
+    
+    // ENTRYNOTE FUNCTIONS
+    func noteAdded(note: String) {
+        project.entries[_selectedIndex].note = note
     }
     
     // MAPPING VIEW FUNCTIONS
@@ -146,6 +153,32 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == legendTableView {
             selectedLegend = project.legend[indexPath.row]
+        }
+        if tableView == entryTableView {
+            _selectedEntry = project.entries[self.project.entries.count - (indexPath.row + 1)]
+            _selectedIndex = self.project.entries.count - (indexPath.row + 1)
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let entryNoteVC = storyboard.instantiateViewController(withIdentifier: "EntryNoteVC") as! EntryNoteVC
+            entryNoteVC.entry = _selectedEntry
+            entryNoteVC.index = _selectedIndex
+            entryNoteVC.modalPresentationStyle = UIModalPresentationStyle.popover
+            entryNoteVC.entryNoteDelegate = self
+            
+            let popoverPresentationController = entryNoteVC.popoverPresentationController
+                
+            if let _popoverPresentationController = popoverPresentationController {
+                
+                let cell = entryTableView.cellForRow(at: indexPath)
+                
+                let rectOfCellInTableView = tableView.rectForRow(at: indexPath)
+                let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
+                
+                _popoverPresentationController.sourceView = cell
+                _popoverPresentationController.sourceRect = CGRect(x: rectOfCellInSuperview.origin.x, y: rectOfCellInSuperview.origin.x, width: rectOfCellInSuperview.width, height: rectOfCellInSuperview.height)
+
+                self.present(entryNoteVC, animated: true, completion: nil)
+            }
         }
     }
     
