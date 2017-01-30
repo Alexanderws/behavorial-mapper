@@ -73,4 +73,20 @@ class Entry: JSONSerializable, CSVSerializable {
         self._tagId = tagId
     }
     
+    init?(json: [String: Any]) {
+        guard let date = json["_time"],
+            let start = json["_start"],
+            let legend = json["_legend"],
+            let note = json["_note"]
+            else {
+                return nil
+        }
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        self._time = df.date(from: date as! String)
+        
+        self._start = start as! CGPoint
+        self._legend = Legend.init(json: legend as! [String: Any])
+        self._note = note as! String
+    }
 }

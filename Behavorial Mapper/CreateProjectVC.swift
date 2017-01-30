@@ -31,7 +31,8 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var projectNote: String!
     private var projectBackground: UIImage!
     
-    private var _mapScreenshot = UIImage()
+    //private var _mapScreenshot = UIImage()
+    private var _mapScreenshot = String()
     private var _uploadedImage = UIImage()
     
     private var _chosenBackground = BACKGROUND_BLANK
@@ -44,7 +45,17 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    /*
     var mapScreenShot: UIImage {
+        get {
+            return _mapScreenshot
+        } set {
+            _mapScreenshot = newValue
+        }
+    }
+    */
+    
+    var mapScreenShot: String {
         get {
             return _mapScreenshot
         } set {
@@ -123,7 +134,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func setBackground() {
         switch chosenBackground {
         case BACKGROUND_GOOGLE_MAPS:
-            projectBackground = mapScreenShot
+            let url = URL(string: mapScreenShot)
+            let data = try! Data(contentsOf: url!)
+            projectBackground = UIImage(data: data)
         case BACKGROUND_IMAGE_UPLOADED:
             projectBackground = uploadedImage
         default:

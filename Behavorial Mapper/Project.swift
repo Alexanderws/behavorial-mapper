@@ -21,6 +21,8 @@ class Project: JSONSerializable {
     private var _note: String!
     private var _legend: [Legend]!
     private var _entries: [Entry]!
+    // TODO: Switch _background from UIImage to String path
+    //       to enable proper serialization.
     private var _background: UIImage!
     
     var projectDelegate: ProjectDelegate?
@@ -86,4 +88,34 @@ class Project: JSONSerializable {
         projectDelegate?.entryDeleted(tagId: entry.tagId)
     }
     
+    init?(json: [String: Any]) {
+        guard let name = json["_name"],
+            let created = json["_created"],
+            let note = json["_note"],
+            let legends = json["_legend"],
+            let entries = json["_entries"],
+            let background = json["_background"]
+            else {
+                return nil
+        }
+        self._name = name as! String
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        self._created = df.date(from: created as! String)
+        
+        self._note = note as! String
+        
+        self._legend = [Legend]()
+        for leg in legends as! [[String: Any]] {
+            self._legend.append(Legend(json: leg)!)
+        }
+        
+        self._entries = [Entry]()
+        for ent in entries as! [[String: Any]] {
+            self._entries.append(Entry(json: ent)!)
+        }
+        
+        //self._background = background as! String
+    }
 }
