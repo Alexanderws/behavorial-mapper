@@ -126,7 +126,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         setBackground()
         
-        project = Project(name: projectName, background: projectBackground, legend: legendArray, note: projectNote)
+        project = Project(name: projectName, background: _mapScreenshot, legend: legendArray, note: projectNote)
         return true
     }
 

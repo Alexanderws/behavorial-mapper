@@ -21,9 +21,7 @@ class Project: JSONSerializable {
     private var _note: String!
     private var _legend: [Legend]!
     private var _entries: [Entry]!
-    // TODO: Switch _background from UIImage to String path
-    //       to enable proper serialization.
-    private var _background: UIImage!
+    private var _background: String!
     
     var projectDelegate: ProjectDelegate?
     
@@ -51,7 +49,17 @@ class Project: JSONSerializable {
         }
     }
     
+    /*
     var background: UIImage {
+        get {
+            return _background
+        } set {
+            _background = newValue
+        }
+    }
+    */
+    
+    var background: String {
         get {
             return _background
         } set {
@@ -67,7 +75,7 @@ class Project: JSONSerializable {
         }
     }
 
-    init (name: String, background: UIImage, legend: [Legend], note: String) {
+    init (name: String, background: String, legend: [Legend], note: String) {
         self._name = name
         self._created = Date()
         self._background = background
@@ -116,6 +124,6 @@ class Project: JSONSerializable {
             self._entries.append(Entry(json: ent)!)
         }
         
-        //self._background = background as! String
+        self._background = background as! String
     }
 }
