@@ -25,10 +25,11 @@ class EntryCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
+        super.setSelected(false, animated: animated)
         // Configure the view for the selected state
     }
+    
+    
     
     func configureCell (entry: Entry) {
         self.entry = entry
@@ -36,5 +37,7 @@ class EntryCell: UITableViewCell {
         self.entryTimeLbl.text = timeFormat(date: entry.time)
         self.entryDateLbl.text = dateFormat(date: entry.time)
         self.entryIconImage.image = UIImage(named: "\(entry.legend.icon)")
+        
+        
     }
 }

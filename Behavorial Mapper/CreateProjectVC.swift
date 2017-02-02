@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
@@ -25,6 +25,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var legendArray = [Legend]()
     var selectedIconId = 0
+    
+    
+    
     
     private var project: Project!
     private var projectName: String!
@@ -65,25 +68,18 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var uploadedImage: UIImage {
         get {
-            return _uploadedImage
+            return _backgroundImage
         } set {
-            _uploadedImage = newValue
+            _backgroundImage = newValue
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         legendTableView.delegate = self
         legendTableView.dataSource = self
-        
-        let d = Date()
-        let df = DateFormatter()
-        print(df.string(from: d))
-        
     }
-    
     
     func enterLegendIcon(iconId: Int) {
         legendIconImage.setTitle("", for: .normal)
@@ -96,6 +92,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             if let name = legendNameTxtFld.text {
                 let legend = Legend(name: name, icon: selectedIconId)
                 legendArray.append(legend)
+                legendNameTxtFld.text = ""
                 updateLegendList()
             }
         } else {
@@ -129,7 +126,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         project = Project(name: projectName, background: _mapScreenshot, legend: legendArray, note: projectNote)
         return true
     }
-
     
     func setBackground() {
         switch chosenBackground {
@@ -138,7 +134,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             let data = try! Data(contentsOf: url!)
             projectBackground = UIImage(data: data)
         case BACKGROUND_IMAGE_UPLOADED:
-            projectBackground = uploadedImage
+            projectBackground = _backgroundImage
         default:
             projectBackground = getWhiteBackground(width: 2000, height: 2000)
         }
@@ -171,6 +167,13 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    @IBAction func uploadImagePressed(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
+    }
+    
     @IBAction func createMapPressed(sender: UIButton) {
         performSegue(withIdentifier: "GMapsSegue", sender: sender)
     }
@@ -183,6 +186,21 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return false
     }
     
+    func updateImageButtons() {
+        loadPictureButton.setImage(UIImage(named: BACKGROUND_IMAGE_UPLOADED_STRING), for: .normal)
+        createMapButton.setImage(UIImage(named: BACKGROUND_GOOGLE_MAPS_STRING), for: .normal)
+        // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
+        switch chosenBackground {
+        case BACKGROUND_IMAGE_UPLOADED:
+            loadPictureButton.setImage(backgroundImage, for: .normal)
+        case BACKGROUND_GOOGLE_MAPS:
+            createMapButton.setImage(backgroundImage, for: .normal)
+        case BACKGROUND_BLANK: break
+            // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
+        default: break
+            // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailMappingVC" {
@@ -192,6 +210,27 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    // IMAGE PICKER FUNCTIONS
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var newImage: UIImage
+        
+        if let possibleImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            newImage = possibleImage
+        } else if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            newImage = possibleImage
+        } else {
+            return
+        }
+        
+        chosenBackground = BACKGROUND_IMAGE_UPLOADED
+        backgroundImage = newImage
+        updateImageButtons()
+        dismiss(animated: true)
+    }
     
     
     // TABLE VIEW FUNCTIONS
@@ -224,5 +263,4 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
     }
-
 }

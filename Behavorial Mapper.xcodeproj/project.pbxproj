@@ -12,6 +12,8 @@
 		1126051C1E27769400DC3381 /* MappingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051B1E27769400DC3381 /* MappingVC.swift */; };
 		1126051E1E278A7300DC3381 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051D1E278A7300DC3381 /* Functions.swift */; };
 		112605201E279DE000DC3381 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051F1E279DE000DC3381 /* Style.swift */; };
+		112674811E3896D5001ED42F /* EntryNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112674801E3896D5001ED42F /* EntryNoteVC.swift */; };
+		114122CB1E4320B100F664E8 /* MappingMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114122CA1E4320B100F664E8 /* MappingMenuVC.swift */; };
 		1158F1CA1E2E2032002B3FEB /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1C91E2E2032002B3FEB /* EntryCell.swift */; };
 		1158F1CC1E2E3336002B3FEB /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1CB1E2E3336002B3FEB /* MappingView.swift */; };
 		1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAD1E1E364900D6E59A /* AppDelegate.swift */; };
@@ -62,6 +64,8 @@
 		1126051B1E27769400DC3381 /* MappingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingVC.swift; sourceTree = "<group>"; };
 		1126051D1E278A7300DC3381 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		1126051F1E279DE000DC3381 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		112674801E3896D5001ED42F /* EntryNoteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryNoteVC.swift; sourceTree = "<group>"; };
+		114122CA1E4320B100F664E8 /* MappingMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingMenuVC.swift; sourceTree = "<group>"; };
 		1158F1C91E2E2032002B3FEB /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		1158F1CB1E2E3336002B3FEB /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behavorial Mapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +95,7 @@
 		38458F48E9A1FC85C43A5D13 /* Pods-Behavorial Mapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.release.xcconfig"; sourceTree = "<group>"; };
 		A841F3111E3609C300FD0120 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
 		A882FC331E26178C00C7C1E0 /* GMapsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsVC.swift; sourceTree = "<group>"; };
-		A8EC9BAA1E26149000359E80 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		A8EC9BAA1E26149000359E80 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A8EEA7261E2774D200FDE6E8 /* CSVSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVSerializable.swift; sourceTree = "<group>"; };
 		BFA5F4E8E0C62220DFD4408C /* libPods-Behavorial Mapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Behavorial Mapper.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F325F1C274A16887904AB249 /* Pods-Behavorial Mapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behavorial Mapper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Behavorial Mapper/Pods-Behavorial Mapper.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 				A882FC331E26178C00C7C1E0 /* GMapsVC.swift */,
 				11E06EF51E261EBB00B43047 /* IconSelectVC.swift */,
 				1126051B1E27769400DC3381 /* MappingVC.swift */,
+				112674801E3896D5001ED42F /* EntryNoteVC.swift */,
+				114122CA1E4320B100F664E8 /* MappingMenuVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -460,6 +466,7 @@
 				1174CBE81E1E435100D6E59A /* Legend.swift in Sources */,
 				11E06EF81E26294100B43047 /* IconCell.swift in Sources */,
 				1126051E1E278A7300DC3381 /* Functions.swift in Sources */,
+				112674811E3896D5001ED42F /* EntryNoteVC.swift in Sources */,
 				112605201E279DE000DC3381 /* Style.swift in Sources */,
 				1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */,
 				11E06EC81E237BE600B43047 /* CreateProjectView.swift in Sources */,
@@ -467,6 +474,7 @@
 				11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */,
 				1174CBE21E1E3A9D00D6E59A /* Project.swift in Sources */,
 				1126051A1E27708200DC3381 /* LegendCell.swift in Sources */,
+				114122CB1E4320B100F664E8 /* MappingMenuVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

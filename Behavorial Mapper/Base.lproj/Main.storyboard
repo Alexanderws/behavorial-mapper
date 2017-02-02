@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -129,6 +129,98 @@
             </objects>
             <point key="canvasLocation" x="-294" y="-202"/>
         </scene>
+        <!--Mapping MenuVC-->
+        <scene sceneID="zxq-jn-btQ">
+            <objects>
+                <viewController id="XUu-kt-3u4" customClass="MappingMenuVC" customModule="Behavorial_Mapper" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SEN-20-IPI"/>
+                        <viewControllerLayoutGuide type="bottom" id="6ge-22-n47"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kKz-9o-q7r">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TA6-pS-x3n">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-ze-dnD">
+                                        <rect key="frame" x="40.5" y="22" width="119" height="156"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhZ-Qt-LeZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Project notes">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="projectNotesPressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="iCg-fc-86U"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hd7-zR-gto">
+                                                <rect key="frame" x="0.0" y="40" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Export data">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exportDataPressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="uPR-aS-xol"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70b-nN-KEJ">
+                                                <rect key="frame" x="0.0" y="80" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Export image">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exportImagePressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="3T7-0x-Myp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Mi-Qc4">
+                                                <rect key="frame" x="0.0" y="120" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Exit">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exitPressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="lEO-fZ-Sk8"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sJk-ze-dnD" firstAttribute="centerX" secondItem="TA6-pS-x3n" secondAttribute="centerX" id="ew5-g3-lPo"/>
+                                    <constraint firstItem="sJk-ze-dnD" firstAttribute="centerY" secondItem="TA6-pS-x3n" secondAttribute="centerY" id="tWJ-cd-Qnr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TA6-pS-x3n" firstAttribute="leading" secondItem="kKz-9o-q7r" secondAttribute="leading" id="Ico-M9-EXp"/>
+                            <constraint firstItem="6ge-22-n47" firstAttribute="top" secondItem="TA6-pS-x3n" secondAttribute="bottom" id="PwQ-w9-ax8"/>
+                            <constraint firstAttribute="trailing" secondItem="TA6-pS-x3n" secondAttribute="trailing" id="hFO-4q-kqa"/>
+                            <constraint firstItem="TA6-pS-x3n" firstAttribute="top" secondItem="kKz-9o-q7r" secondAttribute="top" id="rgV-8J-DBu"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="200"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="exitBtn" destination="NiS-Mi-Qc4" id="b7J-6m-bvc"/>
+                        <outlet property="exitPressed" destination="NiS-Mi-Qc4" id="dhr-Z3-Boe"/>
+                        <outlet property="exportDataBtn" destination="hd7-zR-gto" id="uHe-d0-9C7"/>
+                        <outlet property="exportDataPressed" destination="hd7-zR-gto" id="wgo-sL-lCX"/>
+                        <outlet property="exportImageBtn" destination="70b-nN-KEJ" id="Etp-SM-3hJ"/>
+                        <outlet property="projectNotesBtn" destination="dhZ-Qt-LeZ" id="XCT-tf-Tp3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bfM-QK-45e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="-873"/>
+        </scene>
         <!--Icon SelectVC-->
         <scene sceneID="BsR-fs-c5R">
             <objects>
@@ -137,15 +229,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cte-Ug-bxV">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Cte-Ug-bxV">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IconCell" id="IoW-vH-Lqf" customClass="IconCell" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="10" y="10" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -167,10 +259,86 @@
                             <outlet property="delegate" destination="3nW-lN-YzF" id="nwS-qF-2rl"/>
                         </connections>
                     </collectionView>
+                    <value key="contentSizeForViewInPopover" type="size" width="240" height="150"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUM-OB-fQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="-678"/>
+            <point key="canvasLocation" x="821" y="-622"/>
+        </scene>
+        <!--Entry NoteVC-->
+        <scene sceneID="Doh-Rf-Ldr">
+            <objects>
+                <viewController storyboardIdentifier="EntryNoteVC" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5jL-jn-4Yj" customClass="EntryNoteVC" customModule="Behavorial_Mapper" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ah7-YH-gkT"/>
+                        <viewControllerLayoutGuide type="bottom" id="xer-7Z-6g2"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="LTi-Tc-9oV">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="190"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAV-DX-qnc">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="190"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cs-oq-oXw">
+                                <rect key="frame" x="88" y="20" width="124" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="wAc-TC-TuW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cex-v6-YdD">
+                                <rect key="frame" x="30" y="48" width="240" height="96"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="gNW-cB-wq0"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1G1-P4-Ouv">
+                                <rect key="frame" x="238" y="152" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="yFh-B1-xah"/>
+                                    <constraint firstAttribute="height" constant="30" id="zmA-OD-EsT"/>
+                                </constraints>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveBtnPressed:" destination="5jL-jn-4Yj" eventType="touchUpInside" id="SkO-QU-Kye"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bAV-DX-qnc" firstAttribute="leading" secondItem="LTi-Tc-9oV" secondAttribute="leading" id="0FI-0F-oT1"/>
+                            <constraint firstItem="xer-7Z-6g2" firstAttribute="top" secondItem="bAV-DX-qnc" secondAttribute="bottom" id="2Mc-Ro-Rfb"/>
+                            <constraint firstItem="2cs-oq-oXw" firstAttribute="top" secondItem="Ah7-YH-gkT" secondAttribute="bottom" id="3nR-Bp-CvA"/>
+                            <constraint firstItem="1G1-P4-Ouv" firstAttribute="trailing" secondItem="LTi-Tc-9oV" secondAttribute="trailingMargin" id="7MS-Ef-MAW"/>
+                            <constraint firstItem="2cs-oq-oXw" firstAttribute="centerX" secondItem="LTi-Tc-9oV" secondAttribute="centerX" id="OzG-Bi-sKr"/>
+                            <constraint firstItem="xer-7Z-6g2" firstAttribute="top" secondItem="1G1-P4-Ouv" secondAttribute="bottom" constant="8" id="Qi9-Ln-tBU"/>
+                            <constraint firstItem="cex-v6-YdD" firstAttribute="top" secondItem="2cs-oq-oXw" secondAttribute="bottom" constant="8" id="nyc-5l-3Ga"/>
+                            <constraint firstItem="cex-v6-YdD" firstAttribute="centerX" secondItem="LTi-Tc-9oV" secondAttribute="centerX" id="ozP-Hl-Fbp"/>
+                            <constraint firstItem="bAV-DX-qnc" firstAttribute="top" secondItem="LTi-Tc-9oV" secondAttribute="top" id="wQ1-hV-HoY"/>
+                            <constraint firstItem="1G1-P4-Ouv" firstAttribute="top" secondItem="cex-v6-YdD" secondAttribute="bottom" constant="8" id="wS9-9H-tOQ"/>
+                            <constraint firstAttribute="trailing" secondItem="bAV-DX-qnc" secondAttribute="trailing" id="zTG-YU-tvr"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="190"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="190"/>
+                    <connections>
+                        <outlet property="noteTxtView" destination="cex-v6-YdD" id="b5f-ar-7gX"/>
+                        <outlet property="saveBtn" destination="1G1-P4-Ouv" id="TXf-t6-dYY"/>
+                        <outlet property="titleLbl" destination="2cs-oq-oXw" id="frd-ie-kV3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="erK-um-4qN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="-678"/>
         </scene>
         <!--MappingVC-->
         <scene sceneID="1GW-Uw-xmd">
@@ -201,6 +369,11 @@
                                         <state key="normal" title="Menu">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="XUu-kt-3u4" kind="popoverPresentation" popoverAnchorView="ZF0-9E-310" id="9QT-h2-eID">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -269,6 +442,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="contentView" destination="KyP-0u-dCP" id="nya-no-NBr"/>
                                             <outlet property="iconImg" destination="uIA-OE-RKh" id="hC0-ka-Cls"/>
                                             <outlet property="legendNameLbl" destination="Ocg-vs-hKG" id="jRh-OF-Mxc"/>
                                         </connections>
@@ -420,7 +594,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ub3-Sb-wgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108.59375" y="-202.34375"/>
+            <point key="canvasLocation" x="1361" y="-223"/>
         </scene>
         <!--Create ProjectVC-->
         <scene sceneID="Okw-k5-laG">
@@ -534,6 +708,9 @@
                                                                     <constraint firstAttribute="width" constant="88" id="XjQ-ko-3ig"/>
                                                                 </constraints>
                                                                 <state key="normal" image="ImageIcon"/>
+                                                                <connections>
+                                                                    <action selector="uploadImagePressed:" destination="7cN-ro-JtM" eventType="touchUpInside" id="nQw-Bd-Ybo"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVn-Ne-bs4">
                                                                 <rect key="frame" x="94" y="0.0" width="88" height="88"/>
@@ -612,7 +789,7 @@
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="legendIconPressed:" destination="7cN-ro-JtM" eventType="touchUpInside" id="efH-bp-Xqs"/>
-                                                                    <segue destination="3nW-lN-YzF" kind="popoverPresentation" identifier="showIconSelectVC" popoverAnchorView="3AP-c5-94R" id="Bme-E5-FS8">
+                                                                    <segue destination="3nW-lN-YzF" kind="popoverPresentation" identifier="popoverIconSelectVC" popoverAnchorView="3AP-c5-94R" id="Bme-E5-FS8">
                                                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                                     </segue>
                                                                 </connections>
