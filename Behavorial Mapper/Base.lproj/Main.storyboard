@@ -129,23 +129,115 @@
             </objects>
             <point key="canvasLocation" x="-294" y="-202"/>
         </scene>
+        <!--Mapping MenuVC-->
+        <scene sceneID="zxq-jn-btQ">
+            <objects>
+                <viewController id="XUu-kt-3u4" customClass="MappingMenuVC" customModule="Behavorial_Mapper" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SEN-20-IPI"/>
+                        <viewControllerLayoutGuide type="bottom" id="6ge-22-n47"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kKz-9o-q7r">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TA6-pS-x3n">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-ze-dnD">
+                                        <rect key="frame" x="40.5" y="22" width="119" height="156"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhZ-Qt-LeZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Project notes">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="projectNotesPressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="iCg-fc-86U"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hd7-zR-gto">
+                                                <rect key="frame" x="0.0" y="40" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Export data">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exportDataPressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="uPR-aS-xol"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70b-nN-KEJ">
+                                                <rect key="frame" x="0.0" y="80" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Export image">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exportImagePressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="3T7-0x-Myp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Mi-Qc4">
+                                                <rect key="frame" x="0.0" y="120" width="119" height="36"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Exit">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exitPressed:" destination="XUu-kt-3u4" eventType="touchUpInside" id="lEO-fZ-Sk8"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sJk-ze-dnD" firstAttribute="centerX" secondItem="TA6-pS-x3n" secondAttribute="centerX" id="ew5-g3-lPo"/>
+                                    <constraint firstItem="sJk-ze-dnD" firstAttribute="centerY" secondItem="TA6-pS-x3n" secondAttribute="centerY" id="tWJ-cd-Qnr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TA6-pS-x3n" firstAttribute="leading" secondItem="kKz-9o-q7r" secondAttribute="leading" id="Ico-M9-EXp"/>
+                            <constraint firstItem="6ge-22-n47" firstAttribute="top" secondItem="TA6-pS-x3n" secondAttribute="bottom" id="PwQ-w9-ax8"/>
+                            <constraint firstAttribute="trailing" secondItem="TA6-pS-x3n" secondAttribute="trailing" id="hFO-4q-kqa"/>
+                            <constraint firstItem="TA6-pS-x3n" firstAttribute="top" secondItem="kKz-9o-q7r" secondAttribute="top" id="rgV-8J-DBu"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="200"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="exitBtn" destination="NiS-Mi-Qc4" id="b7J-6m-bvc"/>
+                        <outlet property="exitPressed" destination="NiS-Mi-Qc4" id="dhr-Z3-Boe"/>
+                        <outlet property="exportDataBtn" destination="hd7-zR-gto" id="uHe-d0-9C7"/>
+                        <outlet property="exportDataPressed" destination="hd7-zR-gto" id="wgo-sL-lCX"/>
+                        <outlet property="exportImageBtn" destination="70b-nN-KEJ" id="Etp-SM-3hJ"/>
+                        <outlet property="projectNotesBtn" destination="dhZ-Qt-LeZ" id="XCT-tf-Tp3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bfM-QK-45e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="-873"/>
+        </scene>
         <!--Icon SelectVC-->
         <scene sceneID="BsR-fs-c5R">
             <objects>
                 <collectionViewController id="3nW-lN-YzF" customClass="IconSelectVC" customModule="Behavorial_Mapper" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cch-Tl-0Z1">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="cch-Tl-0Z1">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cte-Ug-bxV">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Cte-Ug-bxV">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IconCell" id="IoW-vH-Lqf" customClass="IconCell" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="10" y="10" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -167,6 +259,7 @@
                             <outlet property="delegate" destination="3nW-lN-YzF" id="nwS-qF-2rl"/>
                         </connections>
                     </collectionView>
+                    <value key="contentSizeForViewInPopover" type="size" width="240" height="150"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUM-OB-fQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -199,7 +292,7 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cex-v6-YdD">
                                 <rect key="frame" x="30" y="48" width="240" height="96"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="gNW-cB-wq0"/>
                                 </constraints>
@@ -260,10 +353,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-jI-vEM">
-                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="502.5" height="768"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vb-fr-DVe" customClass="MappingView" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="502.5" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iun-K4-z34">
@@ -276,6 +369,11 @@
                                         <state key="normal" title="Menu">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="XUu-kt-3u4" kind="popoverPresentation" popoverAnchorView="ZF0-9E-310" id="9QT-h2-eID">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -344,6 +442,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="contentView" destination="KyP-0u-dCP" id="nya-no-NBr"/>
                                             <outlet property="iconImg" destination="uIA-OE-RKh" id="hC0-ka-Cls"/>
                                             <outlet property="legendNameLbl" destination="Ocg-vs-hKG" id="jRh-OF-Mxc"/>
                                         </connections>
@@ -495,7 +594,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ub3-Sb-wgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1555" y="-202"/>
+            <point key="canvasLocation" x="1361" y="-223"/>
         </scene>
         <!--Create ProjectVC-->
         <scene sceneID="Okw-k5-laG">
@@ -609,6 +708,9 @@
                                                                     <constraint firstAttribute="width" constant="88" id="XjQ-ko-3ig"/>
                                                                 </constraints>
                                                                 <state key="normal" image="ImageIcon"/>
+                                                                <connections>
+                                                                    <action selector="uploadImagePressed:" destination="7cN-ro-JtM" eventType="touchUpInside" id="nQw-Bd-Ybo"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVn-Ne-bs4">
                                                                 <rect key="frame" x="94" y="0.0" width="88" height="88"/>

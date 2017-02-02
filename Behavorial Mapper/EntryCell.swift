@@ -37,5 +37,7 @@ class EntryCell: UITableViewCell {
         self.entryTimeLbl.text = timeFormat(date: entry.time)
         self.entryDateLbl.text = dateFormat(date: entry.time)
         self.entryIconImage.image = UIImage(named: "\(entry.legend.icon)")
+        
+        
     }
 }

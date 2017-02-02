@@ -13,6 +13,7 @@
 		1126051E1E278A7300DC3381 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051D1E278A7300DC3381 /* Functions.swift */; };
 		112605201E279DE000DC3381 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1126051F1E279DE000DC3381 /* Style.swift */; };
 		112674811E3896D5001ED42F /* EntryNoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112674801E3896D5001ED42F /* EntryNoteVC.swift */; };
+		114122CB1E4320B100F664E8 /* MappingMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114122CA1E4320B100F664E8 /* MappingMenuVC.swift */; };
 		1158F1CA1E2E2032002B3FEB /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1C91E2E2032002B3FEB /* EntryCell.swift */; };
 		1158F1CC1E2E3336002B3FEB /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1CB1E2E3336002B3FEB /* MappingView.swift */; };
 		1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAD1E1E364900D6E59A /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		1126051D1E278A7300DC3381 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		1126051F1E279DE000DC3381 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		112674801E3896D5001ED42F /* EntryNoteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryNoteVC.swift; sourceTree = "<group>"; };
+		114122CA1E4320B100F664E8 /* MappingMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingMenuVC.swift; sourceTree = "<group>"; };
 		1158F1C91E2E2032002B3FEB /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		1158F1CB1E2E3336002B3FEB /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
 		1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behavorial Mapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +213,7 @@
 				11E06EF51E261EBB00B43047 /* IconSelectVC.swift */,
 				1126051B1E27769400DC3381 /* MappingVC.swift */,
 				112674801E3896D5001ED42F /* EntryNoteVC.swift */,
+				114122CA1E4320B100F664E8 /* MappingMenuVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */,
 				1174CBE21E1E3A9D00D6E59A /* Project.swift in Sources */,
 				1126051A1E27708200DC3381 /* LegendCell.swift in Sources */,
+				114122CB1E4320B100F664E8 /* MappingMenuVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
