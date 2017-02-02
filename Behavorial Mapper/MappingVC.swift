@@ -67,7 +67,10 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         
         project.projectDelegate = self
         mappingView.mappingViewDelegate = self
-        mappingBgImageView.image = project.background
+        
+        let url = URL(string: project.background)
+        let data = try? Data(contentsOf: url!)
+        mappingBgImageView.image = UIImage(data: data!)
     }
 
     
@@ -112,7 +115,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     func mappingViewTouchEnded(sender: MappingView, touches: Set<UITouch>) {
         _project.addEntry(legend: selectedLegend, angleInDegrees: _angleInDegrees, position: _centerPos!, tagId: _tagNumber)
         entryTableView.reloadData()
-        print("Angle in degrees: \(_angleInDegrees)")
+        //print("Angle in degrees: \(_angleInDegrees)")
     }
     
     // TABLE VIEW FUNCTIONS

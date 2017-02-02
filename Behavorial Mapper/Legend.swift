@@ -30,10 +30,19 @@ class Legend: JSONSerializable, CSVSerializable {
         }
     }
     
-    
     init(name: String, icon: Int) {
         self._name = name
         self._icon = icon
     }
     
+    init?(json: [String: Any]) {
+        guard let name = json["_name"],
+            let icon = json["_icon"]
+            else {
+                return nil
+        }
+        self._name = name as! String
+        self._icon = icon as! Int
+        
+    }
 }

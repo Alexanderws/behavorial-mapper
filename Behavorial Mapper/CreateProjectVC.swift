@@ -43,11 +43,21 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    var backgroundImage: UIImage {
+    /*
+    var mapScreenShot: UIImage {
         get {
-            return _backgroundImage
+            return _mapScreenshot
         } set {
-            _backgroundImage = newValue
+            _mapScreenshot = newValue
+        }
+    }
+    */
+    
+    var backgroundString: String {
+        get {
+            return _backgroundString
+        } set {
+            _backgroundString = newValue
         }
     }
     
@@ -100,16 +110,17 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         setBackground()
         
-        project = Project(name: projectName, background: projectBackground, legend: legendArray, note: projectNote)
+        project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
         return true
     }
     
     func setBackground() {
+        
         switch chosenBackground {
         case BACKGROUND_GOOGLE_MAPS:
-            projectBackground = _backgroundImage
-        case BACKGROUND_IMAGE_UPLOADED:
-            projectBackground = _backgroundImage
+            let url = URL(string: _backgroundString)
+            let data = try! Data(contentsOf: url!)
+            projectBackground = UIImage(data: data)
         default:
             projectBackground = getWhiteBackground(width: 2000, height: 2000)
         }
@@ -167,9 +178,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         switch chosenBackground {
         case BACKGROUND_IMAGE_UPLOADED:
-            loadPictureButton.setImage(backgroundImage, for: .normal)
+            loadPictureButton.setImage(_backgroundImage, for: .normal)
         case BACKGROUND_GOOGLE_MAPS:
-            createMapButton.setImage(backgroundImage, for: .normal)
+            createMapButton.setImage(_backgroundImage, for: .normal)
         case BACKGROUND_BLANK: break
             // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         default: break
@@ -202,7 +213,14 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
         chosenBackground = BACKGROUND_IMAGE_UPLOADED
-        backgroundImage = newImage
+        _backgroundImage = newImage
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let imagePath = paths[0].appendingPathComponent("map.png")
+        let data = UIImagePNGRepresentation(_backgroundImage)
+        try? data?.write(to: imagePath)
+        _backgroundString = imagePath.absoluteString
+        
         updateImageButtons()
         dismiss(animated: true)
     }

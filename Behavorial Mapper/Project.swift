@@ -21,7 +21,7 @@ class Project: JSONSerializable {
     private var _note: String!
     private var _legend: [Legend]!
     private var _entries: [Entry]!
-    private var _background: UIImage!
+    private var _background: String!
     
     var projectDelegate: ProjectDelegate?
     
@@ -49,7 +49,17 @@ class Project: JSONSerializable {
         }
     }
     
+    /*
     var background: UIImage {
+        get {
+            return _background
+        } set {
+            _background = newValue
+        }
+    }
+    */
+    
+    var background: String {
         get {
             return _background
         } set {
@@ -65,7 +75,7 @@ class Project: JSONSerializable {
         }
     }
 
-    init (name: String, background: UIImage, legend: [Legend], note: String) {
+    init (name: String, background: String, legend: [Legend], note: String) {
         self._name = name
         self._created = Date()
         self._background = background
@@ -86,4 +96,34 @@ class Project: JSONSerializable {
         projectDelegate?.entryDeleted(tagId: entry.tagId)
     }
     
+    init?(json: [String: Any]) {
+        guard let name = json["_name"],
+            let created = json["_created"],
+            let note = json["_note"],
+            let legends = json["_legend"],
+            let entries = json["_entries"],
+            let background = json["_background"]
+            else {
+                return nil
+        }
+        self._name = name as! String
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        self._created = df.date(from: created as! String)
+        
+        self._note = note as! String
+        
+        self._legend = [Legend]()
+        for leg in legends as! [[String: Any]] {
+            self._legend.append(Legend(json: leg)!)
+        }
+        
+        self._entries = [Entry]()
+        for ent in entries as! [[String: Any]] {
+            self._entries.append(Entry(json: ent)!)
+        }
+        
+        self._background = background as! String
+    }
 }
