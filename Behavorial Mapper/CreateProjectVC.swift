@@ -26,17 +26,15 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var legendArray = [Legend]()
     var selectedIconId = 0
     
-    
-    
-    
+
     private var project: Project!
     private var projectName: String!
     private var projectNote: String!
     private var projectBackground: UIImage!
     
     //private var _mapScreenshot = UIImage()
-    private var _mapScreenshot = String()
-    private var _uploadedImage = UIImage()
+    private var _backgroundString = String()
+    private var _backgroundImage = UIImage()
     
     private var _chosenBackground = BACKGROUND_BLANK
     
@@ -58,19 +56,11 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     */
     
-    var mapScreenShot: String {
+    var backgroundString: String {
         get {
-            return _mapScreenshot
+            return _backgroundString
         } set {
-            _mapScreenshot = newValue
-        }
-    }
-    
-    var uploadedImage: UIImage {
-        get {
-            return _backgroundImage
-        } set {
-            _backgroundImage = newValue
+            _backgroundString = newValue
         }
     }
     
@@ -123,18 +113,17 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         setBackground()
         
-        project = Project(name: projectName, background: _mapScreenshot, legend: legendArray, note: projectNote)
+        project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
         return true
     }
     
     func setBackground() {
+        
         switch chosenBackground {
         case BACKGROUND_GOOGLE_MAPS:
-            let url = URL(string: mapScreenShot)
+            let url = URL(string: _backgroundString)
             let data = try! Data(contentsOf: url!)
             projectBackground = UIImage(data: data)
-        case BACKGROUND_IMAGE_UPLOADED:
-            projectBackground = _backgroundImage
         default:
             projectBackground = getWhiteBackground(width: 2000, height: 2000)
         }
@@ -192,9 +181,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         switch chosenBackground {
         case BACKGROUND_IMAGE_UPLOADED:
-            loadPictureButton.setImage(backgroundImage, for: .normal)
+            loadPictureButton.setImage(_backgroundImage, for: .normal)
         case BACKGROUND_GOOGLE_MAPS:
-            createMapButton.setImage(backgroundImage, for: .normal)
+            createMapButton.setImage(_backgroundImage, for: .normal)
         case BACKGROUND_BLANK: break
             // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         default: break
@@ -227,7 +216,14 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
         chosenBackground = BACKGROUND_IMAGE_UPLOADED
-        backgroundImage = newImage
+        _backgroundImage = newImage
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let imagePath = paths[0].appendingPathComponent("map.png")
+        let data = UIImagePNGRepresentation(_backgroundImage)
+        try? data?.write(to: imagePath)
+        _backgroundString = imagePath.absoluteString
+        
         updateImageButtons()
         dismiss(animated: true)
     }
