@@ -26,15 +26,11 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var legendArray = [Legend]()
     var selectedIconId = 0
     
-    
-    
-    
     private var project: Project!
     private var projectName: String!
     private var projectNote: String!
     private var projectBackground: UIImage!
     
-    private var _mapScreenshot = UIImage()
     private var _backgroundImage = UIImage()
     
     private var _chosenBackground = BACKGROUND_BLANK
