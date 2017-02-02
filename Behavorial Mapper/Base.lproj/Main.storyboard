@@ -145,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="sJk-ze-dnD">
-                                        <rect key="frame" x="40.5" y="22" width="119" height="156"/>
+                                        <rect key="frame" x="41" y="22" width="119" height="156"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhZ-Qt-LeZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="119" height="36"/>
@@ -210,9 +210,7 @@
                     <size key="freeformSize" width="200" height="200"/>
                     <connections>
                         <outlet property="exitBtn" destination="NiS-Mi-Qc4" id="b7J-6m-bvc"/>
-                        <outlet property="exitPressed" destination="NiS-Mi-Qc4" id="dhr-Z3-Boe"/>
                         <outlet property="exportDataBtn" destination="hd7-zR-gto" id="uHe-d0-9C7"/>
-                        <outlet property="exportDataPressed" destination="hd7-zR-gto" id="wgo-sL-lCX"/>
                         <outlet property="exportImageBtn" destination="70b-nN-KEJ" id="Etp-SM-3hJ"/>
                         <outlet property="projectNotesBtn" destination="dhZ-Qt-LeZ" id="XCT-tf-Tp3"/>
                     </connections>
@@ -730,6 +728,9 @@
                                                                     <constraint firstAttribute="height" constant="88" id="5cl-CM-8Td"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Blank"/>
+                                                                <connections>
+                                                                    <action selector="blankBackgroundPressed:" destination="7cN-ro-JtM" eventType="touchUpInside" id="92e-sV-9pv"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>

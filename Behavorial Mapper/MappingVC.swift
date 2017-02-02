@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate {
+class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate, MappingMenuDelegate {
 
     
     @IBOutlet weak var legendTableView: UITableView!
@@ -84,6 +84,23 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     // ENTRYNOTE FUNCTIONS
     func noteAdded(note: String) {
         project.entries[_selectedIndex].note = note
+    }
+    
+    // MAPPING MENU FUNCTIONS
+    func editProjectNotes() {
+        
+    }
+    
+    func exportData() {
+        
+    }
+    
+    func exportImage() {
+        
+    }
+    
+    func exitProject() {
+        
     }
     
     // MAPPING VIEW FUNCTIONS

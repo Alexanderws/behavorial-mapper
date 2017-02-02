@@ -66,7 +66,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         if let vc = self.presentingViewController as? CreateProjectVC {
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
             vc.backgroundString = imagePath.absoluteString
-            //vc.mapScreenShot = image!
+            vc.backgroundImage = image!
             vc.updateImageButtons()
         }
         

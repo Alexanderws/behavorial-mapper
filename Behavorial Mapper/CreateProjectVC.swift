@@ -32,6 +32,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var projectBackground: UIImage!
     
     private var _backgroundImage = UIImage()
+    private var _backgroundString = String()
     
     private var _chosenBackground = BACKGROUND_BLANK
     
@@ -42,16 +43,14 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             _chosenBackground = newValue
         }
     }
-    
-    /*
-    var mapScreenShot: UIImage {
+
+    var backgroundImage: UIImage {
         get {
-            return _mapScreenshot
+            return _backgroundImage
         } set {
-            _mapScreenshot = newValue
+            _backgroundImage = newValue
         }
     }
-    */
     
     var backgroundString: String {
         get {
@@ -63,7 +62,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         legendTableView.delegate = self
         legendTableView.dataSource = self
     }
@@ -115,13 +114,11 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func setBackground() {
-        
-        switch chosenBackground {
-        case BACKGROUND_GOOGLE_MAPS:
+        if (chosenBackground == BACKGROUND_GOOGLE_MAPS || chosenBackground == BACKGROUND_IMAGE_UPLOADED) {
             let url = URL(string: _backgroundString)
             let data = try! Data(contentsOf: url!)
             projectBackground = UIImage(data: data)
-        default:
+        } else {
             projectBackground = getWhiteBackground(width: 2000, height: 2000)
         }
     }
@@ -164,13 +161,12 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         performSegue(withIdentifier: "GMapsSegue", sender: sender)
     }
     
-    func checkInputs() -> String {
-        return ""
+    
+    @IBAction func blankBackgroundPressed(_ sender: Any) {
+        chosenBackground = BACKGROUND_BLANK
+        updateImageButtons()
     }
     
-    func checkLegendList() -> Bool {
-        return false
-    }
     
     func updateImageButtons() {
         loadPictureButton.setImage(UIImage(named: BACKGROUND_IMAGE_UPLOADED_STRING), for: .normal)
@@ -184,7 +180,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         case BACKGROUND_BLANK: break
             // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         default: break
-            // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         }
     }
     
