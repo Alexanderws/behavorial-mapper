@@ -351,10 +351,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-jI-vEM">
-                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="502.5" height="768"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vb-fr-DVe" customClass="MappingView" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="502.5" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iun-K4-z34">

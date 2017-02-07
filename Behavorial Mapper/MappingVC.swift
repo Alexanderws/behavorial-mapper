@@ -108,14 +108,17 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func exportData() {
+        
+    }
+    
+    func exportImage() {
+        dismiss(animated: true) {
+            self.displayShareSheet(shareContent: "Test")
+        }
         print("")
         print("ExportFromMapping")
         print("")
         // displayShareSheet(shareContent: "Test")
-    }
-    
-    func exportImage() {
-        
     }
     
     func exitProject() {
