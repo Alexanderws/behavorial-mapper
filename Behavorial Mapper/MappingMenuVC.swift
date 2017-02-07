@@ -51,7 +51,7 @@ class MappingMenuVC: UIViewController {
     }
 
     @IBAction func exportImagePressed(_ sender: Any) {
-        delegate?.exportData()
+        delegate?.exportImage()
     }
     
     @IBAction func exitPressed(_ sender: Any) {
