@@ -9,6 +9,45 @@
 import Foundation
 import UIKit
 
+func displayMessage(title: String, message: String, self: UIViewController) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    alertController.addAction(UIAlertAction(title: ALERT_CANCEL_TITLE, style: UIAlertActionStyle.cancel, handler: {
+        (alertAction: UIAlertAction!) in
+        alertController.dismiss(animated: true, completion: nil)
+    }))
+    self.present(alertController, animated: true, completion: nil)
+}
+
+func displayTextEntry(title: String, placeholder: String, self: UIViewController) {
+    let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
+    let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
+        
+    })
+    let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+        (action : UIAlertAction!) -> Void in
+    })
+    alertController.addTextField { (textField : UITextField!) -> Void in
+        textField.placeholder = placeholder
+        textField.textRect(forBounds: CGRect(x: textField.frame.origin.x, y: textField.frame.origin.y, width: 200, height: 400))
+    }
+    alertController.addAction(cancelAction)
+    alertController.addAction(saveAction)
+    self.present(alertController, animated: true, completion: nil)
+}
+
+func displayTextShare(shareContent: String, self: UIViewController, anchor: UIView) {
+    let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString], applicationActivities: nil)
+    activityViewController.popoverPresentationController?.sourceView = anchor
+    // activityViewController.popoverPresentationController?.sourceRect = self.view.bounds
+    self.present(activityViewController, animated: true, completion: {})
+}
+
+func displayImageShare(shareContent: UIImage, self: UIViewController, anchor: UIView) {
+    let activityViewController = UIActivityViewController(activityItems: [shareContent as UIImage], applicationActivities: nil)
+    activityViewController.popoverPresentationController?.sourceView = anchor
+    // activityViewController.popoverPresentationController?.sourceRect = self.view.bounds
+    self.present(activityViewController, animated: true, completion: {})
+}
 
 func getWhiteBackground(width: CGFloat, height: CGFloat) -> UIImage {
     let rect = CGRect(x: 0, y: 0, width: width, height: height)
@@ -17,6 +56,14 @@ func getWhiteBackground(width: CGFloat, height: CGFloat) -> UIImage {
     UIRectFill(rect)
     let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
+    return image
+}
+
+func getImageSnapshot(fromView: UIView) -> UIImage {
+    let snapShot:UIView = fromView.snapshotView(afterScreenUpdates: true)!
+    UIGraphicsBeginImageContextWithOptions(fromView.frame.size, false, UIScreen.main.scale)
+    snapShot.drawHierarchy(in: fromView.bounds, afterScreenUpdates: true)
+    let image:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
     return image
 }
 

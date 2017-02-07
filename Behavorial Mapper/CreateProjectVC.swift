@@ -82,7 +82,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 updateLegendList()
             }
         } else {
-            warningMessage(title: NO_LEGEND_NAME_TITLE, message: NO_LEGEND_NAME_MSG)
+            displayMessage(title: NO_LEGEND_NAME_TITLE, message: NO_LEGEND_NAME_MSG, self: self)
         }
     }
     
@@ -94,11 +94,11 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if containsText(object: projectNameTxtFld) {
             projectName = projectNameTxtFld.text!
         } else {
-            warningMessage(title: NO_PROJECT_NAME_TITLE, message: NO_PROJECT_NAME_MSG)
+            displayMessage(title: NO_PROJECT_NAME_TITLE, message: NO_PROJECT_NAME_MSG, self: self)
             return false
         }
         if legendArray.count < 1 {
-            warningMessage(title: NO_LEGEND_ENTERED_TITLE, message: NO_LEGEND_ENTERED_MSG)
+            displayMessage(title: NO_LEGEND_ENTERED_TITLE, message: NO_LEGEND_ENTERED_MSG, self: self)
             return false
         }
         if containsText(object: projectNotesTxtView) {
@@ -111,14 +111,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return true
     }
     
-    func warningMessage(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: ALERT_CANCEL_TITLE, style: UIAlertActionStyle.cancel, handler: {
-            (alertAction: UIAlertAction!) in
-            alertController.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alertController, animated: true, completion: nil)
-    }
+    
     
     @IBAction func legendIconPressed(_ sender: UIButton) {
         //Segue to IconSelectVC
@@ -138,9 +131,13 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    @IBAction func uploadImagePressed(_ sender: Any) {
+    @IBAction func uploadImagePressed(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
+        imagePicker.modalPresentationStyle = .popover
+        imagePicker.popoverPresentationController?.sourceView = self.view
+        imagePicker.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY,width: 0, height: 0)
+        imagePicker.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
         imagePicker.delegate = self
         present(imagePicker, animated: true)
     }
@@ -148,7 +145,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBAction func createMapPressed(sender: UIButton) {
         performSegue(withIdentifier: "GMapsSegue", sender: sender)
     }
-    
     
     @IBAction func blankBackgroundPressed(_ sender: Any) {
         chosenBackground = BACKGROUND_BLANK

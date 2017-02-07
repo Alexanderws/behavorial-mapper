@@ -16,6 +16,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     @IBOutlet weak var entryTableView: UITableView!
     @IBOutlet weak var mappingBgImageView: UIImageView!
     @IBOutlet weak var mappingView: MappingView!
+    @IBOutlet weak var mappingTopView: UIView!
    
     @IBOutlet weak var menuButton: UIButton!
     
@@ -85,11 +86,6 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         }
     }
     
-    func displayShareSheet(shareContent:String) {
-        let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString], applicationActivities: nil)
-        present(activityViewController, animated: true, completion: {})
-    }
-    
     // PROJECT FUNCTIONS
     func entryDeleted(tagId: Int) {
         print("entryDeleted: tagId = \(tagId)")
@@ -104,21 +100,16 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     // MAPPING MENU FUNCTIONS
     func editProjectNotes() {
-        
+        displayTextEntry(title: "Project Notes", placeholder: "Enter notes", self: self)
     }
     
     func exportData() {
-        
+        displayTextShare(shareContent: "Test", self: self, anchor: menuButton)
     }
     
     func exportImage() {
-        dismiss(animated: true) {
-            self.displayShareSheet(shareContent: "Test")
-        }
-        print("")
-        print("ExportFromMapping")
-        print("")
-        // displayShareSheet(shareContent: "Test")
+        let image = getImageSnapshot(fromView: mappingTopView)
+        displayImageShare(shareContent: image, self: self, anchor: menuButton)
     }
     
     func exitProject() {

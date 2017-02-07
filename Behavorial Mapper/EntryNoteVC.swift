@@ -53,7 +53,4 @@ class EntryNoteVC: UIViewController {
         entryNoteDelegate?.noteAdded(note: noteTxtView.text)
         dismiss(animated: true, completion: nil)
     }
-    
-    
-
 }
