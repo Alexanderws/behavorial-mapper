@@ -22,7 +22,7 @@ extension CSVSerializable {
         
         switch self {
         case is Entry:
-            header += "time;start;andgleInDegrees;note;tagId;"
+            header += "time;start;andgleInDegrees;note;"
         case is  Location:
             header += "name;xCor;yCor;"
         case is Legend:
@@ -66,7 +66,6 @@ extension CSVSerializable {
             body += String(describing: main.start) + ";"
             body += String(describing: main.angleInDegrees) + ";"
             body += main.note + ";"
-            body += String(describing: main.tagId) + ";"
         default:
             body += ";"
         }
