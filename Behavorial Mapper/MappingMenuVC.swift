@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MappingMenuDelegate {
-   
+    
     func editProjectNotes()
     
     func exportData()
@@ -18,11 +18,10 @@ protocol MappingMenuDelegate {
     func exportImage()
     
     func exitProject()
-
+    
 }
 
 class MappingMenuVC: UIViewController {
-
     
     
     @IBOutlet weak var projectNotesBtn: UIButton!
@@ -34,26 +33,27 @@ class MappingMenuVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
     }
-    
-    
-    
+
     
     @IBAction func projectNotesPressed(_ sender: Any) {
-    
+        dismiss(animated: true) {
+            self.delegate?.editProjectNotes()
+        }
     }
     
     @IBAction func exportDataPressed(_ sender: Any) {
-    
+        dismiss(animated: true) {
+            self.delegate?.exportData()
+        }
     }
 
     @IBAction func exportImagePressed(_ sender: Any) {
-        delegate?.exportImage()
+        dismiss(animated: true) {
+            self.delegate?.exportImage()
+        }
     }
-    
+        
     @IBAction func exitPressed(_ sender: Any) {
         delegate?.exitProject()
     }
