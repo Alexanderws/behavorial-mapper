@@ -32,7 +32,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var projectBackground: UIImage!
     
     private var _backgroundImage = UIImage()
-    private var _backgroundString = String()
+    private var _backgroundString = BACKGROUND_BLANK_STRING
     
     private var _chosenBackground = BACKGROUND_BLANK
     
@@ -107,20 +107,8 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             projectNote = ""
         }
         
-        setBackground()
-        
         project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
         return true
-    }
-    
-    func setBackground() {
-        if (chosenBackground == BACKGROUND_GOOGLE_MAPS || chosenBackground == BACKGROUND_IMAGE_UPLOADED) {
-            let url = URL(string: _backgroundString)
-            let data = try! Data(contentsOf: url!)
-            projectBackground = UIImage(data: data)
-        } else {
-            projectBackground = getWhiteBackground(width: 2000, height: 2000)
-        }
     }
     
     func warningMessage(title: String, message: String) {
@@ -164,9 +152,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBAction func blankBackgroundPressed(_ sender: Any) {
         chosenBackground = BACKGROUND_BLANK
+        backgroundString = BACKGROUND_BLANK_STRING
         updateImageButtons()
     }
-    
     
     func updateImageButtons() {
         loadPictureButton.setImage(UIImage(named: BACKGROUND_IMAGE_UPLOADED_STRING), for: .normal)
@@ -220,7 +208,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         dismiss(animated: true)
     }
     
-    
     // TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -249,6 +236,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
+
     }
 }

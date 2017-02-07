@@ -34,7 +34,6 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     private var _arrowIcon: UIImageView!
     
-    
     var project: Project {
         get {
             return _project
@@ -68,11 +67,28 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         project.projectDelegate = self
         mappingView.mappingViewDelegate = self
         
-        let url = URL(string: project.background)
-        let data = try? Data(contentsOf: url!)
-        mappingBgImageView.image = UIImage(data: data!)
+        
+        if project.background == BACKGROUND_BLANK_STRING {
+            mappingBgImageView.image = getWhiteBackground(width: 2000, height: 2000)
+        } else {
+            let url = URL(string: project.background)
+            let data = try? Data(contentsOf: url!)
+            mappingBgImageView.image = UIImage(data: data!)
+        }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popoverMappingMenuVC" {
+            if let mappingMenu = segue.destination as? MappingMenuVC {
+                mappingMenu.delegate = self
+            }
+        }
+    }
+    
+    func displayShareSheet(shareContent:String) {
+        let activityViewController = UIActivityViewController(activityItems: [shareContent as NSString], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: {})
+    }
     
     // PROJECT FUNCTIONS
     func entryDeleted(tagId: Int) {
@@ -92,7 +108,10 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func exportData() {
-        
+        print("")
+        print("ExportFromMapping")
+        print("")
+        // displayShareSheet(shareContent: "Test")
     }
     
     func exportImage() {
@@ -100,7 +119,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func exitProject() {
-        
+        performSegue(withIdentifier: "showStartVC", sender: nil)
     }
     
     // MAPPING VIEW FUNCTIONS

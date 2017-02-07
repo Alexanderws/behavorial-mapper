@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkM-PZ-Sbp" customClass="StartScreenMenu" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                <rect key="frame" x="297" y="225" width="430" height="318"/>
+                                <rect key="frame" x="136.5" y="225" width="430" height="318"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lcl-MM-gTW">
                                         <rect key="frame" x="215" y="123" width="215" height="195"/>
@@ -217,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfM-QK-45e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1530" y="-873"/>
+            <point key="canvasLocation" x="1658" y="-886"/>
         </scene>
         <!--Icon SelectVC-->
         <scene sceneID="BsR-fs-c5R">
@@ -368,7 +368,7 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="XUu-kt-3u4" kind="popoverPresentation" popoverAnchorView="ZF0-9E-310" id="9QT-h2-eID">
+                                            <segue destination="XUu-kt-3u4" kind="popoverPresentation" identifier="popoverMappingMenuVC" popoverAnchorView="ZF0-9E-310" id="9QT-h2-eID">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -588,11 +588,12 @@
                         <outlet property="mappingBgImageView" destination="BMH-jI-vEM" id="Wdq-Dv-P4g"/>
                         <outlet property="mappingView" destination="2Vb-fr-DVe" id="YfD-8X-jBg"/>
                         <outlet property="menuButton" destination="ZF0-9E-310" id="hE7-us-aQz"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showStartVC" id="8Bc-he-CmE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ub3-Sb-wgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361" y="-223"/>
+            <point key="canvasLocation" x="1245" y="-202"/>
         </scene>
         <!--Create ProjectVC-->
         <scene sceneID="Okw-k5-laG">
@@ -914,12 +915,12 @@
                         <outlet property="projectNameTxtFld" destination="Ruo-UC-i5N" id="Tfo-0p-5XA"/>
                         <outlet property="projectNotesTxtView" destination="hoR-K6-3Wi" id="AOD-g8-EIW"/>
                         <segue destination="Nds-kz-LDv" kind="show" identifier="GMapsSegue" id="x71-WJ-mOJ"/>
-                        <segue destination="HOk-Ee-XZE" kind="showDetail" identifier="showDetailMappingVC" id="nJ9-pg-ckg"/>
+                        <segue destination="HOk-Ee-XZE" kind="show" identifier="showDetailMappingVC" action="showDetailViewController:sender:" id="nJ9-pg-ckg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwb-9A-m62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386" y="-202"/>
+            <point key="canvasLocation" x="543" y="-202"/>
         </scene>
         <!--MapsVC-->
         <scene sceneID="8Ix-al-zZc">

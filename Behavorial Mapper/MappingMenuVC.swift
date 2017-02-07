@@ -30,6 +30,8 @@ class MappingMenuVC: UIViewController {
     @IBOutlet weak var exportImageBtn: UIButton!
     @IBOutlet weak var exitBtn: UIButton!
     
+    var delegate: MappingMenuDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,16 +40,22 @@ class MappingMenuVC: UIViewController {
     }
     
     
+    
+    
     @IBAction func projectNotesPressed(_ sender: Any) {
+    
     }
     
     @IBAction func exportDataPressed(_ sender: Any) {
+    
     }
 
     @IBAction func exportImagePressed(_ sender: Any) {
+        delegate?.exportData()
     }
     
     @IBAction func exitPressed(_ sender: Any) {
+        delegate?.exitProject()
     }
 
 }
