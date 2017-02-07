@@ -101,3 +101,12 @@ func pointToDegrees(x: CGFloat, y: CGFloat) -> CGFloat {
     let bearingRadian = atan2f(Float(y), Float(x))
     return CGFloat(bearingRadian) * (180 / CGFloat(M_PI))
 }
+
+func generateCsvString(project: Project) -> String {
+    var csvString = String()
+    csvString.append(project.entries[0].csvHeader() + "\n")
+    for e in project.entries {
+        csvString.append(e.csvBody() + "\n")
+    }
+    return csvString
+}

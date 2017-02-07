@@ -104,7 +104,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func exportData() {
-        displayTextShare(shareContent: "Test", self: self, anchor: menuButton)
+        let csvString = generateCsvString(project: project)
+        displayTextShare(shareContent: csvString, self: self, anchor: menuButton)
     }
     
     func exportImage() {
