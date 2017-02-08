@@ -58,10 +58,8 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         let imagePath = paths[0].appendingPathComponent("map.png")
         try? data?.write(to: imagePath)
  
-        
         UIGraphicsEndImageContext()
         _toolBar.isHidden = false
-        
         
         if let vc = self.presentingViewController as? CreateProjectVC {
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS

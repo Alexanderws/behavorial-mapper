@@ -62,7 +62,7 @@ extension CSVSerializable {
         case let main as Legend:
             body += main.name + ";" + String(main.icon) + ";"
         case let main as Entry:
-            body += String(describing: main.time) + ";"
+            body += DateFormatter.localizedString(from: main.time,dateStyle: .short,timeStyle: .short) + ";"
             body += String(describing: main.start) + ";"
             body += String(describing: main.angleInDegrees) + ";"
             body += main.note + ";"
