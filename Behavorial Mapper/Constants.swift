@@ -36,3 +36,14 @@ let ALERT_CANCEL_TITLE = "Dismiss"
 // Sizes
 let LEGEND_TABLEVIEW_CELL_HEIGHT = 44
 let ENTRY_TABLEVIEW_CELL_HEIGHT = 87
+
+// CSV HEADERS
+let CSV_TIME = "Tidspunkt"
+let CSV_COORDINATES = "Koordinater"
+let CSV_ANGLE_IN_DEGREES = "Vinkel i grader"
+let CSV_ENTRY_NOTE = "Notat"
+let CSV_ENTRY_NAME = "Type"
+let CSV_ENTRY_ICON = "Ikon"
+let CSV_X_COORDINATE = "X-koordinat"
+let CSV_Y_COORDINATE = "Y-koordinat"
+let CSV_LOCATION_NAME = "Ikke i bruk"

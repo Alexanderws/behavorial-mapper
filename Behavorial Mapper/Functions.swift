@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+var docController: UIDocumentInteractionController!
+
 func displayMessage(title: String, message: String, self: UIViewController) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alertController.addAction(UIAlertAction(title: ALERT_CANCEL_TITLE, style: UIAlertActionStyle.cancel, handler: {
@@ -40,6 +42,22 @@ func displayTextShare(shareContent: String, self: UIViewController, anchor: UIVi
     activityViewController.popoverPresentationController?.sourceView = anchor
     // activityViewController.popoverPresentationController?.sourceRect = self.view.bounds
     self.present(activityViewController, animated: true, completion: {})
+}
+
+func displayCSVShare(shareContent: String, projectName: String, self: UIViewController, anchor: UIView) {
+    let fileName = "\(projectName).csv"
+    let contentsOfFile = shareContent
+    if let tempPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName) {
+        do {
+            try contentsOfFile.write(to: tempPath, atomically: true, encoding: String.Encoding.utf8)
+            print("File \(fileName) created at tmp directory")
+        } catch {
+            print("Failed to create file")
+            print("\(error)")
+        }
+        docController = UIDocumentInteractionController(url: tempPath)
+        docController.presentOptionsMenu(from: anchor.frame, in: self.view, animated: true)
+    }
 }
 
 func displayImageShare(shareContent: UIImage, self: UIViewController, anchor: UIView) {
@@ -109,4 +127,20 @@ func generateCsvString(project: Project) -> String {
         csvString.append(e.csvBody() + "\n")
     }
     return csvString
+}
+
+extension UIView {
+    func snapshotView() -> UIView? {
+        guard let image = snapshotImage() else { return nil }
+        return UIImageView(image: image)
+    }
+    
+    func snapshotImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, contentScaleFactor)
+        defer { UIGraphicsEndImageContext() }
+        
+        drawHierarchy(in: bounds, afterScreenUpdates: false)
+        
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
 }

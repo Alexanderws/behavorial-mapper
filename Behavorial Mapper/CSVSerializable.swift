@@ -22,11 +22,11 @@ extension CSVSerializable {
         
         switch self {
         case is Entry:
-            header += "time;start;andgleInDegrees;note;"
+            header += "\(CSV_TIME);\(CSV_COORDINATES);\(CSV_ANGLE_IN_DEGREES);\(CSV_ENTRY_NOTE);"
         case is  Location:
-            header += "name;xCor;yCor;"
+            header += "\(CSV_LOCATION_NAME);\(CSV_X_COORDINATE);\(CSV_Y_COORDINATE);"
         case is Legend:
-            header += "name;icon;"
+            header += "\(CSV_ENTRY_NAME);\(CSV_ENTRY_ICON);"
         default:
             header += ""
         }

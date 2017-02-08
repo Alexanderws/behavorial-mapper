@@ -10,29 +10,28 @@ import UIKit
 import Foundation
 
 class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate, MappingMenuDelegate {
-
+    
     
     @IBOutlet weak var legendTableView: UITableView!
     @IBOutlet weak var entryTableView: UITableView!
     @IBOutlet weak var mappingBgImageView: UIImageView!
     @IBOutlet weak var mappingView: MappingView!
     @IBOutlet weak var mappingTopView: UIView!
-   
+    
     @IBOutlet weak var menuButton: UIButton!
     
     @IBOutlet weak var legendTitleView: UIView!
     @IBOutlet weak var historyTitleView: UIView!
-
-    private var _centerPos: CGPoint!
-    private var _angleInDegrees: CGFloat = 0
-
+    
     private var _project: Project!
     private var _selectedLegend: Legend!
     private var _selectedEntry: Entry!
     private var _selectedIndex: Int!
     
     private var _tagNumber = 0
-    
+    private var _touchesMovedDeadZone = 0
+    private var _centerPos: CGPoint!
+    private var _angleInDegrees: CGFloat = 999
     private var _arrowIcon: UIImageView!
     
     var project: Project {
@@ -67,7 +66,6 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         
         project.projectDelegate = self
         mappingView.mappingViewDelegate = self
-        
         
         if project.background == BACKGROUND_BLANK_STRING {
             mappingBgImageView.image = getWhiteBackground(width: 2000, height: 2000)
@@ -105,11 +103,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     func exportData() {
         let csvString = generateCsvString(project: project)
-        displayTextShare(shareContent: csvString, self: self, anchor: menuButton)
+        // displayTextShare(shareContent: csvString, self: self, anchor: menuButton)
+        displayCSVShare(shareContent: csvString, projectName: _project.name, self: self, anchor: menuButton)
     }
     
     func exportImage() {
-        let image = getImageSnapshot(fromView: mappingTopView)
+        let image = mappingTopView.snapshotImage()!
         displayImageShare(shareContent: image, self: self, anchor: menuButton)
     }
     
@@ -124,29 +123,40 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         }
         let _centerIcon = UIImageView(frame: CGRect(x: _centerPos.x - (CENTER_ICON_SIZE/2), y: _centerPos.y - (CENTER_ICON_SIZE/2), width: (CENTER_ICON_SIZE), height: CGFloat(CENTER_ICON_SIZE)))
         _centerIcon.image = UIImage(named: "\(selectedLegend.icon)")
+        
         _arrowIcon = UIImageView(frame: CGRect(x: _centerPos.x - (ARROW_ICON_SIZE/2), y: _centerPos.y - (ARROW_ICON_SIZE/2), width: (ARROW_ICON_SIZE), height: (ARROW_ICON_SIZE)))
         _arrowIcon.image = UIImage(named: "arrowBlk_1x")
+        
         _tagNumber += 1
         _centerIcon.tag = _tagNumber
+        _angleInDegrees = 999
         _arrowIcon.tag = _tagNumber
-        _angleInDegrees = 0
+        _arrowIcon.isHidden = true
         mappingView.addSubview(_arrowIcon)
+        
         mappingView.addSubview(_centerIcon)
     }
     
     func mappingViewTouchMoved(sender: MappingView, touches: Set<UITouch>) {
-        if let touch = touches.first {
-            let newPos = touch.location(in: mappingView)
-            let mPoint = bearingPoint(point0: _centerPos, point1: newPos)
-            _angleInDegrees = pointToDegrees(x: mPoint.x, y: mPoint.y)
-            _arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
+        if(_touchesMovedDeadZone == 4) {
+            if(_arrowIcon.isHidden) {
+                _arrowIcon.isHidden = false
+            }
+            if let touch = touches.first {
+                let newPos = touch.location(in: mappingView)
+                let mPoint = bearingPoint(point0: _centerPos, point1: newPos)
+                _angleInDegrees = pointToDegrees(x: mPoint.x, y: mPoint.y)
+                _arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
+            }
+        } else {
+            _touchesMovedDeadZone += 1
         }
     }
     
     func mappingViewTouchEnded(sender: MappingView, touches: Set<UITouch>) {
+        _touchesMovedDeadZone = 0
         _project.addEntry(legend: selectedLegend, angleInDegrees: _angleInDegrees, position: _centerPos!, tagId: _tagNumber)
         entryTableView.reloadData()
-        //print("Angle in degrees: \(_angleInDegrees)")
     }
     
     // TABLE VIEW FUNCTIONS
