@@ -33,18 +33,12 @@ extension CSVSerializable {
         
         for case let (_?, value) in Mirror(reflecting: self).children {
             switch value {
-            case let value as Location:
-                for case let (inner?, _) in Mirror(reflecting: value).children {
-                    header += inner.substring(from: inner.index(after: inner.startIndex)) + ";"
-                }
-            case let value as Legend:
-                for case let (inner?, _) in Mirror(reflecting: value).children {
-                    header += inner.substring(from: inner.index(after: inner.startIndex)) + ";"
-                }
-            case let value as Entry:
-                for case let (inner?, _) in Mirror(reflecting: value).children {
-                    header += inner.substring(from: inner.index(after: inner.startIndex)) + ";"
-                }
+            case is Location:
+                    header += "\(CSV_LOCATION_NAME);\(CSV_X_COORDINATE);\(CSV_Y_COORDINATE);"
+            case is Legend:
+                    header += "\(CSV_ENTRY_NAME);\(CSV_ENTRY_ICON);"
+            case is Entry:
+                    header += "\(CSV_TIME);\(CSV_COORDINATES);\(CSV_ANGLE_IN_DEGREES);\(CSV_ENTRY_NOTE);"
             default:
                 header += ""
             }
