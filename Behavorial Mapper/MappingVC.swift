@@ -10,19 +10,19 @@ import UIKit
 import Foundation
 
 class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate, MappingMenuDelegate {
-
+    
     
     @IBOutlet weak var legendTableView: UITableView!
     @IBOutlet weak var entryTableView: UITableView!
     @IBOutlet weak var mappingBgImageView: UIImageView!
     @IBOutlet weak var mappingView: MappingView!
     @IBOutlet weak var mappingTopView: UIView!
-   
+    
     @IBOutlet weak var menuButton: UIButton!
     
     @IBOutlet weak var legendTitleView: UIView!
     @IBOutlet weak var historyTitleView: UIView!
-
+    
     private var _project: Project!
     private var _selectedLegend: Legend!
     private var _selectedEntry: Entry!
@@ -103,7 +103,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     func exportData() {
         let csvString = generateCsvString(project: project)
-        displayTextShare(shareContent: csvString, self: self, anchor: menuButton)
+        // displayTextShare(shareContent: csvString, self: self, anchor: menuButton)
+        displayCSVShare(shareContent: csvString, projectName: _project.name, self: self, anchor: menuButton)
     }
     
     func exportImage() {
