@@ -139,11 +139,10 @@ extension Project {
         
         let manager = FileManager.default
         let paths = manager.urls(for: .documentDirectory, in: .userDomainMask)
-        let docsURL = paths[0]
-        let newDir = docsURL.appendingPathComponent("projects")
+        let projectDir = paths[0].appendingPathComponent("projects")
 
         do {
-            try manager.createDirectory(atPath: newDir.path, withIntermediateDirectories: true, attributes: nil)
+            try manager.createDirectory(atPath: projectDir.path, withIntermediateDirectories: true, attributes: nil)
         } catch let error {
             print("Error: \(error.localizedDescription)")
         }
