@@ -129,6 +129,32 @@ func generateCsvString(project: Project) -> String {
     return csvString
 }
 
+extension Project {
+    func saveProject() {
+        let data = self.toJSON()
+        
+        let myFormatter = DateFormatter()
+        myFormatter.dateFormat = "yyyyMMdd-hhmmss"
+        let dateString = myFormatter.string(from: Date())
+        
+        let manager = FileManager.default
+        let paths = manager.urls(for: .documentDirectory, in: .userDomainMask)
+        let docsURL = paths[0]
+        let newDir = docsURL.appendingPathComponent("projects")
+
+        do {
+            try manager.createDirectory(atPath: newDir.path, withIntermediateDirectories: true, attributes: nil)
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        let projectPath = newDir.appendingPathComponent(dateString + ".proj")
+        try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
+        
+        print("Wrote project to \(projectPath.absoluteString)")
+    }
+}
+
 extension UIView {
     func snapshotView() -> UIView? {
         guard let image = snapshotImage() else { return nil }
