@@ -147,7 +147,7 @@ extension Project {
             print("Error: \(error.localizedDescription)")
         }
         
-        let projectPath = newDir.appendingPathComponent(dateString + ".proj")
+        let projectPath = projectDir.appendingPathComponent(dateString + ".proj")
         try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
         
         print("Wrote project to \(projectPath.absoluteString)")
