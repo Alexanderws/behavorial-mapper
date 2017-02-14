@@ -76,8 +76,10 @@ class Entry: JSONSerializable, CSVSerializable {
     init?(json: [String: Any]) {
         guard let date = json["_time"],
             let start = json["_start"],
+            let angleInDegrees = json["_angleInDegrees"],
             let legend = json["_legend"],
-            let note = json["_note"]
+            let note = json["_note"],
+            let tagId = json["_tagId"]
             else {
                 return nil
         }
@@ -85,8 +87,11 @@ class Entry: JSONSerializable, CSVSerializable {
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         self._time = df.date(from: date as! String)
         
-        self._start = start as! CGPoint
+        let startArr = start as! [CGFloat]
+        self._start = CGPoint.init(x: startArr[0], y: startArr[1])
+        self._angleInDegrees = angleInDegrees as! CGFloat
         self._legend = Legend.init(json: legend as! [String: Any])
         self._note = note as! String
+        self._tagId = tagId as! Int
     }
 }

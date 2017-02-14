@@ -129,6 +129,49 @@ func generateCsvString(project: Project) -> String {
     return csvString
 }
 
+func getProjectFiles() -> [String: String] {
+    var projectDict = [String:String]()
+
+    let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        .appendingPathComponent("/projects/")
+    do {
+        let direcotryContent = try FileManager.default.contentsOfDirectory(at: projectDirectory, includingPropertiesForKeys: nil, options: [])
+        
+        let projectFiles = direcotryContent.filter{ $0.pathExtension == "proj" }
+        for pf in projectFiles {
+            projectDict[pf.deletingPathExtension().lastPathComponent] = pf.path
+        }
+    } catch let error {
+        print(error.localizedDescription)
+    }
+    return projectDict
+}
+
+extension Project {
+    func saveProject() {
+        let data = self.toJSON()
+        
+        let myFormatter = DateFormatter()
+        myFormatter.dateFormat = "yyyyMMdd-hhmmss"
+        let dateString = myFormatter.string(from: Date())
+        
+        let manager = FileManager.default
+        let paths = manager.urls(for: .documentDirectory, in: .userDomainMask)
+        let projectDir = paths[0].appendingPathComponent("projects")
+
+        do {
+            try manager.createDirectory(atPath: projectDir.path, withIntermediateDirectories: true, attributes: nil)
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        let projectPath = projectDir.appendingPathComponent(self.name + "-" + dateString + ".proj")
+        try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
+        
+        print("Wrote project to \(projectPath.absoluteString)")
+    }
+}
+
 extension UIView {
     func snapshotView() -> UIView? {
         guard let image = snapshotImage() else { return nil }

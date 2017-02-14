@@ -126,6 +126,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func exitProject() {
+        project.saveProject()
         performSegue(withIdentifier: "showStartVC", sender: nil)
     }
     

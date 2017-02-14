@@ -35,6 +35,9 @@ extension JSONSerializable{
                 df.timeZone = TimeZone(abbreviation: "CET")
                 jsonDict[label] = df.string(from: value)
                 
+            case let value as CGPoint:
+                jsonDict[label] = [(value.x), (value.y)]
+                
             case let value as Dictionary<String, Any>:
                 jsonDict[label] = value as Any
                 
@@ -46,8 +49,10 @@ extension JSONSerializable{
                 }
                 
             case let value:
+                if label == "projectDelegate" {
+                    continue
+                }
                 jsonDict[label] = value as Any
-                
             }
         }
         return jsonDict
