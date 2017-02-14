@@ -18,6 +18,7 @@ class Project: JSONSerializable {
     
     private var _name: String!
     private var _created: Date!
+    private var _lastSaved: Date!
     private var _note: String!
     private var _legend: [Legend]!
     private var _entries: [Entry]!
@@ -59,6 +60,14 @@ class Project: JSONSerializable {
     }
     */
     
+    var lastSaved: Date {
+        get {
+            return _lastSaved
+        } set {
+            _lastSaved = newValue
+        }
+    }
+    
     var background: String {
         get {
             return _background
@@ -99,6 +108,7 @@ class Project: JSONSerializable {
     init?(json: [String: Any]) {
         guard let name = json["_name"],
             let created = json["_created"],
+            let lastSaved = json["_lastSaved"],
             let note = json["_note"],
             let legends = json["_legend"],
             let entries = json["_entries"],
@@ -111,6 +121,8 @@ class Project: JSONSerializable {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         self._created = df.date(from: created as! String)
+        
+        self._lastSaved = df.date(from: lastSaved as! String)
         
         self._note = note as! String
         

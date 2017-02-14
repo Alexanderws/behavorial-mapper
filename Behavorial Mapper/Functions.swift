@@ -149,11 +149,9 @@ func getProjectFiles() -> [String: String] {
 
 extension Project {
     func saveProject() {
-        let data = self.toJSON()
+        self.lastSaved = Date()
         
-        let myFormatter = DateFormatter()
-        myFormatter.dateFormat = "yyyyMMdd-hhmmss"
-        let dateString = myFormatter.string(from: Date())
+        let data = self.toJSON()
         
         let manager = FileManager.default
         let paths = manager.urls(for: .documentDirectory, in: .userDomainMask)
@@ -165,7 +163,7 @@ extension Project {
             print("Error: \(error.localizedDescription)")
         }
         
-        let projectPath = projectDir.appendingPathComponent(self.name + "-" + dateString + ".proj")
+        let projectPath = projectDir.appendingPathComponent(self.name + ".proj")
         try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
         
         print("Wrote project to \(projectPath.absoluteString)")
