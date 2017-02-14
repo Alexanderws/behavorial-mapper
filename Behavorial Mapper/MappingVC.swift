@@ -17,6 +17,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     @IBOutlet weak var mappingBgImageView: UIImageView!
     @IBOutlet weak var mappingView: MappingView!
     @IBOutlet weak var mappingTopView: UIView!
+    @IBOutlet weak var mappingLeftView: UIView!
     
     @IBOutlet weak var menuButton: UIButton!
     
@@ -29,7 +30,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     private var _selectedIndex: Int!
     
     private var _tagNumber = 0
-    private var _touchesMovedDeadZone = 0
+    private var _touchesMovedDeadZone = 4
     private var _centerPos: CGPoint!
     private var _angleInDegrees: CGFloat = 999
     private var _arrowIcon: UIImageView!
@@ -56,7 +57,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        initStyle()
+        
         legendTableView.delegate = self
         legendTableView.dataSource = self
         entryTableView.delegate = self
@@ -75,6 +77,13 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             mappingBgImageView.image = UIImage(data: data!)
         }
     }
+    
+    func initStyle() {
+        mappingLeftView.backgroundColor = Style.backgroundSecondary
+        menuButton.backgroundColor = Style.backgroundPrimary
+        legendTitleView.backgroundColor = Style.backgroundPrimary
+        historyTitleView.backgroundColor = Style.backgroundPrimary
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "popoverMappingMenuVC" {
@@ -82,6 +91,10 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
                 mappingMenu.delegate = self
             }
         }
+    }
+    
+    func madeChange() {
+        
     }
     
     // PROJECT FUNCTIONS
@@ -138,7 +151,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func mappingViewTouchMoved(sender: MappingView, touches: Set<UITouch>) {
-        if(_touchesMovedDeadZone == 4) {
+        if(_touchesMovedDeadZone == 0) {
             if(_arrowIcon.isHidden) {
                 _arrowIcon.isHidden = false
             }
@@ -149,7 +162,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
                 _arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
             }
         } else {
-            _touchesMovedDeadZone += 1
+            _touchesMovedDeadZone -= 1
         }
     }
     

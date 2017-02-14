@@ -30,7 +30,7 @@
 		1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE91E1E47AC00D6E59A /* Entry.swift */; };
 		11E06EC61E2374F400B43047 /* CreateProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC51E2374F400B43047 /* CreateProjectVC.swift */; };
 		11E06EC81E237BE600B43047 /* CreateProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC71E237BE600B43047 /* CreateProjectView.swift */; };
-		11E06ECA1E2393ED00B43047 /* LegendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC91E2393ED00B43047 /* LegendButton.swift */; };
+		11E06ECA1E2393ED00B43047 /* FramedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC91E2393ED00B43047 /* FramedButton.swift */; };
 		11E06EF61E261EBB00B43047 /* IconSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EF51E261EBB00B43047 /* IconSelectVC.swift */; };
 		11E06EF81E26294100B43047 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EF71E26294100B43047 /* IconCell.swift */; };
 		11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */; };
@@ -88,7 +88,7 @@
 		1174CBE91E1E47AC00D6E59A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		11E06EC51E2374F400B43047 /* CreateProjectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectVC.swift; sourceTree = "<group>"; };
 		11E06EC71E237BE600B43047 /* CreateProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectView.swift; sourceTree = "<group>"; };
-		11E06EC91E2393ED00B43047 /* LegendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegendButton.swift; sourceTree = "<group>"; };
+		11E06EC91E2393ED00B43047 /* FramedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FramedButton.swift; sourceTree = "<group>"; };
 		11E06EF51E261EBB00B43047 /* IconSelectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconSelectVC.swift; sourceTree = "<group>"; };
 		11E06EF71E26294100B43047 /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScreenMenu.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 			children = (
 				11FA8F831E1F8CA600B362AD /* StartScreenMenu.swift */,
 				11E06EC71E237BE600B43047 /* CreateProjectView.swift */,
-				11E06EC91E2393ED00B43047 /* LegendButton.swift */,
+				11E06EC91E2393ED00B43047 /* FramedButton.swift */,
 				11E06EF71E26294100B43047 /* IconCell.swift */,
 				112605191E27708200DC3381 /* LegendCell.swift */,
 				1158F1C91E2E2032002B3FEB /* EntryCell.swift */,
@@ -450,7 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11E06ECA1E2393ED00B43047 /* LegendButton.swift in Sources */,
+				11E06ECA1E2393ED00B43047 /* FramedButton.swift in Sources */,
 				11E06EC61E2374F400B43047 /* CreateProjectVC.swift in Sources */,
 				11E06EF61E261EBB00B43047 /* IconSelectVC.swift in Sources */,
 				1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */,
