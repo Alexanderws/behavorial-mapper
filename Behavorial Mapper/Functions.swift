@@ -129,6 +129,24 @@ func generateCsvString(project: Project) -> String {
     return csvString
 }
 
+func getProjectFiles() -> [String: String] {
+    var projectDict = [String:String]()
+
+    let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        .appendingPathComponent("/projects/")
+    do {
+        let direcotryContent = try FileManager.default.contentsOfDirectory(at: projectDirectory, includingPropertiesForKeys: nil, options: [])
+        
+        let projectFiles = direcotryContent.filter{ $0.pathExtension == "proj" }
+        for pf in projectFiles {
+            projectDict[pf.deletingPathExtension().lastPathComponent] = pf.path
+        }
+    } catch let error {
+        print(error.localizedDescription)
+    }
+    return projectDict
+}
+
 extension Project {
     func saveProject() {
         let data = self.toJSON()
@@ -147,7 +165,7 @@ extension Project {
             print("Error: \(error.localizedDescription)")
         }
         
-        let projectPath = projectDir.appendingPathComponent(dateString + ".proj")
+        let projectPath = projectDir.appendingPathComponent(self.name + "-" + dateString + ".proj")
         try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
         
         print("Wrote project to \(projectPath.absoluteString)")

@@ -49,6 +49,9 @@ extension JSONSerializable{
                 }
                 
             case let value:
+                if label == "projectDelegate" {
+                    continue
+                }
                 jsonDict[label] = value as Any
             }
         }
