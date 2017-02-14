@@ -10,6 +10,10 @@ import UIKit
 
 class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    
+    @IBOutlet weak var bkgView: UIView!
+    @IBOutlet weak var createProjectView: CreateProjectView!
+    
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
     
@@ -62,9 +66,15 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initStyle()
         legendTableView.delegate = self
         legendTableView.dataSource = self
+    }
+    
+    func initStyle() {
+        createProjectView.backgroundColor = Style.backgroundPrimary
+        bkgView.backgroundColor = Style.backgroundSecondary
+        projectNameTxtFld.placeHolderColor = Style.textSecondary
     }
     
     func enterLegendIcon(iconId: Int) {

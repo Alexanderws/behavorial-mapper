@@ -9,13 +9,17 @@
 import UIKit
 import QuartzCore
 
-class LegendButton: UIButton {
+class FramedButton: UIButton {
 
+    
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
       
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.lightGray.cgColor
+        //layer.borderWidth = 1
+        //layer.borderColor = Style.textPrimary.cgColor
+        self.backgroundColor = Style.clickablePrimary
+        
     }
 
     
