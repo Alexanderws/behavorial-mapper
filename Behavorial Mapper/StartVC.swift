@@ -28,8 +28,9 @@ class StartVC: UIViewController {
         // let p = Project.init(projectName: "sadasd")
         // print(p?.name ?? "Failed to load project from file!")
         
-        let files = getProjectFiles()
-        print(files ?? "No files")
+        // print(getProjectFiles() ?? "No files")
+        // deleteProject(projectName: "SSD-disker")
+        // print(getProjectFiles() ?? "No files")
     }
 
     func initStyle() {

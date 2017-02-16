@@ -148,6 +148,17 @@ func getProjectFiles() -> [String]? {
     }
 }
 
+func deleteProject(projectName: String) {
+    let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        .appendingPathComponent("/projects/")
+    do {
+        try FileManager.default.removeItem(at: projectDirectory.appendingPathComponent(projectName).appendingPathExtension("proj"))
+        print("Deleted \(projectName)")
+    } catch let error {
+        print(error.localizedDescription)
+    }
+}
+
 extension Project {
     func saveProject() {
         self.lastSaved = Date()
