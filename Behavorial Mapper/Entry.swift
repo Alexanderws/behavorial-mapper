@@ -12,7 +12,7 @@ import UIKit
 class Entry: JSONSerializable, CSVSerializable {
     
     private var _time: Date!
-    private var _start: CGPoint!
+    private var _position: CGPoint!
     private var _angleInDegrees: CGFloat!
     private var _legend: Legend!
     private var _note: String!
@@ -26,11 +26,11 @@ class Entry: JSONSerializable, CSVSerializable {
         }
     }
     
-    var start: CGPoint {
+    var position: CGPoint {
         get {
-            return _start
+            return _position
         } set {
-            _start = newValue
+            _position = newValue
         }
     }
     
@@ -64,9 +64,9 @@ class Entry: JSONSerializable, CSVSerializable {
         }
     }
     
-    init(start: CGPoint, angleInDegrees: CGFloat, legend: Legend, tagId: Int) {
+    init(position: CGPoint, angleInDegrees: CGFloat, legend: Legend, tagId: Int) {
         self._time = Date()
-        self._start = start
+        self._position = position
         self._angleInDegrees = angleInDegrees
         self._legend = legend
         self._note = ""
@@ -75,7 +75,7 @@ class Entry: JSONSerializable, CSVSerializable {
     
     init?(json: [String: Any]) {
         guard let date = json["_time"],
-            let start = json["_start"],
+            let position = json["_position"],
             let angleInDegrees = json["_angleInDegrees"],
             let legend = json["_legend"],
             let note = json["_note"],
@@ -87,8 +87,8 @@ class Entry: JSONSerializable, CSVSerializable {
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         self._time = df.date(from: date as! String)
         
-        let startArr = start as! [CGFloat]
-        self._start = CGPoint.init(x: startArr[0], y: startArr[1])
+        let positionArr = position as! [CGFloat]
+        self._position = CGPoint.init(x: positionArr[0], y: positionArr[1])
         self._angleInDegrees = angleInDegrees as! CGFloat
         self._legend = Legend.init(json: legend as! [String: Any])
         self._note = note as! String

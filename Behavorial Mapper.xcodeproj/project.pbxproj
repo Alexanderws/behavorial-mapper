@@ -28,6 +28,7 @@
 		1174CBE61E1E41C100D6E59A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE51E1E41C100D6E59A /* Location.swift */; };
 		1174CBE81E1E435100D6E59A /* Legend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE71E1E435100D6E59A /* Legend.swift */; };
 		1174CBEA1E1E47AC00D6E59A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBE91E1E47AC00D6E59A /* Entry.swift */; };
+		118A4EB21E55981C00AF2740 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A4EB11E55981C00AF2740 /* ProjectCell.swift */; };
 		11E06EC61E2374F400B43047 /* CreateProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC51E2374F400B43047 /* CreateProjectVC.swift */; };
 		11E06EC81E237BE600B43047 /* CreateProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC71E237BE600B43047 /* CreateProjectView.swift */; };
 		11E06ECA1E2393ED00B43047 /* FramedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E06EC91E2393ED00B43047 /* FramedButton.swift */; };
@@ -86,6 +87,7 @@
 		1174CBE51E1E41C100D6E59A /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1174CBE71E1E435100D6E59A /* Legend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Legend.swift; sourceTree = "<group>"; };
 		1174CBE91E1E47AC00D6E59A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		118A4EB11E55981C00AF2740 /* ProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		11E06EC51E2374F400B43047 /* CreateProjectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectVC.swift; sourceTree = "<group>"; };
 		11E06EC71E237BE600B43047 /* CreateProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectView.swift; sourceTree = "<group>"; };
 		11E06EC91E2393ED00B43047 /* FramedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FramedButton.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				11E06EF71E26294100B43047 /* IconCell.swift */,
 				112605191E27708200DC3381 /* LegendCell.swift */,
 				1158F1C91E2E2032002B3FEB /* EntryCell.swift */,
+				118A4EB11E55981C00AF2740 /* ProjectCell.swift */,
 				1158F1CB1E2E3336002B3FEB /* MappingView.swift */,
 			);
 			name = View;
@@ -471,6 +474,7 @@
 				1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */,
 				11E06EC81E237BE600B43047 /* CreateProjectView.swift in Sources */,
 				1174CBE61E1E41C100D6E59A /* Location.swift in Sources */,
+				118A4EB21E55981C00AF2740 /* ProjectCell.swift in Sources */,
 				11FA8F841E1F8CA600B362AD /* StartScreenMenu.swift in Sources */,
 				1174CBE21E1E3A9D00D6E59A /* Project.swift in Sources */,
 				1126051A1E27708200DC3381 /* LegendCell.swift in Sources */,

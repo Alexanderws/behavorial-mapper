@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+// GENERAL STRINGS
+let TITLE_LABEL = "Behavioral Mapping"
+
 // Icons in CreateProjectVC
 let NUMBER_OF_ICONS = 10
 let ICON_CELL_SIZE = 25

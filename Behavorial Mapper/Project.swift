@@ -50,6 +50,14 @@ class Project: JSONSerializable {
         }
     }
     
+    var lastSaved: Date {
+        get {
+            return _lastSaved
+        } set {
+            _lastSaved = newValue
+        }
+    }
+    
     var background: String {
         get {
             return _background
@@ -76,7 +84,7 @@ class Project: JSONSerializable {
     }
     
     func addEntry(legend: Legend, angleInDegrees: CGFloat, position: CGPoint, tagId: Int) {
-        _entries.append(Entry(start: position, angleInDegrees: angleInDegrees, legend: legend, tagId: tagId))
+        _entries.append(Entry(position: position, angleInDegrees: angleInDegrees, legend: legend, tagId: tagId))
     }
     
     func removeEntry(index: Int){

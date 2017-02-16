@@ -23,21 +23,65 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0P-a6-0Fc">
-                                <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="702.5" height="768"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkM-PZ-Sbp" customClass="StartScreenMenu" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                        <rect key="frame" x="137" y="225" width="430" height="318"/>
+                                        <rect key="frame" x="136.5" y="225" width="430" height="318"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lcl-MM-gTW">
-                                                <rect key="frame" x="215" y="123" width="215" height="195"/>
+                                                <rect key="frame" x="215" y="98" width="215" height="220"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="195" id="CXq-9V-y8q"/>
+                                                    <constraint firstAttribute="height" constant="220" id="CXq-9V-y8q"/>
                                                     <constraint firstAttribute="width" constant="215" id="dUD-kM-DUK"/>
                                                 </constraints>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" id="wsn-qu-sgi" customClass="ProjectCell" customModule="Behavorial_Mapper" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="215" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wsn-qu-sgi" id="gjv-VN-D6E">
+                                                            <rect key="frame" x="0.0" y="0.0" width="215" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXp-lW-pVI">
+                                                                    <rect key="frame" x="8" y="1.5" width="135" height="40"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="40" id="9Za-G9-JfT"/>
+                                                                        <constraint firstAttribute="width" constant="135" id="x11-R9-8HC"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w25-xp-dBD">
+                                                                    <rect key="frame" x="157" y="1.5" width="50" height="40"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="40" id="omc-V4-1ox"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="q2O-fg-3h6"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstItem="w25-xp-dBD" firstAttribute="centerY" secondItem="gjv-VN-D6E" secondAttribute="centerY" id="9np-lp-BIj"/>
+                                                                <constraint firstItem="nXp-lW-pVI" firstAttribute="leading" secondItem="gjv-VN-D6E" secondAttribute="leadingMargin" id="BPi-m1-Boe"/>
+                                                                <constraint firstItem="nXp-lW-pVI" firstAttribute="centerY" secondItem="gjv-VN-D6E" secondAttribute="centerY" id="ehD-2L-Wsc"/>
+                                                                <constraint firstItem="w25-xp-dBD" firstAttribute="trailing" secondItem="gjv-VN-D6E" secondAttribute="trailingMargin" id="l1e-Hn-NAa"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="lastEditedLbl" destination="w25-xp-dBD" id="T6Y-lK-h2c"/>
+                                                            <outlet property="projectNameLbl" destination="nXp-lW-pVI" id="7vO-v5-CNU"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrr-Sl-z6w">
-                                                <rect key="frame" x="0.0" y="123" width="215" height="195"/>
+                                                <rect key="frame" x="0.0" y="98" width="215" height="220"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdM-l8-1sU">
                                                         <rect key="frame" x="8" y="8" width="199" height="40"/>
@@ -65,10 +109,10 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="215" id="CQW-RA-WYc"/>
-                                                    <constraint firstAttribute="height" constant="195" id="bGW-dC-U82"/>
+                                                    <constraint firstAttribute="height" constant="220" id="bGW-dC-U82"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Behavorial Mapping" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peQ-1f-MHr">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Behavioral Mapping" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peQ-1f-MHr">
                                                 <rect key="frame" x="75" y="38" width="280" height="42"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="42" id="U7o-Ec-2mJ"/>
@@ -114,13 +158,14 @@
                         <outlet property="createProjectBtn" destination="zdM-l8-1sU" id="qEz-RC-F36"/>
                         <outlet property="leftSideView" destination="lrr-Sl-z6w" id="0Xd-D6-pKo"/>
                         <outlet property="menuView" destination="dkM-PZ-Sbp" id="vHU-DV-aRA"/>
-                        <outlet property="rightSideTableView" destination="Lcl-MM-gTW" id="ema-sB-9Lc"/>
+                        <outlet property="storedProjectsTableView" destination="Lcl-MM-gTW" id="MW4-9K-iq5"/>
                         <segue destination="7cN-ro-JtM" kind="showDetail" identifier="showCreateProjectVC" action="showViewController:sender:" id="xwJ-05-qqE"/>
+                        <segue destination="HOk-Ee-XZE" kind="showDetail" identifier="showDetailMappingVC" action="showViewController:sender:" id="cNs-AB-RCd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-294" y="-291"/>
+            <point key="canvasLocation" x="-228" y="-224"/>
         </scene>
         <!--Mapping MenuVC-->
         <scene sceneID="zxq-jn-btQ">
@@ -344,13 +389,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVh-Vf-cvu">
-                                <rect key="frame" x="200" y="0.0" width="503" height="768"/>
+                                <rect key="frame" x="200" y="0.0" width="502.5" height="768"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-jI-vEM">
-                                        <rect key="frame" x="0.0" y="0.0" width="503" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="502.5" height="768"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vb-fr-DVe" customClass="MappingView" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="503" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="502.5" height="768"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
@@ -640,7 +685,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ub3-Sb-wgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244.53125" y="-202.34375"/>
+            <point key="canvasLocation" x="1416" y="-202"/>
         </scene>
         <!--Create ProjectVC-->
         <scene sceneID="Okw-k5-laG">
@@ -655,10 +700,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkM-mr-YhC">
-                                <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="702.5" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-6K-e3I" customClass="CreateProjectView" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                        <rect key="frame" x="30.5" y="130" width="644" height="508"/>
+                                        <rect key="frame" x="29.5" y="130" width="644" height="508"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfB-qw-u53" customClass="FramedButton" customModule="Behavorial_Mapper" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="459" width="79" height="41"/>
@@ -1026,4 +1071,7 @@
         <image name="ImageIcon" width="77" height="77"/>
         <image name="maps-icon-16" width="77" height="63"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cNs-AB-RCd"/>
+    </inferredMetricsTieBreakers>
 </document>
