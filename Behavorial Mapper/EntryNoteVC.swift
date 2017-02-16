@@ -20,6 +20,8 @@ class EntryNoteVC: UIViewController {
     @IBOutlet weak var noteTxtView: UITextView!
     @IBOutlet weak var saveBtn: UIButton!
     
+    
+    
     private var _entry: Entry!
     private var _index: Int!
     
@@ -44,9 +46,15 @@ class EntryNoteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initStyle()
+        
         noteTxtView.text = entry.note
     }
 
+    func initStyle() {
+        titleLbl.textColor = Style.textSecondary
+        saveBtn.setTitleColor(Style.textSecondary, for: .normal)
+    }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
         

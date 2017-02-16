@@ -33,8 +33,15 @@ class MappingMenuVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initStyle()
     }
 
+    func initStyle() {
+        projectNotesBtn.setTitleColor(Style.textSecondary, for: .normal)
+        exportDataBtn.setTitleColor(Style.textSecondary, for: .normal)
+        exportImageBtn.setTitleColor(Style.textSecondary, for: .normal)
+        exitBtn.setTitleColor(Style.textSecondary, for: .normal)
+    }
     
     @IBAction func projectNotesPressed(_ sender: Any) {
         dismiss(animated: true) {
