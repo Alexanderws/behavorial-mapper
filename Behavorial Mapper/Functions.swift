@@ -129,9 +129,35 @@ func generateCsvString(project: Project) -> String {
     return csvString
 }
 
-func getProjectFiles() -> [String] {
-    var projectNames = [String]()
+func getProjectFiles() -> [String]? {
+    let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        .appendingPathComponent("/projects/")
+    let properties = [URLResourceKey.creationDateKey, URLResourceKey.contentModificationDateKey]
+    
+    if let projectNameArray = try? FileManager.default.contentsOfDirectory(at: projectDirectory,
+                                                                                   includingPropertiesForKeys: properties,
+                                                                                   options:.skipsHiddenFiles) {
+        return projectNameArray.map({ url -> (String, TimeInterval) in
+            let lastModified = try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
+            return (url.deletingPathExtension().lastPathComponent, lastModified!!.timeIntervalSinceReferenceDate )
+        })
+            .sorted(by: {$0.1 > $1.1})
+            .map({ $0.0 })
+    } else {
+        return nil
+    }
+}
 
+/**
+ Deletes the project file correspnding to the given projectName.
+ 
+ - parameters:
+    - projectName: Name of the project you wish to delete.
+ 
+ - important:
+ Do NOT include the project exstension in the projectName parameter.
+ */
+func deleteProject(projectName: String) {
     let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         .appendingPathComponent("/projects/")
     do {
@@ -144,7 +170,6 @@ func getProjectFiles() -> [String] {
     } catch let error {
         print(error.localizedDescription)
     }
-    return projectNames
 }
 
 extension Project {
