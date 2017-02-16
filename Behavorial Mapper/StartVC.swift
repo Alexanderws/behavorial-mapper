@@ -29,7 +29,7 @@ class StartVC: UIViewController {
         // print(p?.name ?? "Failed to load project from file!")
         
         // print(getProjectFiles() ?? "No files")
-        // deleteProject(projectName: "SSD-disker")
+        deleteProject(projectName: "SSD-disker")
         // print(getProjectFiles() ?? "No files")
     }
 

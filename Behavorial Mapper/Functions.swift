@@ -148,12 +148,20 @@ func getProjectFiles() -> [String]? {
     }
 }
 
+/**
+ Deletes the project file correspnding to the given projectName.
+ 
+ - parameters:
+    - projectName: Name of the project you wish to delete.
+ 
+ - important:
+ Do NOT include the project exstension in the projectName parameter.
+ */
 func deleteProject(projectName: String) {
     let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         .appendingPathComponent("/projects/")
     do {
         try FileManager.default.removeItem(at: projectDirectory.appendingPathComponent(projectName).appendingPathExtension("proj"))
-        print("Deleted \(projectName)")
     } catch let error {
         print(error.localizedDescription)
     }
