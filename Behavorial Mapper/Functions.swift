@@ -168,7 +168,7 @@ func getProjectFiles() -> [String]? {
  */
 func deleteProject(projectName: String) {
     let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        .appendingPathComponent("/projects/")
+        .appendingPathComponent("projects")
     do {
         try FileManager.default.removeItem(at: projectDirectory.appendingPathComponent(projectName).appendingPathExtension("proj"))
     } catch let error {
@@ -182,17 +182,15 @@ extension Project {
         
         let data = self.toJSON()
         
-        let manager = FileManager.default
-        let paths = manager.urls(for: .documentDirectory, in: .userDomainMask)
-        let projectDir = paths[0].appendingPathComponent("projects")
+        let projectDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("projects")
 
         do {
-            try manager.createDirectory(atPath: projectDir.path, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(at: projectDir, withIntermediateDirectories: true, attributes: nil)
         } catch let error {
             print("Error: \(error.localizedDescription)")
         }
         
-        let projectPath = projectDir.appendingPathComponent(self.name + ".proj")
+        let projectPath = projectDir.appendingPathComponent(self.name).appendingPathExtension("proj")
         try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
         
         print("Wrote project to \(projectPath.absoluteString)")
