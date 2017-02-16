@@ -129,8 +129,8 @@ func generateCsvString(project: Project) -> String {
     return csvString
 }
 
-func getProjectFiles() -> [String: String] {
-    var projectDict = [String:String]()
+func getProjectFiles() -> [String] {
+    var projectNames = [String]()
 
     let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         .appendingPathComponent("/projects/")
@@ -139,12 +139,12 @@ func getProjectFiles() -> [String: String] {
         
         let projectFiles = direcotryContent.filter{ $0.pathExtension == "proj" }
         for pf in projectFiles {
-            projectDict[pf.deletingPathExtension().lastPathComponent] = pf.path
+            projectNames.append(pf.deletingPathExtension().lastPathComponent)
         }
     } catch let error {
         print(error.localizedDescription)
     }
-    return projectDict
+    return projectNames
 }
 
 extension Project {

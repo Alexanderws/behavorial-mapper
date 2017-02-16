@@ -138,4 +138,45 @@ class Project: JSONSerializable {
         
         self._background = background as! String
     }
+    
+    init?(projectName: String) {
+        let projectPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("/projects/" + projectName + ".proj").path
+        let jsonStr = try? String.init(contentsOfFile: projectPath, encoding: .utf8)
+        if jsonStr == nil {
+            return nil
+        }
+        if let json = try? JSONSerialization.jsonObject(with: (jsonStr?.data(using: .utf8)!)!, options: []) {
+            guard let name = (json as! [String: Any])["_name"],
+                let created = (json as! [String: Any])["_created"],
+                let lastSaved = (json as! [String: Any])["_lastSaved"],
+                let note = (json as! [String: Any])["_note"],
+                let legends = (json as! [String: Any])["_legend"],
+                let entries = (json as! [String: Any])["_entries"],
+                let background = (json as! [String: Any])["_background"]
+                else {
+                    return nil
+            }
+            self._name = name as! String
+            
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            self._created = df.date(from: created as! String)
+            
+            self._lastSaved = df.date(from: lastSaved as! String)
+            
+            self._note = note as! String
+            
+            self._legend = [Legend]()
+            for leg in legends as! [[String: Any]] {
+                self._legend.append(Legend(json: leg)!)
+            }
+            
+            self._entries = [Entry]()
+            for ent in entries as! [[String: Any]] {
+                self._entries.append(Entry(json: ent)!)
+            }
+            
+            self._background = background as! String
+        }
+    }
 }

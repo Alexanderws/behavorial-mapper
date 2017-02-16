@@ -23,6 +23,10 @@ class StartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initStyle()
+        
+        // Test opening
+        let p = Project.init(projectName: "sadasd")
+        print(p?.name ?? "Failed to load project from file!")
     }
 
     func initStyle() {
