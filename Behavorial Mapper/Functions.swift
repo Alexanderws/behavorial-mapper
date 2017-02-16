@@ -129,22 +129,25 @@ func generateCsvString(project: Project) -> String {
     return csvString
 }
 
-func getProjectFiles() -> [String] {
-    var projectNames = [String]()
-
+func getProjectFiles() -> [String]? {
     let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         .appendingPathComponent("/projects/")
-    do {
-        let direcotryContent = try FileManager.default.contentsOfDirectory(at: projectDirectory, includingPropertiesForKeys: nil, options: [])
+    let properties = [URLResourceKey.creationDateKey, URLResourceKey.contentModificationDateKey]
+    
+    if let urlArray = try? FileManager.default.contentsOfDirectory(at: projectDirectory,
+                                                                                   includingPropertiesForKeys: properties,
+                                                                                   options:.skipsHiddenFiles) {
+ 
         
-        let projectFiles = direcotryContent.filter{ $0.pathExtension == "proj" }
-        for pf in projectFiles {
-            projectNames.append(pf.deletingPathExtension().lastPathComponent)
-        }
-    } catch let error {
-        print(error.localizedDescription)
+        return urlArray.map({ url -> (String, TimeInterval) in
+            let lastModified = try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
+            return (url.deletingPathExtension().lastPathComponent, lastModified!!.timeIntervalSinceReferenceDate )
+        })
+            .sorted(by: {$0.1 > $1.1})
+            .map({ $0.0 })
+    } else {
+        return nil
     }
-    return projectNames
 }
 
 extension Project {

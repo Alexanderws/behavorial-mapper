@@ -25,8 +25,11 @@ class StartVC: UIViewController {
         initStyle()
         
         // Test opening
-        let p = Project.init(projectName: "sadasd")
-        print(p?.name ?? "Failed to load project from file!")
+        // let p = Project.init(projectName: "sadasd")
+        // print(p?.name ?? "Failed to load project from file!")
+        
+        let files = getProjectFiles()
+        print(files ?? "No files")
     }
 
     func initStyle() {
