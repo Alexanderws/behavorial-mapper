@@ -86,6 +86,15 @@ func getImageSnapshot(fromView: UIView) -> UIImage {
 }
 
 extension UIColor {
+    /**
+     Creates a UIColor from a standard 0xRRGGBB color representation.
+     
+     - parameters:
+        - hex: Color in 0xRRGGBB hex representation.
+     
+     - important:
+     Does not support alpha values.
+     */
     class func fromHex(hex: Int) -> UIColor {
         let red: CGFloat = CGFloat((hex >> 16) & 0xFF) / 255.0
         let green: CGFloat = CGFloat((hex >> 8) & 0xFF) / 255.0
