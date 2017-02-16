@@ -137,8 +137,6 @@ func getProjectFiles() -> [String]? {
     if let urlArray = try? FileManager.default.contentsOfDirectory(at: projectDirectory,
                                                                                    includingPropertiesForKeys: properties,
                                                                                    options:.skipsHiddenFiles) {
- 
-        
         return urlArray.map({ url -> (String, TimeInterval) in
             let lastModified = try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
             return (url.deletingPathExtension().lastPathComponent, lastModified!!.timeIntervalSinceReferenceDate )
