@@ -63,7 +63,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         if _project.entries.count > 0 {
             _tagNumber = _project.entries[_project.entries.count - 1].tagId
             for entry in _project.entries {
-                createEntryIcon(xPos: entry.position.x, yPos: entry.position.y, targetView: mappingView, angleInDegrees: entry.angleInDegrees, tagId: entry.tagId)
+                createEntryIcon(xPos: entry.position.x, yPos: entry.position.y, targetView: mappingView, angleInDegrees: entry.angleInDegrees, tagId: entry.tagId, icon: entry.legend.icon)
             }
         }
         
@@ -152,12 +152,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         _tagNumber += 1
         _angleInDegrees = 999
         
-        createEntryIcon(xPos: _centerPos.x, yPos: _centerPos.y, targetView: mappingView, angleInDegrees: _angleInDegrees, tagId: _tagNumber)
+        createEntryIcon(xPos: _centerPos.x, yPos: _centerPos.y, targetView: mappingView, angleInDegrees: _angleInDegrees, tagId: _tagNumber, icon: _selectedLegend.icon)
     }
     
-    func createEntryIcon(xPos: CGFloat, yPos: CGFloat, targetView: UIView, angleInDegrees: CGFloat, tagId: Int) {
+    func createEntryIcon(xPos: CGFloat, yPos: CGFloat, targetView: UIView, angleInDegrees: CGFloat, tagId: Int, icon: Int) {
         let _centerIcon = UIImageView(frame: CGRect(x: xPos - (CENTER_ICON_SIZE/2), y: yPos - (CENTER_ICON_SIZE/2), width: (CENTER_ICON_SIZE), height: CGFloat(CENTER_ICON_SIZE)))
-        _centerIcon.image = UIImage(named: "\(selectedLegend.icon)")
+        _centerIcon.image = UIImage(named: "\(icon)")
         _arrowIcon = UIImageView(frame: CGRect(x: xPos - (ARROW_ICON_SIZE/2), y: yPos - (ARROW_ICON_SIZE/2), width: (ARROW_ICON_SIZE), height: (ARROW_ICON_SIZE)))
         _arrowIcon.image = UIImage(named: "arrowBlk_1x")
         

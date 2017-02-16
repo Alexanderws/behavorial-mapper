@@ -13,8 +13,8 @@ class EntryCell: UITableViewCell {
     
     
     @IBOutlet weak var entryNameLbl: UILabel!
-    @IBOutlet weak var entryTimeLbl: UILabel!
-    @IBOutlet weak var entryDateLbl: UILabel!
+    @IBOutlet weak var entryTimeTopLbl: UILabel!
+    @IBOutlet weak var entryTimeBottomLbl: UILabel!
     @IBOutlet weak var entryIconImage: UIImageView!
     @IBOutlet weak var entryTitleBarView: UIView!
     
@@ -37,8 +37,8 @@ class EntryCell: UITableViewCell {
     func configureCell (entry: Entry) {
         self.entry = entry
         self.entryNameLbl.text = entry.legend.name
-        self.entryTimeLbl.text = timeFormat(date: entry.time)
-        self.entryDateLbl.text = dateFormat(date: entry.time)
+        self.entryTimeBottomLbl.text = timeFormat(date: entry.time)
+        self.entryTimeTopLbl.text = dateFormat(date: entry.time)
         self.entryIconImage.image = UIImage(named: "\(entry.legend.icon)")
         entryTitleBarView.backgroundColor = Style.backgroundTitleBarSecondary
         

@@ -13,8 +13,9 @@ class ProjectCell: UITableViewCell {
     
     
     @IBOutlet weak var projectNameLbl: UILabel!
-    @IBOutlet weak var lastEditedLbl: UILabel!
-    
+    @IBOutlet weak var lastEditedTopLbl: UILabel!
+    @IBOutlet weak var lastEditedBottomLbl: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,7 +29,9 @@ class ProjectCell: UITableViewCell {
     
     func configureCell(project: Project) {
         self.projectNameLbl.text = project.name
-        self.lastEditedLbl.text = dateFormat(date: project.lastSaved)
+        self.lastEditedTopLbl.text = dateFormat(date: project.lastSaved)
+        self.lastEditedBottomLbl.text = timeFormat(date: project.lastSaved)
+
     }
 
 }

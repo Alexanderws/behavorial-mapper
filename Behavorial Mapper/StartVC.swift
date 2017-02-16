@@ -20,7 +20,7 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var createProjectBtn: UIButton!
     
     
-    private var _storedProjects = [String]()
+    private var _storedProjects: [String]!
     private var _selectedProject: String = ""
     
     override func viewDidLoad() {
@@ -52,6 +52,10 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         storedProjectsTableView.dataSource = self
         storedProjectsTableView.delegate = self
         _storedProjects = getProjectFiles()
+        if _storedProjects == nil {
+            self._storedProjects = [String]()
+        }
+        
         storedProjectsTableView.isScrollEnabled = false
     }
 
@@ -95,6 +99,15 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell = storedProjectsTableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
         cell.configureCell(project: Project(projectName: _storedProjects[indexPath.row])!)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
+            deleteProject(projectName: self._storedProjects[indexPath.row])
+            self._storedProjects = getProjectFiles()
+            self.storedProjectsTableView.reloadData()
+        }
+        return [delete]
     }
 
 }

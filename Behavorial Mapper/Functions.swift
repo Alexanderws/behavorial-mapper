@@ -161,12 +161,7 @@ func deleteProject(projectName: String) {
     let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         .appendingPathComponent("/projects/")
     do {
-        let directoryContent = try FileManager.default.contentsOfDirectory(at: projectDirectory, includingPropertiesForKeys: nil, options: [])
-        
-        let projectFiles = directoryContent.filter{ $0.pathExtension == "proj" }
-        for pf in projectFiles {
-            projectNames.append(pf.deletingPathExtension().lastPathComponent)
-        }
+        try FileManager.default.removeItem(at: projectDirectory.appendingPathComponent(projectName).appendingPathExtension("proj"))
     } catch let error {
         print(error.localizedDescription)
     }
