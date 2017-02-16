@@ -135,9 +135,9 @@ func getProjectFiles() -> [String: String] {
     let projectDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         .appendingPathComponent("/projects/")
     do {
-        let direcotryContent = try FileManager.default.contentsOfDirectory(at: projectDirectory, includingPropertiesForKeys: nil, options: [])
+        let directoryContent = try FileManager.default.contentsOfDirectory(at: projectDirectory, includingPropertiesForKeys: nil, options: [])
         
-        let projectFiles = direcotryContent.filter{ $0.pathExtension == "proj" }
+        let projectFiles = directoryContent.filter{ $0.pathExtension == "proj" }
         for pf in projectFiles {
             projectDict[pf.deletingPathExtension().lastPathComponent] = pf.path
         }

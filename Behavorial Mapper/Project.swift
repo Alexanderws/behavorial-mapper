@@ -49,16 +49,6 @@ class Project: JSONSerializable {
         }
     }
     
-    /*
-    var background: UIImage {
-        get {
-            return _background
-        } set {
-            _background = newValue
-        }
-    }
-    */
-    
     var background: String {
         get {
             return _background

@@ -16,6 +16,9 @@ class EntryCell: UITableViewCell {
     @IBOutlet weak var entryTimeLbl: UILabel!
     @IBOutlet weak var entryDateLbl: UILabel!
     @IBOutlet weak var entryIconImage: UIImageView!
+    @IBOutlet weak var entryTitleBarView: UIView!
+    
+    
     
     private var entry: Entry!
    
@@ -37,7 +40,11 @@ class EntryCell: UITableViewCell {
         self.entryTimeLbl.text = timeFormat(date: entry.time)
         self.entryDateLbl.text = dateFormat(date: entry.time)
         self.entryIconImage.image = UIImage(named: "\(entry.legend.icon)")
+        entryTitleBarView.backgroundColor = Style.backgroundTitleBarSecondary
         
+        self.preservesSuperviewLayoutMargins = false
+        self.separatorInset = UIEdgeInsets.zero
+        self.layoutMargins = UIEdgeInsets.zero
         
     }
 }
