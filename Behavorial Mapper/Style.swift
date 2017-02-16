@@ -15,7 +15,7 @@ extension UITextField{
             return self.placeHolderColor
         }
         set {
-            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSForegroundColorAttributeName: newValue!]) 
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSForegroundColorAttributeName: newValue!])
         }
     }
 }
@@ -27,9 +27,9 @@ struct Style {
     static let clickableBkg = UIColor.fromHex(hex: 0x000000) // Black
     static let backgroundPrimary = UIColor.fromHex(hex: 0x303030) // Dark grey
     static let backgroundSecondary = UIColor.fromHex(hex: 0x45474A) // Medium grey
-    static let backgroundTextField = UIColor.fromHex(hex: 0x636567) // Medium-light grey
+    static let backgroundTextField = UIColor.fromHex(hex: 0xC0BCB5) // Medium-light grey
     static let backgroundTitleBar = UIColor.fromHex(hex: 0x31081F) // DeepWine
-    static let backgroundTitleBarSecondary = UIColor.fromHex(hex: 0x723D46) // WoodRed
+    static let backgroundTitleBarSecondary = UIColor.fromHex(hex: 0x564E58) // Lilac
     static let textPrimary = UIColor.fromHex(hex: 0xFFFFFF) // White
     static let textSecondary = UIColor.fromHex(hex: 0x000000) // Black
 }
@@ -43,3 +43,7 @@ struct Style {
  PurpleSky = 0xD6E3F8
  Medium-light grey 0x636567
 */
+
+/*
+ Blood red = 0xA72608
+ */

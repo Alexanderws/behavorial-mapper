@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+// GENERAL STRINGS
+let TITLE_LABEL = "Behavioral Mapping"
+
 // Icons in CreateProjectVC
 let NUMBER_OF_ICONS = 10
 let ICON_CELL_SIZE = 25
@@ -35,7 +38,7 @@ let ALERT_CANCEL_TITLE = "Dismiss"
 
 // Sizes
 let LEGEND_TABLEVIEW_CELL_HEIGHT = 44
-let ENTRY_TABLEVIEW_CELL_HEIGHT = 87
+let ENTRY_TABLEVIEW_CELL_HEIGHT = 60
 
 // CSV HEADERS
 let CSV_TIME = "Tidspunkt"

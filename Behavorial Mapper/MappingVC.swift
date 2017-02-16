@@ -58,16 +58,14 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     override func viewDidLoad() {
         super.viewDidLoad()
         initStyle()
+        initTableViews()
         
-        legendTableView.delegate = self
-        legendTableView.dataSource = self
-        entryTableView.delegate = self
-        entryTableView.dataSource = self
-        
-        selectedLegend = project.legend[0]
-        
-        project.projectDelegate = self
-        mappingView.mappingViewDelegate = self
+        if _project.entries.count > 0 {
+            _tagNumber = _project.entries[_project.entries.count - 1].tagId
+            for entry in _project.entries {
+                createEntryIcon(xPos: entry.position.x, yPos: entry.position.y, targetView: mappingView, angleInDegrees: entry.angleInDegrees, tagId: entry.tagId, icon: entry.legend.icon)
+            }
+        }
         
         if project.background == BACKGROUND_BLANK_STRING {
             mappingBgImageView.image = getWhiteBackground(width: 2000, height: 2000)
@@ -85,6 +83,21 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         historyTitleView.backgroundColor = Style.backgroundPrimary
     }
 
+    func initTableViews() {
+        legendTableView.delegate = self
+        legendTableView.dataSource = self
+        entryTableView.delegate = self
+        entryTableView.dataSource = self
+        
+        selectedLegend = project.legend[0]
+        
+        project.projectDelegate = self
+        mappingView.mappingViewDelegate = self
+        
+        // entryTableView.reloadData()
+        entryTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "popoverMappingMenuVC" {
             if let mappingMenu = segue.destination as? MappingMenuVC {
@@ -135,21 +148,33 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         if let touch = touches.first {
             _centerPos = touch.location(in: mappingView)
         }
-        let _centerIcon = UIImageView(frame: CGRect(x: _centerPos.x - (CENTER_ICON_SIZE/2), y: _centerPos.y - (CENTER_ICON_SIZE/2), width: (CENTER_ICON_SIZE), height: CGFloat(CENTER_ICON_SIZE)))
-        _centerIcon.image = UIImage(named: "\(selectedLegend.icon)")
-        
-        _arrowIcon = UIImageView(frame: CGRect(x: _centerPos.x - (ARROW_ICON_SIZE/2), y: _centerPos.y - (ARROW_ICON_SIZE/2), width: (ARROW_ICON_SIZE), height: (ARROW_ICON_SIZE)))
-        _arrowIcon.image = UIImage(named: "arrowBlk_1x")
         
         _tagNumber += 1
-        _centerIcon.tag = _tagNumber
         _angleInDegrees = 999
-        _arrowIcon.tag = _tagNumber
-        _arrowIcon.isHidden = true
-        mappingView.addSubview(_arrowIcon)
         
+        createEntryIcon(xPos: _centerPos.x, yPos: _centerPos.y, targetView: mappingView, angleInDegrees: _angleInDegrees, tagId: _tagNumber, icon: _selectedLegend.icon)
+    }
+    
+    func createEntryIcon(xPos: CGFloat, yPos: CGFloat, targetView: UIView, angleInDegrees: CGFloat, tagId: Int, icon: Int) {
+        let _centerIcon = UIImageView(frame: CGRect(x: xPos - (CENTER_ICON_SIZE/2), y: yPos - (CENTER_ICON_SIZE/2), width: (CENTER_ICON_SIZE), height: CGFloat(CENTER_ICON_SIZE)))
+        _centerIcon.image = UIImage(named: "\(icon)")
+        _arrowIcon = UIImageView(frame: CGRect(x: xPos - (ARROW_ICON_SIZE/2), y: yPos - (ARROW_ICON_SIZE/2), width: (ARROW_ICON_SIZE), height: (ARROW_ICON_SIZE)))
+        _arrowIcon.image = UIImage(named: "arrowBlk_1x")
+        
+        _centerIcon.tag = tagId
+        _arrowIcon.tag = tagId
+
+        if (angleInDegrees == 999) {
+            _arrowIcon.isHidden = true
+        } else {
+            _arrowIcon.isHidden = false
+            _arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
+        }
+        
+        targetView.addSubview(_arrowIcon)
         mappingView.addSubview(_centerIcon)
     }
+    
     
     func mappingViewTouchMoved(sender: MappingView, touches: Set<UITouch>) {
         if(_touchesMovedDeadZone == 0) {
@@ -211,6 +236,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == legendTableView {
             selectedLegend = project.legend[indexPath.row]
+            let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+            selectedCell.contentView.backgroundColor = UIColor.red
         }
         if tableView == entryTableView {
             _selectedEntry = project.entries[self.project.entries.count - (indexPath.row + 1)]
