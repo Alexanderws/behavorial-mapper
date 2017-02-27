@@ -38,10 +38,10 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         proxyTextField.backgroundColor = Style.backgroundTextField
         proxyTextField.textColor = Style.textPrimary
         proxyTextField.placeHolderColor = Style.textSecondary
-        proxyTextField.placeholder = "LOLOLOL"
         proxyTextView.backgroundColor = Style.backgroundTextField
         proxyTextView.textColor = Style.textPrimary
         proxyButton.setTitleColor(Style.textPrimary, for: .normal)
+        proxyButton.layer.borderColor = Style.textPrimary.cgColor
         proxyLabel.textColor = Style.textPrimary
         
         bkgView.backgroundColor = Style.backgroundSecondary
@@ -55,20 +55,10 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if _storedProjects == nil {
             self._storedProjects = [String]()
         }
-        
-        storedProjectsTableView.isScrollEnabled = false
     }
 
-    
     @IBAction func StartNewProjectPressed(_ sender: Any) {
         performSegue(withIdentifier: "showCreateProjectVC", sender: sender)
-    }
-    
-    
-    @IBAction func LoadProjectPressed(_ sender: Any) {
-        
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,12 +77,7 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if _storedProjects.count >= 5 {
-            return 5
-        } else {
             return _storedProjects.count
-        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,10 +90,10 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
             deleteProject(projectName: self._storedProjects[indexPath.row])
             self._storedProjects = getProjectFiles()
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             self.storedProjectsTableView.reloadData()
         }
         return [delete]
     }
-
 }
 

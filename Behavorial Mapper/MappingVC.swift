@@ -30,7 +30,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     private var _selectedIndex: Int!
     
     private var _tagNumber = 0
-    private var _touchesMovedDeadZone = 4
+    private var _touchesMovedDeadZone = DEADZONE_START_VALUE
     private var _centerPos: CGPoint!
     private var _angleInDegrees: CGFloat = 999
     private var _arrowIcon: UIImageView!
@@ -193,7 +193,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func mappingViewTouchEnded(sender: MappingView, touches: Set<UITouch>) {
-        _touchesMovedDeadZone = 0
+        _touchesMovedDeadZone = DEADZONE_START_VALUE
         _project.addEntry(legend: selectedLegend, angleInDegrees: _angleInDegrees, position: _centerPos!, tagId: _tagNumber)
         entryTableView.reloadData()
     }
@@ -273,6 +273,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
                 self.project.removeEntry(index: self.project.entries.count - (indexPath.row + 1))
                 print("editActionsForRowAt: indexPath.row = \(self.project.entries.count - (indexPath.row + 1))")
                 self.entryTableView.reloadData()
+                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             }
             return [delete]
         }

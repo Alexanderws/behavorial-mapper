@@ -74,7 +74,15 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func initStyle() {
         createProjectView.backgroundColor = Style.backgroundPrimary
         bkgView.backgroundColor = Style.backgroundSecondary
-        projectNameTxtFld.placeHolderColor = Style.textSecondary
+        // projectNameTxtFld.placeHolderColor = Style.textSecondary
+
+        blankBackgroundButton.layer.borderWidth = 3
+        blankBackgroundButton.layer.borderColor = Style.textPrimary.cgColor
+        blankBackgroundButton.backgroundColor = Style.backgroundTextField
+        createMapButton.layer.borderColor = Style.textPrimary.cgColor
+        createMapButton.backgroundColor = Style.backgroundTextField
+        loadPictureButton.layer.borderColor = Style.textPrimary.cgColor
+        loadPictureButton.backgroundColor = Style.backgroundTextField
     }
     
     func enterLegendIcon(iconId: Int) {
@@ -165,14 +173,20 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func updateImageButtons() {
         loadPictureButton.setImage(UIImage(named: BACKGROUND_IMAGE_UPLOADED_STRING), for: .normal)
         createMapButton.setImage(UIImage(named: BACKGROUND_GOOGLE_MAPS_STRING), for: .normal)
+        loadPictureButton.layer.borderWidth = 0
+        createMapButton.layer.borderWidth = 0
+        blankBackgroundButton.layer.borderWidth = 0
         // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         switch chosenBackground {
         case BACKGROUND_IMAGE_UPLOADED:
             loadPictureButton.setImage(_backgroundImage, for: .normal)
+            loadPictureButton.layer.borderWidth = 3
         case BACKGROUND_GOOGLE_MAPS:
             createMapButton.setImage(_backgroundImage, for: .normal)
-        case BACKGROUND_BLANK: break
+            createMapButton.layer.borderWidth = 3
+        case BACKGROUND_BLANK:
             // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
+            blankBackgroundButton.layer.borderWidth = 3
         default: break
         }
     }
@@ -233,6 +247,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
             self.legendArray.remove(at: indexPath.row)
             self.legendTableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
         return [delete]
     }
