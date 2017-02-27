@@ -10,12 +10,18 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
+protocol GMapsVCDelegate {
+    func getProjectName() -> String
+}
+
 class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControllerDelegate {
         
     private var _camera = GMSCameraPosition.camera(withLatitude: 58.938100, longitude: 5.693730, zoom: 15) // UIS
     private var _mapView = GMSMapView()
     
     private let _toolBarHeight: CGFloat = 50.0
+    
+    var delegate: GMapsVCDelegate?
     
     @IBOutlet weak var _toolBar: UIToolbar!
     @IBOutlet weak var _screenshotButton: UIBarButtonItem!
@@ -55,7 +61,10 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         
         let data = UIImagePNGRepresentation(image!)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let imagePath = paths[0].appendingPathComponent("map.png")
+        let imagePath = paths[0].appendingPathComponent("\(delegate!.getProjectName()).map.png")
+        
+        print("WROTE: \(imagePath)")
+        
         try? data?.write(to: imagePath)
  
         UIGraphicsEndImageContext()

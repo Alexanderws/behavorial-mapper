@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,7 +64,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016 101 101" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIt-yu-pL6">
-                                                                    <rect key="frame" x="127" y="19.5" width="80" height="20"/>
+                                                                    <rect key="frame" x="127" y="20" width="80" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="7RQ-le-YPm"/>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="7nJ-li-0Sx"/>
@@ -718,7 +718,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="702.5" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-6K-e3I" customClass="CreateProjectView" customModule="Behavorial_Mapper" customModuleProvider="target">
-                                        <rect key="frame" x="29.5" y="130" width="644" height="508"/>
+                                        <rect key="frame" x="30" y="130" width="644" height="508"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfB-qw-u53" customClass="FramedButton" customModule="Behavorial_Mapper" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="459" width="79" height="41"/>

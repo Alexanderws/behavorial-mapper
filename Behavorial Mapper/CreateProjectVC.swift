@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GMapsVCDelegate {
 
     
     @IBOutlet weak var bkgView: UIView!
@@ -153,7 +153,12 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @IBAction func createMapPressed(sender: UIButton) {
-        performSegue(withIdentifier: "GMapsSegue", sender: sender)
+        if containsText(object: projectNameTxtFld) {
+            performSegue(withIdentifier: "GMapsSegue", sender: sender)
+        } else {
+            displayMessage(title: NO_PROJECT_NAME_TITLE, message: NO_PROJECT_NAME_MSG, self: self)
+            return
+        }
     }
     
     @IBAction func blankBackgroundPressed(_ sender: Any) {
@@ -181,6 +186,11 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if segue.identifier == "showDetailMappingVC" {
             if let mappingVC = segue.destination as? MappingVC {
                 mappingVC.project = project
+            }
+        }
+        else if segue.identifier == "GMapsSegue" {
+            if let gMap = segue.destination as? GMapsVC {
+                gMap.delegate = self
             }
         }
     }
@@ -243,5 +253,10 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
+    }
+    
+    
+    func getProjectName() -> String {
+        return self.projectNameTxtFld.text!
     }
 }

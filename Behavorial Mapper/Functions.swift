@@ -131,7 +131,7 @@ func pointToDegrees(x: CGFloat, y: CGFloat) -> CGFloat {
 
 func generateCsvString(project: Project) -> String {
     var csvString = String()
-    csvString.append(project.entries[0].csvHeader() + "\n")
+    csvString.append(CSV_ENTRY_HEADER + "\n")
     for e in project.entries {
         csvString.append(e.csvBody() + "\n")
     }
