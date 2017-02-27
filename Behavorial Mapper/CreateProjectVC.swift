@@ -125,7 +125,14 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             projectNote = ""
         }
         
+        let data = UIImagePNGRepresentation(_backgroundImage)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let imagePath = paths[0].appendingPathComponent("\(projectName).map.png")
+        _backgroundString = imagePath.absoluteString
+        try? data?.write(to: imagePath)
+        
         project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
+        
         return true
     }
     
@@ -161,17 +168,12 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @IBAction func createMapPressed(sender: UIButton) {
-        if containsText(object: projectNameTxtFld) {
-            performSegue(withIdentifier: "GMapsSegue", sender: sender)
-        } else {
-            displayMessage(title: NO_PROJECT_NAME_TITLE, message: NO_PROJECT_NAME_MSG, self: self)
-            return
-        }
+        performSegue(withIdentifier: "GMapsSegue", sender: sender)
     }
     
     @IBAction func blankBackgroundPressed(_ sender: Any) {
         chosenBackground = BACKGROUND_BLANK
-        backgroundString = BACKGROUND_BLANK_STRING
+        //backgroundString = BACKGROUND_BLANK_STRING
         updateImageButtons()
     }
     
@@ -228,11 +230,13 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         chosenBackground = BACKGROUND_IMAGE_UPLOADED
         _backgroundImage = newImage
         
+        /*
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let imagePath = paths[0].appendingPathComponent("map.png")
         let data = UIImagePNGRepresentation(_backgroundImage)
         try? data?.write(to: imagePath)
         _backgroundString = imagePath.absoluteString
+         */
         
         updateImageButtons()
         dismiss(animated: true)

@@ -57,22 +57,12 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 0)
         self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
-
-        
-        let data = UIImagePNGRepresentation(image!)
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let imagePath = paths[0].appendingPathComponent("\(delegate!.getProjectName()).map.png")
-        
-        print("WROTE: \(imagePath)")
-        
-        try? data?.write(to: imagePath)
  
         UIGraphicsEndImageContext()
         _toolBar.isHidden = false
         
         if let vc = self.presentingViewController as? CreateProjectVC {
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
-            vc.backgroundString = imagePath.absoluteString
             vc.backgroundImage = image!
             vc.updateImageButtons()
         }
