@@ -296,8 +296,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         return false
     }
     
-    @IBAction func viewAllPressed(_ sender: Any) {
-        _viewMode = VIEW_ALL
+    func showAllEntries() {
         for entry in project.entries {
             mappingView.viewWithTag(entry.tagId)?.isHidden = false
             if (entry.angleInDegrees != 999) {
@@ -306,17 +305,52 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         }
     }
     
-    @IBAction func viewLast10Pressed(_ sender: Any) {
-        _viewMode = VIEW_10
-    
-    }
-    
-    @IBAction func viewNonePressed(_ sender: Any) {
-        _viewMode = VIEW_NONE
+    func hideAllEntries() {
         for entry in project.entries {
             mappingView.viewWithTag(entry.tagId)?.isHidden = true
             mappingView.viewWithTag(entry.tagId + 1)?.isHidden = true
         }
+    }
+    
+    func showEntry(index: Int) {
+        mappingView.viewWithTag(project.entries[index].tagId)?.isHidden = false
+        if (project.entries[index].angleInDegrees != 999) {
+            mappingView.viewWithTag(project.entries[index].tagId + 1)?.isHidden = false
+        }
+    }
+    
+    func hideEntry(index: Int) {
+        mappingView.viewWithTag(project.entries[index].tagId)?.isHidden = true
+        mappingView.viewWithTag(project.entries[index].tagId + 1)?.isHidden = true
+    }
+    
+    @IBAction func viewAllPressed(_ sender: Any) {
+        _viewMode = VIEW_ALL
+        showAllEntries()
+    }
+    
+   
+    @IBAction func viewLast10Pressed(_ sender: Any) {
+        if (project.entries.count > 10) {
+            let maxMinus10: Int = project.entries.count - 10
+            if _viewMode == VIEW_NONE {
+                for index in maxMinus10...project.entries.count - 1 {
+                    showEntry(index: index)
+                }
+            } else {
+                for index in 0...maxMinus10 - 1 {
+                    hideEntry(index: index)
+                }
+            }
+        } else {
+            showAllEntries()
+        }
+        _viewMode = VIEW_10
+    }
+    
+    @IBAction func viewNonePressed(_ sender: Any) {
+        _viewMode = VIEW_NONE
+        hideAllEntries()
     }
     
     
