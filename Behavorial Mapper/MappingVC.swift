@@ -70,9 +70,10 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         if project.background == BACKGROUND_BLANK_STRING {
             mappingBgImageView.image = getWhiteBackground(width: 2000, height: 2000)
         } else {
-            let url = URL(string: project.background)
-            let data = try? Data(contentsOf: url!)
-            mappingBgImageView.image = UIImage(data: data!)
+            let mapFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                .appendingPathComponent("/maps/\(project.name)").appendingPathExtension("map.png")
+            let data = try? Data.init(contentsOf: mapFile)
+            mappingBgImageView.image = UIImage.init(data: data!)
         }
     }
     
