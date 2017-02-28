@@ -24,6 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(_APIKEY)
         GMSPlacesClient.provideAPIKey(_APIKEY)
         
+        // Creates maps & projects directories in the app Documents folder,
+        // if they do not exist, on app launch
+        if !UserDefaults.standard.bool(forKey: "HasLaunchedOnce") {
+            createProjectDirectories()
+            UserDefaults.standard.set(true, forKey: "HasLaunchedOnce")
+            UserDefaults.standard.synchronize()
+        }
+        
         return true
     }
     

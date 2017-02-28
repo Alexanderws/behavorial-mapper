@@ -127,7 +127,8 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (chosenBackground != BACKGROUND_BLANK) {
             let data = UIImagePNGRepresentation(_backgroundImage)
             let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            let imagePath = paths[0].appendingPathComponent("\(projectName).map.png")
+            let mapDir = paths[0].appendingPathComponent("maps/")
+            let imagePath = mapDir.appendingPathComponent("\(projectName!).map.png")
             _backgroundString = imagePath.absoluteString
             try? data?.write(to: imagePath)
         }
