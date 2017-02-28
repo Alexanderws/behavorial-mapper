@@ -91,7 +91,6 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             deleteProject(projectName: self._storedProjects[indexPath.row])
             self._storedProjects = getProjectFiles()
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            self.storedProjectsTableView.reloadData()
         }
         return [delete]
     }

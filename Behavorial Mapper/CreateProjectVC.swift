@@ -124,13 +124,13 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         } else {
             projectNote = ""
         }
-        
-        let data = UIImagePNGRepresentation(_backgroundImage)
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let imagePath = paths[0].appendingPathComponent("\(projectName).map.png")
-        _backgroundString = imagePath.absoluteString
-        try? data?.write(to: imagePath)
-        
+        if (chosenBackground != BACKGROUND_BLANK) {
+            let data = UIImagePNGRepresentation(_backgroundImage)
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            let imagePath = paths[0].appendingPathComponent("\(projectName).map.png")
+            _backgroundString = imagePath.absoluteString
+            try? data?.write(to: imagePath)
+        }
         project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
         
         return true
@@ -260,7 +260,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
             self.legendArray.remove(at: indexPath.row)
-            self.legendTableView.reloadData()
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
         return [delete]

@@ -271,8 +271,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         if tableView == entryTableView {
             let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
                 self.project.removeEntry(index: self.project.entries.count - (indexPath.row + 1))
-                print("editActionsForRowAt: indexPath.row = \(self.project.entries.count - (indexPath.row + 1))")
-                self.entryTableView.reloadData()
+                // self.entryTableView.reloadData()
                 tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             }
             return [delete]
