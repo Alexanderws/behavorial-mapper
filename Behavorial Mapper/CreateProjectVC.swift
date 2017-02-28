@@ -90,7 +90,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         legendIconImage.setImage(UIImage(named: "\(iconId)"), for: .normal)
         selectedIconId = iconId
     }
-    
+    // okok
     func addLegend() {
         if legendNameTxtFld.hasText {
             if let name = legendNameTxtFld.text {

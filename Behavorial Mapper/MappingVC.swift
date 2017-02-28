@@ -20,7 +20,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     @IBOutlet weak var mappingLeftView: UIView!
     
     @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var viewLast10Btn: UIButton!
+    @IBOutlet weak var viewAllBtn: UIButton!
+    @IBOutlet weak var viewNoneBtn: UIButton!
     
+    @IBOutlet weak var viewLblContainerView: UIView!
+    @IBOutlet weak var viewLbl: UILabel!
     @IBOutlet weak var legendTitleView: UIView!
     @IBOutlet weak var historyTitleView: UIView!
     
@@ -34,6 +39,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     private var _centerPos: CGPoint!
     private var _angleInDegrees: CGFloat = 999
     private var _arrowIcon: UIImageView!
+    private var _viewMode: Int = VIEW_ALL
+    
     
     var project: Project {
         get {
@@ -81,6 +88,9 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         menuButton.backgroundColor = Style.backgroundPrimary
         legendTitleView.backgroundColor = Style.backgroundPrimary
         historyTitleView.backgroundColor = Style.backgroundPrimary
+        
+        viewLbl.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        viewLblContainerView.backgroundColor = Style.backgroundPrimary
     }
 
     func initTableViews() {
@@ -112,9 +122,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     // PROJECT FUNCTIONS
     func entryDeleted(tagId: Int) {
-        print("entryDeleted: tagId = \(tagId)")
         mappingView.viewWithTag(tagId)?.removeFromSuperview()
-        mappingView.viewWithTag(tagId)?.removeFromSuperview()
+        mappingView.viewWithTag(tagId + 1)?.removeFromSuperview()
     }
     
     // ENTRYNOTE FUNCTIONS
@@ -149,7 +158,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             _centerPos = touch.location(in: mappingView)
         }
         
-        _tagNumber += 1
+        _tagNumber += 2
         _angleInDegrees = 999
         
         createEntryIcon(xPos: _centerPos.x, yPos: _centerPos.y, targetView: mappingView, angleInDegrees: _angleInDegrees, tagId: _tagNumber, icon: _selectedLegend.icon)
@@ -162,13 +171,14 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         _arrowIcon.image = UIImage(named: "arrowBlk_1x")
         
         _centerIcon.tag = tagId
-        _arrowIcon.tag = tagId
+        _arrowIcon.tag = tagId + 1
 
         if (angleInDegrees == 999) {
             _arrowIcon.isHidden = true
         } else {
             _arrowIcon.isHidden = false
-            _arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
+            _arrowIcon.transform = CGAffineTransform(rotationAngle: -angleInDegrees * CGFloat(M_PI/180))
+            print("entry: \(tagId) - rotation: \(-_angleInDegrees * CGFloat(M_PI/180)) - angleInDegrees: \(angleInDegrees)")
         }
         
         targetView.addSubview(_arrowIcon)
@@ -285,4 +295,29 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         }
         return false
     }
+    
+    @IBAction func viewAllPressed(_ sender: Any) {
+        _viewMode = VIEW_ALL
+        for entry in project.entries {
+            mappingView.viewWithTag(entry.tagId)?.isHidden = false
+            if (entry.angleInDegrees != 999) {
+                mappingView.viewWithTag(entry.tagId + 1)?.isHidden = false
+            }
+        }
+    }
+    
+    @IBAction func viewLast10Pressed(_ sender: Any) {
+        _viewMode = VIEW_10
+    
+    }
+    
+    @IBAction func viewNonePressed(_ sender: Any) {
+        _viewMode = VIEW_NONE
+        for entry in project.entries {
+            mappingView.viewWithTag(entry.tagId)?.isHidden = true
+            mappingView.viewWithTag(entry.tagId + 1)?.isHidden = true
+        }
+    }
+    
+    
 }
