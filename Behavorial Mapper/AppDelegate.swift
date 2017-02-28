@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // if they do not exist, on app launch
         if !UserDefaults.standard.bool(forKey: "HasLaunchedOnce") {
             createProjectDirectories()
-            print("FIRST EVER LAUNCH!")
             UserDefaults.standard.set(true, forKey: "HasLaunchedOnce")
             UserDefaults.standard.synchronize()
         }
