@@ -176,20 +176,26 @@ func deleteProject(projectName: String) {
     }
 }
 
+func createProjectDirectories() {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let mapDir = paths[0].appendingPathComponent("maps/")
+    let projectDir = paths[0].appendingPathComponent("projects/")
+    do {
+        try FileManager.default.createDirectory(at: projectDir, withIntermediateDirectories: true, attributes: nil)
+        try FileManager.default.createDirectory(at: mapDir, withIntermediateDirectories: true, attributes: nil)
+    } catch let error {
+        print("Error: \(error.localizedDescription)")
+    }
+
+}
+
 extension Project {
     func saveProject() {
         self.lastSaved = Date()
         
         let data = self.toJSON()
         
-        let projectDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("projects")
-
-        do {
-            try FileManager.default.createDirectory(at: projectDir, withIntermediateDirectories: true, attributes: nil)
-        } catch let error {
-            print("Error: \(error.localizedDescription)")
-        }
-        
+        let projectDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("projects")      
         let projectPath = projectDir.appendingPathComponent(self.name).appendingPathExtension("proj")
         try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
         

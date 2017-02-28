@@ -128,15 +128,8 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             let data = UIImagePNGRepresentation(_backgroundImage)
             let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             let mapDir = paths[0].appendingPathComponent("maps/")
-            let projectDir = paths[0].appendingPathComponent("projects/")
             let imagePath = mapDir.appendingPathComponent("\(projectName!).map.png")
-            _backgroundString = imagePath.absoluteString            
-            do {
-                try FileManager.default.createDirectory(at: projectDir, withIntermediateDirectories: true, attributes: nil)
-                try FileManager.default.createDirectory(at: mapDir, withIntermediateDirectories: true, attributes: nil)
-            } catch let error {
-                print("Error: \(error.localizedDescription)")
-            }
+            _backgroundString = imagePath.absoluteString
             try? data?.write(to: imagePath)
         }
         project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
