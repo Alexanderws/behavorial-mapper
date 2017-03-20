@@ -27,8 +27,19 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     @IBOutlet weak var _screenshotButton: UIBarButtonItem!
     @IBOutlet weak var _cancelButton: UIBarButtonItem!
     
+    @IBOutlet weak var _leftBorder: UIView!
+    @IBOutlet weak var _rightBorder: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        _leftBorder.layer.borderWidth = 1
+        _leftBorder.layer.borderColor = Style.textPrimary.cgColor
+        _leftBorder.alpha = 0.5
+        _rightBorder.layer.borderWidth = 1
+        _rightBorder.layer.borderColor = Style.textPrimary.cgColor
+        _rightBorder.alpha = 0.5
         
         _mapView = GMSMapView.map(withFrame: self.view.bounds, camera: _camera)
         self.view.insertSubview(_mapView, at: 0)

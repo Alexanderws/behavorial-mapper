@@ -67,6 +67,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         initStyle()
         initTableViews()
         
+        if _project.backgroundType == BACKGROUND_IMAGE_UPLOADED {
+            mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFit
+        } else {
+            mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFill
+        }
+        
         if _project.entries.count > 0 {
             _tagNumber = _project.entries[_project.entries.count - 1].tagId
             for entry in _project.entries {
@@ -82,6 +88,11 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             let data = try? Data.init(contentsOf: mapFile)
             mappingBgImageView.image = UIImage.init(data: data!)
         }
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        legendTableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+        legendTableView.delegate?.tableView!(legendTableView, didSelectRowAt: indexPath)
+    
     }
     
     func initStyle() {

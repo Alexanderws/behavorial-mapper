@@ -74,7 +74,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func initStyle() {
         createProjectView.backgroundColor = Style.backgroundPrimary
         bkgView.backgroundColor = Style.backgroundSecondary
-        // projectNameTxtFld.placeHolderColor = Style.textSecondary
 
         blankBackgroundButton.layer.borderWidth = 3
         blankBackgroundButton.layer.borderColor = Style.textPrimary.cgColor
@@ -90,7 +89,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         legendIconImage.setImage(UIImage(named: "\(iconId)"), for: .normal)
         selectedIconId = iconId
     }
-    // okok
+
     func addLegend() {
         if legendNameTxtFld.hasText {
             if let name = legendNameTxtFld.text {
@@ -132,7 +131,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             _backgroundString = imagePath.absoluteString
             try? data?.write(to: imagePath)
         }
-        project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
+        project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote, backgroundType: _chosenBackground)
         
         return true
     }
