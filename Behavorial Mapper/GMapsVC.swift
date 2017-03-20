@@ -62,7 +62,6 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     }
     
     // This function dismissed the GMapsVC
-    // TODO: Check where screenshot should be saved
     func takeScreenshot() {
         _toolBar.isHidden = true
         UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 0)
