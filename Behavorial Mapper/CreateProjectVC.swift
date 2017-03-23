@@ -42,7 +42,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var _chosenBackground = BACKGROUND_BLANK
 
     // TODO: START - Test Stuff !!!
-    /*
+
     private var _visibleRegion: GMSVisibleRegion!
 
     var visibleRegion: GMSVisibleRegion {
@@ -52,7 +52,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             _visibleRegion = newValue
         }
     }
-    */
+
     // TODO: END - Test Stuff !!!
     
     var chosenBackground: Int {
@@ -219,7 +219,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             if let mappingVC = segue.destination as? MappingVC {
                 mappingVC.project = project
 
-                // mappingVC.visibleRegion = _visibleRegion
+                mappingVC.visibleRegion = _visibleRegion
             }
         }
         else if segue.identifier == "GMapsSegue" {

@@ -44,7 +44,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
 
 
     // TODO: START - Test Stuff !!!
-    /*
+
     private var _visibleRegion: GMSVisibleRegion!
 
     var visibleRegion: GMSVisibleRegion {
@@ -54,7 +54,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             _visibleRegion = newValue
         }
     }
-    */
+
     // TODO: END - Test Stuff !!!
     
     var project: Project {
@@ -202,10 +202,10 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
 
 
         // TODO: TEST STUFF
-        /*
+
         print("\(xPos), \(yPos)")
         print(getGPSCoordinates(screenBounds: _visibleRegion, point: CGPoint(x: xPos, y: yPos)))
-        */
+
     }
     
     

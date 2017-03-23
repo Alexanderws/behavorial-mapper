@@ -193,11 +193,24 @@ func createProjectDirectories() {
 
 // Doesn't work
 func getGPSCoordinates(screenBounds: GMSVisibleRegion, point: CGPoint) -> CLLocationCoordinate2D {
+    /*
     let yStd = Double(point.y) / 768.0
     let xStd = Double(point.x) / 824.0
 
     let latitude = yStd * (screenBounds.farLeft.latitude - screenBounds.nearLeft.latitude) + screenBounds.nearLeft.latitude
     let longitude = xStd * (screenBounds.nearRight.longitude - screenBounds.nearLeft.longitude) + screenBounds.nearLeft.longitude
+    */
+
+    let leftLong = screenBounds.farLeft.longitude
+    let eastLong = screenBounds.nearRight.longitude
+    let deltaLong = eastLong - leftLong
+
+    let northLat = screenBounds.farLeft.latitude
+    let southLat = screenBounds.nearLeft.latitude
+    let deltaLat = northLat - southLat
+
+    let longitude = eastLong - ((Double(point.x) * deltaLong) / 824)
+    let latitude = northLat - ((Double(point.y) * deltaLat) / 768)
 
     return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 }

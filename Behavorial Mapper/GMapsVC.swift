@@ -113,9 +113,14 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
             vc.backgroundImage = image!
             vc.updateImageButtons()
-            // vc.visibleRegion = _mapView.projection.visibleRegion()
+            vc.visibleRegion = _mapView.projection.visibleRegion()
         }
-        
+
+        print(_mapView.projection.visibleRegion())
+        let visibleRegion = _mapView.projection.visibleRegion()
+
+
+
         dismiss(animated: true, completion: nil)
     }
     
