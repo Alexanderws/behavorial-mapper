@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import GoogleMaps
 
 class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate, MappingMenuDelegate {
     
@@ -40,7 +41,21 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     private var _angleInDegrees: CGFloat = 999
     private var _arrowIcon: UIImageView!
     private var _viewMode: Int = VIEW_ALL
-    
+
+
+    // TODO: START - Test Stuff !!!
+    /*
+    private var _visibleRegion: GMSVisibleRegion!
+
+    var visibleRegion: GMSVisibleRegion {
+        get {
+            return _visibleRegion
+        } set {
+            _visibleRegion = newValue
+        }
+    }
+    */
+    // TODO: END - Test Stuff !!!
     
     var project: Project {
         get {
@@ -184,6 +199,13 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         
         targetView.addSubview(_arrowIcon)
         mappingView.addSubview(_centerIcon)
+
+
+        // TODO: TEST STUFF
+        /*
+        print("\(xPos), \(yPos)")
+        print(getGPSCoordinates(screenBounds: _visibleRegion, point: CGPoint(x: xPos, y: yPos)))
+        */
     }
     
     

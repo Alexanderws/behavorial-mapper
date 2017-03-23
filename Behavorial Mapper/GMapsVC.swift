@@ -20,22 +20,58 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     private var _mapView = GMSMapView()
     
     private let _toolBarHeight: CGFloat = 50.0
+
+    private var _typeButtons = [UIBarButtonItem]()
     
     var delegate: GMapsVCDelegate?
     
     @IBOutlet weak var _toolBar: UIToolbar!
     @IBOutlet weak var _screenshotButton: UIBarButtonItem!
     @IBOutlet weak var _cancelButton: UIBarButtonItem!
+    @IBOutlet weak var _typeNormalButton: UIBarButtonItem!
+    @IBOutlet weak var _typeSatelliteButton: UIBarButtonItem!
+    @IBOutlet weak var _typeHybridButton: UIBarButtonItem!
+    @IBOutlet weak var _typeTerrainButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         _mapView = GMSMapView.map(withFrame: self.view.bounds, camera: _camera)
         self.view.insertSubview(_mapView, at: 0)
         
         _screenshotButton.style = .done
         _screenshotButton.title = "Take Screenshot"
         _screenshotButton.action = #selector(GMapsVC.takeScreenshot)
+
+        _typeNormalButton.style = .done
+        _typeNormalButton.tintColor = UIColor.blue
+        _typeNormalButton.title = "Normal"
+        _typeNormalButton.tag = Int(kGMSTypeNormal.rawValue)
+        _typeNormalButton.target = self
+        _typeNormalButton.action = #selector(setMapType(withSender:))
+
+        _typeSatelliteButton.style = .plain
+        _typeSatelliteButton.title = "Satellite"
+        _typeSatelliteButton.tag = Int(kGMSTypeSatellite.rawValue)
+        _typeSatelliteButton.target = self
+        _typeSatelliteButton.action = #selector(setMapType(withSender:))
+
+        _typeHybridButton.style = .plain
+        _typeHybridButton.title = "Hybrid"
+        _typeHybridButton.tag = Int(kGMSTypeHybrid.rawValue)
+        _typeHybridButton.target = self
+        _typeHybridButton.action = #selector(setMapType(withSender:))
+
+        _typeTerrainButton.style = .plain
+        _typeTerrainButton.title = "Terrain"
+        _typeTerrainButton.tag = Int(kGMSTypeTerrain.rawValue)
+        _typeTerrainButton.target = self
+        _typeTerrainButton.action = #selector(setMapType(withSender:))
+
+        _typeButtons.append(_typeNormalButton)
+        _typeButtons.append(_typeSatelliteButton)
+        _typeButtons.append(_typeHybridButton)
+        _typeButtons.append(_typeTerrainButton)
         
         _cancelButton.style = .done
         _cancelButton.title = "Cancel"
@@ -49,7 +85,20 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
+    func setMapType(withSender sender: UIBarButtonItem) {
+        _mapView.mapType = GMSMapViewType(UInt32(sender.tag))
+        for button in _typeButtons {
+            if sender.isEqual(button) {
+                button.style = .done
+                button.tintColor = UIColor.blue
+            } else {
+                button.style = .plain
+                button.tintColor = self.view.tintColor
+            }
+        }
+    }
+
     // This function dismissed the GMapsVC
     func takeScreenshot() {
         _toolBar.isHidden = true
@@ -64,6 +113,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
             vc.backgroundImage = image!
             vc.updateImageButtons()
+            // vc.visibleRegion = _mapView.projection.visibleRegion()
         }
         
         dismiss(animated: true, completion: nil)

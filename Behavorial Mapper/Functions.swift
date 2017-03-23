@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+import GoogleMaps
 
 var docController: UIDocumentInteractionController!
 
@@ -187,6 +189,17 @@ func createProjectDirectories() {
         print("Error: \(error.localizedDescription)")
     }
 
+}
+
+// Doesn't work
+func getGPSCoordinates(screenBounds: GMSVisibleRegion, point: CGPoint) -> CLLocationCoordinate2D {
+    let yStd = Double(point.y) / 768.0
+    let xStd = Double(point.x) / 824.0
+
+    let latitude = yStd * (screenBounds.farLeft.latitude - screenBounds.nearLeft.latitude) + screenBounds.nearLeft.latitude
+    let longitude = xStd * (screenBounds.nearRight.longitude - screenBounds.nearLeft.longitude) + screenBounds.nearLeft.longitude
+
+    return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 }
 
 extension Project {
