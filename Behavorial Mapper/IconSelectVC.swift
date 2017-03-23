@@ -13,7 +13,7 @@ class IconSelectVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     
     @IBOutlet weak var iconCollection: UICollectionView!
 
-    var iconArray = [Int]()
+    var iconArray = [String]()
     
     
     override func viewDidLoad() {

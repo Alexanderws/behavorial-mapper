@@ -64,7 +64,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     // This function dismissed the GMapsVC
     func takeScreenshot() {
         _toolBar.isHidden = true
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 0)
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 3.0)
         self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
  

@@ -16,9 +16,9 @@ class FramedButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
       
-        //layer.borderWidth = 1
-        //layer.borderColor = Style.textPrimary.cgColor
-        self.backgroundColor = Style.clickablePrimary
+        layer.borderWidth = 1
+        layer.borderColor = Style.textPrimary.cgColor
+        // self.backgroundColor = Style.clickablePrimary
         
     }
 

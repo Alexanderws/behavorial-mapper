@@ -12,8 +12,17 @@ class LegendCell: UITableViewCell {
     
     @IBOutlet weak var iconImg: UIImageView!
     @IBOutlet weak var legendNameLbl: UILabel!
+    @IBOutlet weak var bkgView: UIView!
+    @IBOutlet weak var spacerView: UIView!
+    
+    
     
     private var legend: Legend!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +36,12 @@ class LegendCell: UITableViewCell {
     }
 
     func configureCell (legend: Legend) {
+        
+        bkgView.backgroundColor = Style.backgroundPrimary
+        spacerView.backgroundColor = Style.backgroundSecondary
+        
         self.legend = legend
-        self.iconImg.image = UIImage(named: "\(legend.icon)")
+        self.iconImg.image = UIImage(named: "entryIcon\(legend.icon)")
         self.legendNameLbl.text = legend.name
     }
     

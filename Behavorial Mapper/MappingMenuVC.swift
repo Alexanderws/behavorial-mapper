@@ -17,6 +17,10 @@ protocol MappingMenuDelegate {
     
     func exportImage()
     
+    // func exportEntries()
+    
+    func exportBackground()
+    
     func exitProject()
     
 }
@@ -27,7 +31,10 @@ class MappingMenuVC: UIViewController {
     @IBOutlet weak var projectNotesBtn: UIButton!
     @IBOutlet weak var exportDataBtn: UIButton!
     @IBOutlet weak var exportImageBtn: UIButton!
+    @IBOutlet weak var exportBackgroundBtn: UIButton!
     @IBOutlet weak var exitBtn: UIButton!
+    
+    
     
     var delegate: MappingMenuDelegate?
     
@@ -40,6 +47,7 @@ class MappingMenuVC: UIViewController {
         projectNotesBtn.setTitleColor(Style.textSecondary, for: .normal)
         exportDataBtn.setTitleColor(Style.textSecondary, for: .normal)
         exportImageBtn.setTitleColor(Style.textSecondary, for: .normal)
+        exportBackgroundBtn.setTitleColor(Style.textSecondary, for: .normal)
         exitBtn.setTitleColor(Style.textSecondary, for: .normal)
     }
     
@@ -61,6 +69,15 @@ class MappingMenuVC: UIViewController {
         }
     }
         
+
+
+    @IBAction func exportBackgroundPressed(_ sender: Any) {
+        dismiss(animated: true) {
+            self.delegate?.exportBackground()
+        }
+    }
+    
+    
     @IBAction func exitPressed(_ sender: Any) {
         delegate?.exitProject()
     }
