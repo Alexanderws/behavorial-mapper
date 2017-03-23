@@ -31,14 +31,13 @@ class LegendCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
 
     func configureCell (legend: Legend) {
         
         bkgView.backgroundColor = Style.backgroundPrimary
-        spacerView.backgroundColor = Style.backgroundSecondary
+        spacerView.backgroundColor = UIColor.clear
         
         self.legend = legend
         self.iconImg.image = UIImage(named: "entryIcon\(legend.icon)")

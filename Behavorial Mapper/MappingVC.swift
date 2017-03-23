@@ -118,6 +118,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         
         legendTableView.tableFooterView = UIView(frame: CGRect.zero)
         entryTableView.tableFooterView = UIView(frame: CGRect.zero)
+        legendTableView.separatorColor = UIColor.clear
+        entryTableView.separatorColor = UIColor.clear
         
         // entryTableView.reloadData()
         entryTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
