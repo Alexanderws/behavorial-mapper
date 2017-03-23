@@ -46,25 +46,25 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         _typeNormalButton.style = .done
         _typeNormalButton.tintColor = UIColor.blue
         _typeNormalButton.title = "Normal"
-        _typeNormalButton.tag = Int(kGMSTypeNormal.rawValue)
+        _typeNormalButton.tag = Int(GMSMapViewType.normal.rawValue)
         _typeNormalButton.target = self
         _typeNormalButton.action = #selector(setMapType(withSender:))
 
         _typeSatelliteButton.style = .plain
         _typeSatelliteButton.title = "Satellite"
-        _typeSatelliteButton.tag = Int(kGMSTypeSatellite.rawValue)
+        _typeSatelliteButton.tag = Int(GMSMapViewType.satellite.rawValue)
         _typeSatelliteButton.target = self
         _typeSatelliteButton.action = #selector(setMapType(withSender:))
 
         _typeHybridButton.style = .plain
         _typeHybridButton.title = "Hybrid"
-        _typeHybridButton.tag = Int(kGMSTypeHybrid.rawValue)
+        _typeHybridButton.tag = Int(GMSMapViewType.hybrid.rawValue)
         _typeHybridButton.target = self
         _typeHybridButton.action = #selector(setMapType(withSender:))
 
         _typeTerrainButton.style = .plain
         _typeTerrainButton.title = "Terrain"
-        _typeTerrainButton.tag = Int(kGMSTypeTerrain.rawValue)
+        _typeTerrainButton.tag = Int(GMSMapViewType.terrain.rawValue)
         _typeTerrainButton.target = self
         _typeTerrainButton.action = #selector(setMapType(withSender:))
 
@@ -87,7 +87,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     }
 
     func setMapType(withSender sender: UIBarButtonItem) {
-        _mapView.mapType = GMSMapViewType(UInt32(sender.tag))
+        _mapView.mapType = GMSMapViewType(rawValue: UInt(sender.tag)) ?? GMSMapViewType.normal
         for button in _typeButtons {
             if sender.isEqual(button) {
                 button.style = .done
@@ -143,9 +143,9 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     
     
     @IBAction func searchLocation(_ sender: Any) {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
         
-        self.present(autocompleteController, animated: true, completion: nil)
+        self.present(autoCompleteController, animated: true, completion: nil)
     }
 }
