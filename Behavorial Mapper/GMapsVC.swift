@@ -20,12 +20,18 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     private var _mapView = GMSMapView()
     
     private let _toolBarHeight: CGFloat = 50.0
+
+    private var _typeButtons = [UIBarButtonItem]()
     
     var delegate: GMapsVCDelegate?
     
     @IBOutlet weak var _toolBar: UIToolbar!
     @IBOutlet weak var _screenshotButton: UIBarButtonItem!
     @IBOutlet weak var _cancelButton: UIBarButtonItem!
+    @IBOutlet weak var _typeNormalButton: UIBarButtonItem!
+    @IBOutlet weak var _typeSatelliteButton: UIBarButtonItem!
+    @IBOutlet weak var _typeHybridButton: UIBarButtonItem!
+    @IBOutlet weak var _typeTerrainButton: UIBarButtonItem!
     
     @IBOutlet weak var _leftBorder: UIView!
     @IBOutlet weak var _rightBorder: UIView!
@@ -47,6 +53,36 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         _screenshotButton.style = .done
         _screenshotButton.title = "Take Screenshot"
         _screenshotButton.action = #selector(GMapsVC.takeScreenshot)
+
+        _typeNormalButton.style = .done
+        _typeNormalButton.tintColor = UIColor.blue
+        _typeNormalButton.title = "Normal"
+        _typeNormalButton.tag = Int(GMSMapViewType.normal.rawValue)
+        _typeNormalButton.target = self
+        _typeNormalButton.action = #selector(setMapType(withSender:))
+
+        _typeSatelliteButton.style = .plain
+        _typeSatelliteButton.title = "Satellite"
+        _typeSatelliteButton.tag = Int(GMSMapViewType.satellite.rawValue)
+        _typeSatelliteButton.target = self
+        _typeSatelliteButton.action = #selector(setMapType(withSender:))
+
+        _typeHybridButton.style = .plain
+        _typeHybridButton.title = "Hybrid"
+        _typeHybridButton.tag = Int(GMSMapViewType.hybrid.rawValue)
+        _typeHybridButton.target = self
+        _typeHybridButton.action = #selector(setMapType(withSender:))
+
+        _typeTerrainButton.style = .plain
+        _typeTerrainButton.title = "Terrain"
+        _typeTerrainButton.tag = Int(GMSMapViewType.terrain.rawValue)
+        _typeTerrainButton.target = self
+        _typeTerrainButton.action = #selector(setMapType(withSender:))
+
+        _typeButtons.append(_typeNormalButton)
+        _typeButtons.append(_typeSatelliteButton)
+        _typeButtons.append(_typeHybridButton)
+        _typeButtons.append(_typeTerrainButton)
         
         _cancelButton.style = .done
         _cancelButton.title = "Cancel"
@@ -60,7 +96,20 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
+    func setMapType(withSender sender: UIBarButtonItem) {
+        _mapView.mapType = GMSMapViewType(rawValue: UInt(sender.tag)) ?? GMSMapViewType.normal
+        for button in _typeButtons {
+            if sender.isEqual(button) {
+                button.style = .done
+                button.tintColor = UIColor.blue
+            } else {
+                button.style = .plain
+                button.tintColor = self.view.tintColor
+            }
+        }
+    }
+
     // This function dismissed the GMapsVC
     func takeScreenshot() {
         _toolBar.isHidden = true
@@ -75,8 +124,11 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
             vc.backgroundImage = image!
             vc.updateImageButtons()
+            // vc.visibleRegion = _mapView.projection.visibleRegion()
         }
-        
+
+        print(_mapView.projection.visibleRegion())
+
         dismiss(animated: true, completion: nil)
     }
     
@@ -104,9 +156,9 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     
     
     @IBAction func searchLocation(_ sender: Any) {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
         
-        self.present(autocompleteController, animated: true, completion: nil)
+        self.present(autoCompleteController, animated: true, completion: nil)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GMapsVCDelegate {
 
@@ -39,6 +40,20 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var _backgroundString = BACKGROUND_BLANK_STRING
     
     private var _chosenBackground = BACKGROUND_BLANK
+
+    // TODO: START - Test Stuff !!!
+    /*
+    private var _visibleRegion: GMSVisibleRegion!
+
+    var visibleRegion: GMSVisibleRegion {
+        get {
+            return _visibleRegion
+        } set {
+            _visibleRegion = newValue
+        }
+    }
+    */
+    // TODO: END - Test Stuff !!!
     
     var chosenBackground: Int {
         get {
@@ -204,6 +219,8 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if segue.identifier == "showDetailMappingVC" {
             if let mappingVC = segue.destination as? MappingVC {
                 mappingVC.project = project
+
+                //mappingVC.visibleRegion = _visibleRegion
             }
         }
         else if segue.identifier == "GMapsSegue" {
