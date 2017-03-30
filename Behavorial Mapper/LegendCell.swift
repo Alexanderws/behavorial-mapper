@@ -14,9 +14,7 @@ class LegendCell: UITableViewCell {
     @IBOutlet weak var legendNameLbl: UILabel!
     @IBOutlet weak var bkgView: UIView!
     @IBOutlet weak var spacerView: UIView!
-    
-    
-    
+ 
     private var legend: Legend!
     
     required init?(coder aDecoder: NSCoder) {
