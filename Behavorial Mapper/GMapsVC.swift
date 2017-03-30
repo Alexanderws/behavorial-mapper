@@ -117,9 +117,6 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         }
 
         print(_mapView.projection.visibleRegion())
-        let visibleRegion = _mapView.projection.visibleRegion()
-
-
 
         dismiss(animated: true, completion: nil)
     }
