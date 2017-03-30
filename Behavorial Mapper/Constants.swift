@@ -17,11 +17,13 @@ let VIEW_ALL = 1
 let VIEW_10 = 2
 let VIEW_NONE = 3
 
+let CENTER_ICON_SIZE: CGFloat = 30
+let ARROW_ICON_SIZE: CGFloat = 30
+
 // Icons in CreateProjectVC
-let NUMBER_OF_ICONS = 10
-let ICON_CELL_SIZE = 25
-let CENTER_ICON_SIZE: CGFloat = 14
-let ARROW_ICON_SIZE: CGFloat = 38
+let NUMBER_OF_ICONS = 25
+let ICON_CELL_SIZE = 35
+
 
 // Map selection in CreateProjectVC
 let BACKGROUND_IMAGE_UPLOADED = 1
@@ -42,9 +44,9 @@ let NO_LEGEND_ENTERED_MSG = "You need at least 1 legend."
 let ALERT_CANCEL_TITLE = "Dismiss"
 
 // Sizes
-let LEGEND_TABLEVIEW_CELL_HEIGHT = 44
+let LEGEND_TABLEVIEW_CELL_HEIGHT = 47
 let ENTRY_TABLEVIEW_CELL_HEIGHT = 60
-let DEADZONE_START_VALUE = 7
+let DEADZONE_START_VALUE = 5
 
 // CSV HEADERS
 let CSV_TIME = "Tidspunkt"

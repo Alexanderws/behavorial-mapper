@@ -71,7 +71,7 @@ func displayImageShare(shareContent: UIImage, self: UIViewController, anchor: UI
 
 func getWhiteBackground(width: CGFloat, height: CGFloat) -> UIImage {
     let rect = CGRect(x: 0, y: 0, width: width, height: height)
-    UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 0)
+    UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 1)
     UIColor.white.setFill()
     UIRectFill(rect)
     let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
@@ -80,12 +80,12 @@ func getWhiteBackground(width: CGFloat, height: CGFloat) -> UIImage {
 }
 
 func getImageSnapshot(fromView: UIView) -> UIImage {
-    let snapShot:UIView = fromView.snapshotView(afterScreenUpdates: true)!
-    UIGraphicsBeginImageContextWithOptions(fromView.frame.size, false, UIScreen.main.scale)
-    snapShot.drawHierarchy(in: fromView.bounds, afterScreenUpdates: true)
+    UIGraphicsBeginImageContextWithOptions(fromView.bounds.size, false, 3.0)
+    fromView.drawHierarchy(in: fromView.bounds, afterScreenUpdates: true)
     let image:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
     return image
 }
+
 
 extension UIColor {
     /**
@@ -236,7 +236,7 @@ extension UIView {
     }
     
     func snapshotImage() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, contentScaleFactor)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 1.0)
         defer { UIGraphicsEndImageContext() }
         
         drawHierarchy(in: bounds, afterScreenUpdates: false)

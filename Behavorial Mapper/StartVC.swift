@@ -38,8 +38,12 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         proxyTextField.backgroundColor = Style.backgroundTextField
         proxyTextField.textColor = Style.textPrimary
         proxyTextField.placeHolderColor = Style.textSecondary
+        proxyTextField.font = UIFont(name: "Helvetica Neue", size: 14.0)
+        
         proxyTextView.backgroundColor = Style.backgroundTextField
         proxyTextView.textColor = Style.textPrimary
+        proxyTextView.font = UIFont(name: "Helvetica Neue", size: 14.0)
+        
         proxyButton.setTitleColor(Style.textPrimary, for: .normal)
         proxyButton.layer.borderColor = Style.textPrimary.cgColor
         proxyLabel.textColor = Style.textPrimary

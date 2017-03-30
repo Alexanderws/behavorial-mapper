@@ -33,6 +33,10 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     @IBOutlet weak var _typeHybridButton: UIBarButtonItem!
     @IBOutlet weak var _typeTerrainButton: UIBarButtonItem!
     
+    @IBOutlet weak var _leftBorder: UIView!
+    @IBOutlet weak var _rightBorder: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,7 +106,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     // This function dismissed the GMapsVC
     func takeScreenshot() {
         _toolBar.isHidden = true
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 0)
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 3.0)
         self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
  

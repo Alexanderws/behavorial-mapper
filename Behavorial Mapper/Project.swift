@@ -23,6 +23,7 @@ class Project: JSONSerializable {
     private var _legend: [Legend]!
     private var _entries: [Entry]!
     private var _background: String!
+    private var _backgroundType: Int!
     
     var projectDelegate: ProjectDelegate?
     
@@ -66,6 +67,14 @@ class Project: JSONSerializable {
         }
     }
     
+    var backgroundType: Int {
+        get {
+            return _backgroundType
+        } set {
+            _backgroundType = newValue
+        }
+    }
+    
     var legend: [Legend]! {
         get {
             return _legend
@@ -74,12 +83,13 @@ class Project: JSONSerializable {
         }
     }
 
-    init (name: String, background: String, legend: [Legend], note: String) {
+    init (name: String, background: String, legend: [Legend], note: String, backgroundType: Int) {
         self._name = name
         self._created = Date()
         self._background = background
         self._legend = legend
         self._note = note
+        self._backgroundType = backgroundType
         self._entries = [Entry]()
     }
     
@@ -102,7 +112,8 @@ class Project: JSONSerializable {
             let note = json["_note"],
             let legends = json["_legend"],
             let entries = json["_entries"],
-            let background = json["_background"]
+            let background = json["_background"],
+            let backgroundType = json["_backgroundType"]
             else {
                 return nil
         }
@@ -127,6 +138,7 @@ class Project: JSONSerializable {
         }
         
         self._background = background as! String
+        self._backgroundType = backgroundType as! Int
     }
     
     init?(projectName: String) {
@@ -142,7 +154,8 @@ class Project: JSONSerializable {
                 let note = (json as! [String: Any])["_note"],
                 let legends = (json as! [String: Any])["_legend"],
                 let entries = (json as! [String: Any])["_entries"],
-                let background = (json as! [String: Any])["_background"]
+                let background = (json as! [String: Any])["_background"],
+                let backgroundType = (json as! [String: Any])["_backgroundType"]
                 else {
                     return nil
             }
@@ -167,6 +180,7 @@ class Project: JSONSerializable {
             }
             
             self._background = background as! String
+            self._backgroundType = backgroundType as! Int
         }
     }
 }

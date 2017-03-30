@@ -19,6 +19,7 @@ class EntryNoteVC: UIViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var noteTxtView: UITextView!
     @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var bkgView: UIView!
     
     
     
@@ -52,12 +53,12 @@ class EntryNoteVC: UIViewController {
     }
 
     func initStyle() {
-        titleLbl.textColor = Style.textSecondary
-        saveBtn.setTitleColor(Style.textSecondary, for: .normal)
+        bkgView.backgroundColor = Style.backgroundPrimary
+        titleLbl.textColor = Style.textPrimary
+        saveBtn.setTitleColor(Style.textPrimary, for: .normal)
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        
         entryNoteDelegate?.noteAdded(note: noteTxtView.text)
         dismiss(animated: true, completion: nil)
     }

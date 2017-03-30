@@ -23,7 +23,7 @@ class IconCell: UICollectionViewCell {
     func configureCell(_ iconId: Int) {
         self.iconId = iconId
         
-        iconImg.image = UIImage(named: "\(iconId)")
+        iconImg.image = UIImage(named: "entryIcon\(iconId)")
     }
     
 

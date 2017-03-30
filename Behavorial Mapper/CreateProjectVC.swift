@@ -89,8 +89,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func initStyle() {
         createProjectView.backgroundColor = Style.backgroundPrimary
         bkgView.backgroundColor = Style.backgroundSecondary
-        // projectNameTxtFld.placeHolderColor = Style.textSecondary
-
+        legendIconImage.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+        legendIconImage.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
+        
         blankBackgroundButton.layer.borderWidth = 3
         blankBackgroundButton.layer.borderColor = Style.textPrimary.cgColor
         blankBackgroundButton.backgroundColor = Style.backgroundTextField
@@ -102,10 +103,10 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func enterLegendIcon(iconId: Int) {
         legendIconImage.setTitle("", for: .normal)
-        legendIconImage.setImage(UIImage(named: "\(iconId)"), for: .normal)
+        legendIconImage.setImage(UIImage(named: "entryIcon\(iconId)"), for: .normal)
         selectedIconId = iconId
     }
-    // okok
+
     func addLegend() {
         if legendNameTxtFld.hasText {
             if let name = legendNameTxtFld.text {
@@ -147,7 +148,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             _backgroundString = imagePath.absoluteString
             try? data?.write(to: imagePath)
         }
-        project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote)
+        project = Project(name: projectName, background: _backgroundString, legend: legendArray, note: projectNote, backgroundType: _chosenBackground)
         
         return true
     }
@@ -267,7 +268,7 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = legendTableView.dequeueReusableCell(withIdentifier: "LegendCell", for: indexPath) as! LegendCell
-        cell.configureCell(legend: legendArray[indexPath.row])
+        cell.configureCell(legend: legendArray[legendArray.count - (indexPath.row + 1)])
         return cell
     }
     

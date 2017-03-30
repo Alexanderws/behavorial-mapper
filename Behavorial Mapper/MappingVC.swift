@@ -21,6 +21,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     @IBOutlet weak var mappingLeftView: UIView!
     
     @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var viewFilterView: UIView!
     @IBOutlet weak var viewLast10Btn: UIButton!
     @IBOutlet weak var viewAllBtn: UIButton!
     @IBOutlet weak var viewNoneBtn: UIButton!
@@ -82,6 +83,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         initStyle()
         initTableViews()
         
+        if _project.backgroundType == BACKGROUND_IMAGE_UPLOADED {
+            mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFit
+        } else {
+            mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFill
+        }
+        
         if _project.entries.count > 0 {
             _tagNumber = _project.entries[_project.entries.count - 1].tagId
             for entry in _project.entries {
@@ -97,6 +104,11 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             let data = try? Data.init(contentsOf: mapFile)
             mappingBgImageView.image = UIImage.init(data: data!)
         }
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        legendTableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+        legendTableView.delegate?.tableView!(legendTableView, didSelectRowAt: indexPath)
+    
     }
     
     func initStyle() {
@@ -120,6 +132,11 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         project.projectDelegate = self
         mappingView.mappingViewDelegate = self
         
+        legendTableView.tableFooterView = UIView(frame: CGRect.zero)
+        entryTableView.tableFooterView = UIView(frame: CGRect.zero)
+        legendTableView.separatorColor = UIColor.clear
+        entryTableView.separatorColor = UIColor.clear
+        
         // entryTableView.reloadData()
         entryTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
     }
@@ -128,6 +145,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         if segue.identifier == "popoverMappingMenuVC" {
             if let mappingMenu = segue.destination as? MappingMenuVC {
                 mappingMenu.delegate = self
+                mappingMenu.preferredContentSize = CGSize(width: 200, height: 220)
             }
         }
     }
@@ -145,6 +163,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     // ENTRYNOTE FUNCTIONS
     func noteAdded(note: String) {
         project.entries[_selectedIndex].note = note
+        entryTableView.reloadData()
     }
     
     // MAPPING MENU FUNCTIONS
@@ -159,8 +178,26 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func exportImage() {
-        let image = mappingTopView.snapshotImage()!
+        viewFilterView.isHidden = true
+        //let image = mappingTopView.snapshotImage()!
+        let image = getImageSnapshot(fromView: mappingTopView)
         displayImageShare(shareContent: image, self: self, anchor: menuButton)
+        viewFilterView.isHidden = false
+    }
+    
+//    func exportEntries() {
+//        mappingBgImageView.isHidden = true
+//        let image = mappingView.snapshotImage()!
+//        displayImageShare(shareContent: image, self: self, anchor: menuButton)
+//        mappingBgImageView.isHidden = false
+//    }
+    
+    func exportBackground() {
+        viewFilterView.isHidden = true
+        let image = mappingBgImageView.snapshotImage()!
+        //let image = getImageSnapshot(fromView: mappingBgImageView)
+        displayImageShare(shareContent: image, self: self, anchor: menuButton)
+        viewFilterView.isHidden = false
     }
     
     func exitProject() {
@@ -182,19 +219,21 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     func createEntryIcon(xPos: CGFloat, yPos: CGFloat, targetView: UIView, angleInDegrees: CGFloat, tagId: Int, icon: Int) {
         let _centerIcon = UIImageView(frame: CGRect(x: xPos - (CENTER_ICON_SIZE/2), y: yPos - (CENTER_ICON_SIZE/2), width: (CENTER_ICON_SIZE), height: CGFloat(CENTER_ICON_SIZE)))
-        _centerIcon.image = UIImage(named: "\(icon)")
+        _centerIcon.image = UIImage(named: "entryIcon\(icon)")
         _arrowIcon = UIImageView(frame: CGRect(x: xPos - (ARROW_ICON_SIZE/2), y: yPos - (ARROW_ICON_SIZE/2), width: (ARROW_ICON_SIZE), height: (ARROW_ICON_SIZE)))
-        _arrowIcon.image = UIImage(named: "arrowBlk_1x")
+        _arrowIcon.image = UIImage(named: "arrow")
         
         _centerIcon.tag = tagId
         _arrowIcon.tag = tagId + 1
 
+        targetView.addSubview(_arrowIcon)
+        mappingView.addSubview(_centerIcon)
+        
         if (angleInDegrees == 999) {
             _arrowIcon.isHidden = true
         } else {
             _arrowIcon.isHidden = false
-            _arrowIcon.transform = CGAffineTransform(rotationAngle: -angleInDegrees * CGFloat(M_PI/180))
-            print("entry: \(tagId) - rotation: \(-_angleInDegrees * CGFloat(M_PI/180)) - angleInDegrees: \(angleInDegrees)")
+            rotateImage(imageId: _centerIcon.tag, angleToRotate: angleInDegrees)
         }
         
         targetView.addSubview(_arrowIcon)
@@ -208,6 +247,10 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
 
     }
     
+    func rotateImage(imageId: Int, angleToRotate: CGFloat) {
+        mappingView.viewWithTag(imageId)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(M_PI/180))
+        mappingView.viewWithTag(imageId + 1)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(M_PI/180))
+    }
     
     func mappingViewTouchMoved(sender: MappingView, touches: Set<UITouch>) {
         if(_touchesMovedDeadZone == 0) {
@@ -218,7 +261,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
                 let newPos = touch.location(in: mappingView)
                 let mPoint = bearingPoint(point0: _centerPos, point1: newPos)
                 _angleInDegrees = pointToDegrees(x: mPoint.x, y: mPoint.y)
-                _arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
+                rotateImage(imageId: tagNumber, angleToRotate: _angleInDegrees)
+                //_arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
             }
         } else {
             _touchesMovedDeadZone -= 1
