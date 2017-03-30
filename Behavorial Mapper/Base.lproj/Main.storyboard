@@ -444,12 +444,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-jI-vEM">
                                         <rect key="frame" x="0.0" y="0.0" width="503" height="768"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vb-fr-DVe" customClass="MappingView" customModule="Behavorial_Mapper" customModuleProvider="target">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vb-fr-DVe" customClass="MappingView" customModule="Behavorial_Mapper" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="503" height="768"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fH9-VP-Dnd">
-                                        <rect key="frame" x="351" y="743" width="152" height="25"/>
+                                        <rect key="frame" x="339" y="736" width="164" height="32"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSw-Ci-PR1">
                                                 <rect key="frame" x="14" y="0.0" width="50" height="32"/>
@@ -575,7 +575,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="200" height="61"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dyh-M0-guC" id="tXc-wh-1fe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="86.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gy3-cG-taD">
@@ -699,7 +699,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="200" height="47"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MdC-uV-FsA" id="KyP-0u-dCP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="46"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pvo-gU-rH6" userLabel="Spacer View">
@@ -1101,8 +1101,8 @@
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LegendCell" rowHeight="47" id="3xj-ak-TdF" customClass="LegendCell" customModule="Behavorial_Mapper" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="276" height="47"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VV2-ji-3LC" id="5ba-Qw-Whj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="276" height="43.5"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3xj-ak-TdF" id="aGf-BQ-kim">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="276" height="46"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWC-df-Dsz" userLabel="Spacer View">
@@ -1319,7 +1319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1j-6Y-zfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386" y="514"/>
+            <point key="canvasLocation" x="385.546875" y="513.28125"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="n2I-EF-ySZ">

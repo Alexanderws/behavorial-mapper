@@ -39,7 +39,14 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        _leftBorder.layer.borderWidth = 1
+        _leftBorder.layer.borderColor = Style.textPrimary.cgColor
+        _leftBorder.alpha = 0.5
+        _rightBorder.layer.borderWidth = 1
+        _rightBorder.layer.borderColor = Style.textPrimary.cgColor
+        _rightBorder.alpha = 0.5
+        
         _mapView = GMSMapView.map(withFrame: self.view.bounds, camera: _camera)
         self.view.insertSubview(_mapView, at: 0)
         
@@ -117,7 +124,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
             vc.backgroundImage = image!
             vc.updateImageButtons()
-            vc.visibleRegion = _mapView.projection.visibleRegion()
+            // vc.visibleRegion = _mapView.projection.visibleRegion()
         }
 
         print(_mapView.projection.visibleRegion())
