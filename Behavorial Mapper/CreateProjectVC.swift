@@ -14,23 +14,18 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet weak var bkgView: UIView!
     @IBOutlet weak var createProjectView: CreateProjectView!
-    
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
-    
     @IBOutlet weak var loadPictureButton: UIButton!
     @IBOutlet weak var createMapButton: UIButton!
     @IBOutlet weak var blankBackgroundButton: UIButton!
-    
     @IBOutlet weak var legendNameTxtFld: UITextField!
     @IBOutlet weak var legendIconImage: UIButton!
-    
     @IBOutlet weak var legendTableView: UITableView!
 
-    
     var legendArray = [Legend]()
     var selectedIconId = 0
-    
+
     private var project: Project!
     private var projectName: String!
     private var projectNote: String!
@@ -38,7 +33,6 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     private var _backgroundImage = UIImage()
     private var _backgroundString = BACKGROUND_BLANK_STRING
-    
     private var _chosenBackground = BACKGROUND_BLANK
 
     // TODO: START - Test Stuff !!!
@@ -269,11 +263,16 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = legendTableView.dequeueReusableCell(withIdentifier: "LegendCell", for: indexPath) as! LegendCell
         cell.configureCell(legend: legendArray[legendArray.count - (indexPath.row + 1)])
+        cell.selectionStyle = UITableViewCellSelectionStyle.none;
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return legendArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

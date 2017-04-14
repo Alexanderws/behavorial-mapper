@@ -30,6 +30,7 @@ struct Style {
     static let backgroundTextField = UIColor.fromHex(hex: 0x958F90) // Medium-light grey
     static let backgroundTitleBar = UIColor.fromHex(hex: 0x31081F) // DeepWine
     static let backgroundTitleBarSecondary = UIColor.fromHex(hex: 0x564E58) // Lilac
+    static let cellHighlighted = UIColor.fromHex(hex: 0x31081F)
     static let textPrimary = UIColor.fromHex(hex: 0xD0D0D0) // Semi-White
     static let textSecondary = UIColor.fromHex(hex: 0x000000) // Black
 }

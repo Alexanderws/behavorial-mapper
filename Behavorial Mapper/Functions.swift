@@ -128,7 +128,7 @@ func bearingPoint(point0: CGPoint, point1: CGPoint) -> CGPoint {
 
 func pointToDegrees(x: CGFloat, y: CGFloat) -> CGFloat {
     let bearingRadian = atan2f(Float(y), Float(x))
-    return CGFloat(bearingRadian) * (180 / CGFloat(M_PI))
+    return CGFloat(bearingRadian) * (180 / CGFloat(Double.pi))
 }
 
 func generateCsvString(project: Project) -> String {

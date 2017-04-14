@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import GoogleMaps
 
-class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate, MappingMenuDelegate {
+class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate, MappingMenuDelegate, AddLegendDelegate {
     
     
     @IBOutlet weak var legendTableView: UITableView!
@@ -35,6 +35,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     private var _selectedLegend: Legend!
     private var _selectedEntry: Entry!
     private var _selectedIndex: Int!
+    private var _firstCell = true
     
     private var _tagNumber = 0
     private var _touchesMovedDeadZone = DEADZONE_START_VALUE
@@ -82,20 +83,29 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         super.viewDidLoad()
         initStyle()
         initTableViews()
-        
+        initBackgroundScale()
+        initEntries()
+        initBackground()
+    }
+    
+    func initBackgroundScale() {
         if _project.backgroundType == BACKGROUND_IMAGE_UPLOADED {
             mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFit
         } else {
             mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFill
         }
-        
+    }
+    
+    func initEntries() {
         if _project.entries.count > 0 {
             _tagNumber = _project.entries[_project.entries.count - 1].tagId
             for entry in _project.entries {
                 createEntryIcon(xPos: entry.position.x, yPos: entry.position.y, targetView: mappingView, angleInDegrees: entry.angleInDegrees, tagId: entry.tagId, icon: entry.legend.icon)
             }
         }
-        
+    }
+    
+    func initBackground() {
         if project.background == BACKGROUND_BLANK_STRING {
             mappingBgImageView.image = getWhiteBackground(width: 2000, height: 2000)
         } else {
@@ -104,11 +114,6 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             let data = try? Data.init(contentsOf: mapFile)
             mappingBgImageView.image = UIImage.init(data: data!)
         }
-        
-        let indexPath = IndexPath(row: 0, section: 0)
-        legendTableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
-        legendTableView.delegate?.tableView!(legendTableView, didSelectRowAt: indexPath)
-    
     }
     
     func initStyle() {
@@ -131,14 +136,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         
         project.projectDelegate = self
         mappingView.mappingViewDelegate = self
-        
-        //legendTableView.tableFooterView = UIView(frame: CGRect.zero)
-        //entryTableView.tableFooterView = UIView(frame: CGRect.zero)
-        //legendTableView.separatorColor = UIColor.clear
-        //entryTableView.separatorColor = UIColor.clear
-        
-        // entryTableView.reloadData()
-        entryTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+    }
+    
+    func resetLegendTableView() {
+        _firstCell = true
+        selectedLegend = project.legend[0]
+        legendTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -148,10 +151,15 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
                 mappingMenu.preferredContentSize = CGSize(width: 200, height: 220)
             }
         }
+        if segue.identifier == "popoverAddLegendVC" {
+            if let addLegendVC = segue.destination as? AddLegendVC {
+                addLegendVC.delegate = self
+            }
+        }
     }
     
     func madeChange() {
-        
+        project.saveProject()
     }
     
     // PROJECT FUNCTIONS
@@ -164,6 +172,14 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     func noteAdded(note: String) {
         project.entries[_selectedIndex].note = note
         entryTableView.reloadData()
+        madeChange()
+    }
+    
+    // ADD LEGEND FUNCTIONS
+    func addLegend(legend: Legend) {
+        project.legend.append(legend)
+        resetLegendTableView()
+        madeChange()
     }
     
     // MAPPING MENU FUNCTIONS
@@ -201,7 +217,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func exitProject() {
-        project.saveProject()
+        madeChange()
         performSegue(withIdentifier: "showStartVC", sender: nil)
     }
     
@@ -248,8 +264,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func rotateImage(imageId: Int, angleToRotate: CGFloat) {
-        mappingView.viewWithTag(imageId)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(M_PI/180))
-        mappingView.viewWithTag(imageId + 1)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(M_PI/180))
+        mappingView.viewWithTag(imageId)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(Double.pi/180))
+        mappingView.viewWithTag(imageId + 1)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(Double.pi/180))
     }
     
     func mappingViewTouchMoved(sender: MappingView, touches: Set<UITouch>) {
@@ -280,6 +296,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         if tableView == legendTableView {
             let cell = legendTableView.dequeueReusableCell(withIdentifier: "LegendCell", for: indexPath) as! LegendCell
             cell.configureCell(legend: project.legend[indexPath.row])
+            if (_firstCell == true) {
+                legendTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                cell.contentView.backgroundColor = Style.cellHighlighted
+                _firstCell = false
+            }
+
             return cell
         } else if tableView == entryTableView {
             let cell = entryTableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
@@ -314,7 +336,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         if tableView == legendTableView {
             selectedLegend = project.legend[indexPath.row]
             let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
-            selectedCell.contentView.backgroundColor = UIColor.red
+            selectedCell.contentView.backgroundColor = Style.cellHighlighted
         }
         if tableView == entryTableView {
             _selectedEntry = project.entries[self.project.entries.count - (indexPath.row + 1)]
@@ -353,11 +375,24 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             }
             return [delete]
         }
+        if tableView == legendTableView {
+            let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
+                if self.project.legend.count > 1 {
+                    self.project.legend.remove(at: indexPath.row)
+                    // self.entryTableView.reloadData()
+                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    self.resetLegendTableView()
+                } else {
+                    displayMessage(title: DELETE_LAST_LEGEND_TITLE, message: DELETE_LAST_LEGEND_MSG, self: self)
+                }
+            }
+            return [delete]
+        }
         return [UITableViewRowAction()]
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if tableView == entryTableView {
+        if tableView == entryTableView || tableView == legendTableView {
             return true
         }
         return false
@@ -391,6 +426,11 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         mappingView.viewWithTag(project.entries[index].tagId + 1)?.isHidden = true
     }
     
+    
+    @IBAction func addLegendPressed(_ sender: Any) {
+        // Segue: AddLegendVC as Popover
+    }
+    
     @IBAction func viewAllPressed(_ sender: Any) {
         _viewMode = VIEW_ALL
         showAllEntries()
@@ -419,6 +459,4 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         _viewMode = VIEW_NONE
         hideAllEntries()
     }
-    
-    
 }

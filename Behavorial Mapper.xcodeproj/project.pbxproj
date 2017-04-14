@@ -16,6 +16,7 @@
 		114122CB1E4320B100F664E8 /* MappingMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114122CA1E4320B100F664E8 /* MappingMenuVC.swift */; };
 		1158F1CA1E2E2032002B3FEB /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1C91E2E2032002B3FEB /* EntryCell.swift */; };
 		1158F1CC1E2E3336002B3FEB /* MappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1158F1CB1E2E3336002B3FEB /* MappingView.swift */; };
+		116906B91E969645000C2D5A /* AddLegendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116906B81E969645000C2D5A /* AddLegendVC.swift */; };
 		1174CBAE1E1E364900D6E59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAD1E1E364900D6E59A /* AppDelegate.swift */; };
 		1174CBB01E1E364900D6E59A /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1174CBAF1E1E364900D6E59A /* StartVC.swift */; };
 		1174CBB31E1E364900D6E59A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1174CBB11E1E364900D6E59A /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		114122CA1E4320B100F664E8 /* MappingMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingMenuVC.swift; sourceTree = "<group>"; };
 		1158F1C91E2E2032002B3FEB /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		1158F1CB1E2E3336002B3FEB /* MappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingView.swift; sourceTree = "<group>"; };
+		116906B81E969645000C2D5A /* AddLegendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLegendVC.swift; sourceTree = "<group>"; };
 		1174CBAA1E1E364900D6E59A /* Behavorial Mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behavorial Mapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1174CBAD1E1E364900D6E59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1174CBAF1E1E364900D6E59A /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				1126051B1E27769400DC3381 /* MappingVC.swift */,
 				112674801E3896D5001ED42F /* EntryNoteVC.swift */,
 				114122CA1E4320B100F664E8 /* MappingMenuVC.swift */,
+				116906B81E969645000C2D5A /* AddLegendVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				A882FC341E26178C00C7C1E0 /* GMapsVC.swift in Sources */,
 				A841F3121E3609C300FD0120 /* JSONSerializable.swift in Sources */,
 				1126051C1E27769400DC3381 /* MappingVC.swift in Sources */,
+				116906B91E969645000C2D5A /* AddLegendVC.swift in Sources */,
 				1174CBE81E1E435100D6E59A /* Legend.swift in Sources */,
 				11E06EF81E26294100B43047 /* IconCell.swift in Sources */,
 				1126051E1E278A7300DC3381 /* Functions.swift in Sources */,

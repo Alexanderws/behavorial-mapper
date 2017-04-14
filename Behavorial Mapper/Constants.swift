@@ -17,8 +17,8 @@ let VIEW_ALL = 1
 let VIEW_10 = 2
 let VIEW_NONE = 3
 
-let CENTER_ICON_SIZE: CGFloat = 30
-let ARROW_ICON_SIZE: CGFloat = 30
+let CENTER_ICON_SIZE: CGFloat = 35
+let ARROW_ICON_SIZE: CGFloat = 35
 
 // Icons in CreateProjectVC
 let NUMBER_OF_ICONS = 25
@@ -41,6 +41,8 @@ let NO_LEGEND_NAME_TITLE = "No legend name"
 let NO_LEGEND_NAME_MSG = "Enter a name for the legend entry."
 let NO_LEGEND_ENTERED_TITLE = "No legends entered"
 let NO_LEGEND_ENTERED_MSG = "You need at least 1 legend."
+let DELETE_LAST_LEGEND_TITLE = "Can't delete legend"
+let DELETE_LAST_LEGEND_MSG = "You need at least 1 legend."
 let ALERT_CANCEL_TITLE = "Dismiss"
 
 // Sizes

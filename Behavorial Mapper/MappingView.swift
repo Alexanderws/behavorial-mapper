@@ -38,15 +38,7 @@ class MappingView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         mappingViewDelegate?.mappingViewTouchBegan(sender: self, touches: touches)
-        
-        
-     /*   if let touch = touches.first {
-            centerPos = touch.location(in: self)
-        }
-        centerIcon = UIImageView(frame: CGRect(x: centerPos.x - CGFloat(ICON_SIZE/2), y: centerPos.y - CGFloat(ICON_SIZE/2), width: CGFloat(ICON_SIZE), height: CGFloat(ICON_SIZE)))
-        centerIcon.image = UIImage(named: "\(legend.icon)")
-        centerIcon.tag = entries.count
-        self.addSubview(centerIcon) */
+   
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -55,7 +47,7 @@ class MappingView: UIView {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         mappingViewDelegate?.mappingViewTouchEnded(sender: self, touches: touches)
-      //  entries.append(Entry(start: centerPos, legend: legend, idTag: id))
+        //  entries.append(Entry(start: centerPos, legend: legend, idTag: id))
     }
     
     

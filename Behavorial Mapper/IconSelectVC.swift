@@ -15,12 +15,8 @@ class IconSelectVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
 
     var iconArray = [String]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       // iconCollection.dataSource = self
-       // iconCollection.delegate = self
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -36,6 +32,8 @@ class IconSelectVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = self.presentingViewController as? CreateProjectVC {
             vc.enterLegendIcon(iconId: indexPath.row)
+        } else if let vc = self.presentingViewController as? AddLegendVC {
+            vc.enterLegendIcon(iconId: indexPath.row)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -43,8 +41,5 @@ class IconSelectVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: ICON_CELL_SIZE, height: ICON_CELL_SIZE)
     }
-    
-  
-    
-    
+   
 }
