@@ -17,8 +17,6 @@ protocol MappingViewDelegate {
 
 class MappingView: UIView {
     
-    
-
     var mappingViewDelegate: MappingViewDelegate?
     
     var centerPos: CGPoint!
@@ -38,7 +36,6 @@ class MappingView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         mappingViewDelegate?.mappingViewTouchBegan(sender: self, touches: touches)
-   
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

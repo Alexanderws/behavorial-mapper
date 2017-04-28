@@ -12,6 +12,9 @@ import UIKit
 // GENERAL STRINGS
 let TITLE_LABEL = "Behavioral Mapping"
 
+// StartVC
+let INITIAL_NOTES_TEXT = "No project selected"
+
 // MappingVC
 let VIEW_ALL = 1
 let VIEW_10 = 2
@@ -19,6 +22,13 @@ let VIEW_NONE = 3
 
 let CENTER_ICON_SIZE: CGFloat = 35
 let ARROW_ICON_SIZE: CGFloat = 35
+
+let MENU_EXPAND_OFFSET: CGFloat = 200
+
+let HIGHLIGHT_CIRCLE_INIT_SIZE: CGFloat = 3
+
+// GoogleMapsVC
+let MAPPING_VIEW_SIZE = CGSize(width: 824, height: 768)
 
 // Icons in CreateProjectVC
 let NUMBER_OF_ICONS = 25
@@ -44,6 +54,8 @@ let NO_LEGEND_ENTERED_MSG = "You need at least 1 legend."
 let DELETE_LAST_LEGEND_TITLE = "Can't delete legend"
 let DELETE_LAST_LEGEND_MSG = "You need at least 1 legend."
 let ALERT_CANCEL_TITLE = "Dismiss"
+let DELETE_ALL_ENTRIES_TITLE = "Delete entries"
+let DELETE_ALL_ENTRIES_MSG = "Delete all recorded entries?"
 
 // Sizes
 let LEGEND_TABLEVIEW_CELL_HEIGHT = 47

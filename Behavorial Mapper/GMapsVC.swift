@@ -10,8 +10,11 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
+
 protocol GMapsVCDelegate {
     func getProjectName() -> String
+
+    func getScreenShot(image: UIImage)
 }
 
 class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControllerDelegate {
@@ -113,11 +116,13 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     // This function dismissed the GMapsVC
     func takeScreenshot() {
         _toolBar.isHidden = true
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 3.0)
-        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        //UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 3.0)
+        //UIGraphicsBeginImageContextWithOptions(MAPPING_VIEW_SIZE, false, 3.0)
+        //self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+        //self.view.drawHierarchy(in: CGRect(x: 100, y: 0, width: 824, height: 768), afterScreenUpdates: true)
+        let image = self.view.snapshot(of: CGRect(x: 100, y: 0, width: 824, height: 768))
  
-        UIGraphicsEndImageContext()
+        //UIGraphicsEndImageContext()
         _toolBar.isHidden = false
         
         if let vc = self.presentingViewController as? CreateProjectVC {
@@ -126,6 +131,8 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
             vc.updateImageButtons()
             // vc.visibleRegion = _mapView.projection.visibleRegion()
         }
+        
+        delegate?.getScreenShot(image: image!)
 
         print(_mapView.projection.visibleRegion())
 

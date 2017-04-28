@@ -9,11 +9,16 @@
 import UIKit
 import GoogleMaps
 
-class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GMapsVCDelegate {
+protocol CreateProjectVCDelegate {
+    func createProject(project: Project)
+    func cancelCreateProject()
+}
+
+class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GMapsVCDelegate {
 
     
     @IBOutlet weak var bkgView: UIView!
-    @IBOutlet weak var createProjectView: CreateProjectView!
+    @IBOutlet weak var createProjectView: UIView!
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
     @IBOutlet weak var loadPictureButton: UIButton!
@@ -26,15 +31,20 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var legendArray = [Legend]()
     var selectedIconId = 0
 
+    var delegate: CreateProjectVCDelegate?
+    
     private var project: Project!
     private var projectName: String!
     private var projectNote: String!
     private var projectBackground: UIImage!
+    private var loadFromTemplate = false
     
     private var _backgroundImage = UIImage()
     private var _backgroundString = BACKGROUND_BLANK_STRING
     private var _chosenBackground = BACKGROUND_BLANK
 
+    var containerVC: ContainerVC?
+    
     // TODO: START - Test Stuff !!!
     /*
     private var _visibleRegion: GMSVisibleRegion!
@@ -78,6 +88,9 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         initStyle()
         legendTableView.delegate = self
         legendTableView.dataSource = self
+        if loadFromTemplate{
+            initProjectDetails()
+        }
     }
     
     func initStyle() {
@@ -93,6 +106,16 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         createMapButton.backgroundColor = Style.backgroundTextField
         loadPictureButton.layer.borderColor = Style.textPrimary.cgColor
         loadPictureButton.backgroundColor = Style.backgroundTextField
+    }
+    
+    func initProjectDetails() {
+        if let projectBkg = getBackgroundImg(fromProject: project) {
+            _backgroundImage = projectBkg
+            chosenBackground = BACKGROUND_IMAGE_UPLOADED
+            updateImageButtons()
+        }
+        legendArray = project.legend
+        legendTableView.reloadData()
     }
     
     func enterLegendIcon(iconId: Int) {
@@ -158,12 +181,17 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @IBAction func cancelPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        delegate?.cancelCreateProject()
+        //dismiss(animated: true, completion: nil)
     }
     
     @IBAction func createPressed(_ sender: UIButton) {
         if createProject() {
-            performSegue(withIdentifier: "showDetailMappingVC", sender: sender)
+            //performSegue(withIdentifier: "showDetailMappingVC", sender: sender)
+             /* containerVC = ContainerVC()
+            containerVC?.project = project
+            present(containerVC!, animated: true, completion: nil) */
+            delegate?.createProject(project: project)
         }
     }
     
@@ -210,14 +238,14 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailMappingVC" {
+        /* if segue.identifier == "showDetailMappingVC" {
             if let mappingVC = segue.destination as? MappingVC {
                 mappingVC.project = project
 
                 //mappingVC.visibleRegion = _visibleRegion
             }
-        }
-        else if segue.identifier == "GMapsSegue" {
+        } */
+        if segue.identifier == "GMapsSegue" {
             if let gMap = segue.destination as? GMapsVC {
                 gMap.delegate = self
             }
@@ -291,8 +319,18 @@ class CreateProjectVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     }
     
+    func getScreenShot(image: UIImage) {
+        chosenBackground = BACKGROUND_GOOGLE_MAPS
+        backgroundImage = image
+        updateImageButtons()
+    }
     
     func getProjectName() -> String {
         return self.projectNameTxtFld.text!
+    }
+
+    func projectFromTemplate(ofProject: Project) {
+        project = ofProject
+        loadFromTemplate = true
     }
 }

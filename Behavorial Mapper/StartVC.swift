@@ -9,19 +9,32 @@
 import UIKit
 import GoogleMaps
 
+
+protocol StartVCDelegate {
+    func loadProject(fromProject: Project)
+    func loadFromTemplate(fromProject: Project)
+    func createNewProject()
+}
+
 class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     
     @IBOutlet weak var bkgView: UIView!
-    @IBOutlet weak var menuView: StartScreenMenu!
+    @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var leftSideView: UIView!
     @IBOutlet weak var storedProjectsTableView: UITableView!
-    @IBOutlet weak var createProjectBtn: UIButton!
-    
+    @IBOutlet weak var newProjectBtn: LargeBtn!
+    @IBOutlet weak var loadProjectBtn: LargeBtn!
+    @IBOutlet weak var newFromTemplateBtn: LargeBtn!
+    @IBOutlet weak var deleteProjectBtn: LargeBtn!
+    @IBOutlet weak var projectNotesTxtView: UITextView!
+    @IBOutlet weak var projectBkgImageView: UIImageView!
     
     private var _storedProjects: [String]!
     private var _selectedProject: String = ""
+    
+    var delegate: StartVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,15 +48,8 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let proxyButton = UIButton.appearance()
         let proxyLabel = UILabel.appearance()
         
-        proxyTextField.backgroundColor = Style.backgroundTextField
         proxyTextField.textColor = Style.textPrimary
-        proxyTextField.placeHolderColor = Style.textSecondary
-        proxyTextField.font = UIFont(name: "Helvetica Neue", size: 14.0)
-        
-        proxyTextView.backgroundColor = Style.backgroundTextField
         proxyTextView.textColor = Style.textPrimary
-        proxyTextView.font = UIFont(name: "Helvetica Neue", size: 14.0)
-        
         proxyButton.setTitleColor(Style.textPrimary, for: .normal)
         proxyButton.layer.borderColor = Style.textPrimary.cgColor
         proxyLabel.textColor = Style.textPrimary
@@ -60,24 +66,71 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self._storedProjects = [String]()
         }
     }
-
-    @IBAction func StartNewProjectPressed(_ sender: Any) {
-        performSegue(withIdentifier: "showCreateProjectVC", sender: sender)
+    
+    func loadProjectDetails() {
+        if let loadedProject = Project(projectName: _selectedProject) {
+            projectBkgImageView.image = getBackgroundImg(fromProject: loadedProject)
+            projectNotesTxtView.text = loadedProject.note
+        }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func clearProjectDetails() {
+        projectNotesTxtView.text = INITIAL_NOTES_TEXT
+        projectBkgImageView.image = nil
+    }
+
+    @IBAction func newProjectPressed(_ sender: Any) {
+        delegate?.createNewProject()
+        //performSegue(withIdentifier: "showCreateProjectVC", sender: sender)
+    }
+    
+    @IBAction func loadProjectPressed(_ sender: Any) {
+        if let loadedProject = Project(projectName: _selectedProject) {
+            delegate?.loadProject(fromProject: loadedProject)
+        }
+    }
+    
+    @IBAction func newFromTemplatePressed(_ sender: Any) {
+        if let loadedProject = Project(projectName: _selectedProject) {
+            delegate?.loadFromTemplate(fromProject: loadedProject)
+        }
+    }
+    
+    @IBAction func deleteProjectPressed(_ sender: Any) {
+        if let _ = Project(projectName: _selectedProject) {
+            deleteProject(projectName: _selectedProject)
+            _storedProjects = getProjectFiles()
+            if _storedProjects == nil {
+                self._storedProjects = [String]()
+            }
+            clearProjectDetails()
+            storedProjectsTableView.reloadData()
+        }
+    }
+
+    /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailMappingVC" {
             if let mappingVC = segue.destination as? MappingVC {
                 mappingVC.project = Project(projectName: _selectedProject)!
             }
         }
-        
-    }
+    }*/
     
     // TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _selectedProject = _storedProjects[indexPath.row]
-        performSegue(withIdentifier: "showDetailMappingVC", sender: nil)
+        if let selectedCell = tableView.cellForRow(at: indexPath) as! ProjectCell? {
+            //selectedCell.backgroundColor = Style.cellHighlighted
+            selectedCell.styleHighlighted()
+        }
+        loadProjectDetails()
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let selectedCell = tableView.cellForRow(at: indexPath) as! ProjectCell? {
+            //selectedCell.backgroundColor = UIColor.clear
+            selectedCell.styleNormal()
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,16 +140,14 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = storedProjectsTableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
         cell.configureCell(project: Project(projectName: _storedProjects[indexPath.row])!)
+        if _selectedProject == _storedProjects[indexPath.row] {
+            //cell.backgroundColor = Style.cellHighlighted
+            cell.styleHighlighted()
+        } else {
+            //cell.backgroundColor = UIColor.clear
+            cell.styleNormal()
+        }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
-            deleteProject(projectName: self._storedProjects[indexPath.row])
-            self._storedProjects = getProjectFiles()
-            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        }
-        return [delete]
-    }
 }
-

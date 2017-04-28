@@ -79,6 +79,19 @@ func getWhiteBackground(width: CGFloat, height: CGFloat) -> UIImage {
     return image
 }
 
+func getBackgroundImg(fromProject: Project) -> UIImage? {
+    var bkgImage: UIImage?
+    if fromProject.background == BACKGROUND_BLANK_STRING {
+        bkgImage = getWhiteBackground(width: 2000, height: 2000)
+    } else {
+        let mapFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            .appendingPathComponent("/maps/\(fromProject.name)").appendingPathExtension("map.png")
+        let data = try? Data.init(contentsOf: mapFile)
+        bkgImage = UIImage.init(data: data!)
+    }
+    return bkgImage!
+}
+
 func getImageSnapshot(fromView: UIView) -> UIImage {
     UIGraphicsBeginImageContextWithOptions(fromView.bounds.size, false, 3.0)
     fromView.drawHierarchy(in: fromView.bounds, afterScreenUpdates: true)
@@ -86,27 +99,13 @@ func getImageSnapshot(fromView: UIView) -> UIImage {
     return image
 }
 
-
-extension UIColor {
-    /**
-     Creates a UIColor from a standard 0xRRGGBB color representation.
-     
-     - parameters:
-        - hex: Color in 0xRRGGBB hex representation.
-     
-     - important:
-     Does not support alpha values.
-     */
-    class func fromHex(hex: Int) -> UIColor {
-        let red: CGFloat = CGFloat((hex >> 16) & 0xFF) / 255.0
-        let green: CGFloat = CGFloat((hex >> 8) & 0xFF) / 255.0
-        let blue: CGFloat = CGFloat(hex & 0xFF) / 255.0
-        return UIColor.init(red: red, green: green, blue: blue, alpha: 1.0)
-    }
-}
-
 func containsText(object: Any) -> Bool {
     return !((object as AnyObject).text!.isEmpty)
+}
+
+func delay(_ delay:Double, closure:@escaping ()->()) {
+    DispatchQueue.main.asyncAfter(
+        deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
 }
 
 func dateFormat(date: Date)-> String {
@@ -129,6 +128,20 @@ func bearingPoint(point0: CGPoint, point1: CGPoint) -> CGPoint {
 func pointToDegrees(x: CGFloat, y: CGFloat) -> CGFloat {
     let bearingRadian = atan2f(Float(y), Float(x))
     return CGFloat(bearingRadian) * (180 / CGFloat(Double.pi))
+}
+
+func getCircle(forView: UIView, ofSize: CGFloat) -> CAShapeLayer {
+    let x = forView.frame.origin.x
+    let y = forView.frame.origin.y
+    let circlePath = UIBezierPath(roundedRect: CGRect(x: x - ofSize, y: y - ofSize, width: forView.frame.width + (2 * ofSize), height: forView.frame.width + (2 * ofSize)), cornerRadius: (forView.frame.width + (2 * ofSize)) / 2).cgPath
+    
+    let circleShape = CAShapeLayer()
+    circleShape.path = circlePath
+    circleShape.lineWidth = 2
+    circleShape.strokeColor = Style.iconPrimary.cgColor
+    circleShape.fillColor = UIColor.clear.cgColor
+    
+    return circleShape
 }
 
 func generateCsvString(project: Project) -> String {

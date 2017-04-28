@@ -20,6 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let _APIKEY = "AIzaSyB2TkVMZ-jJmLEx8973MryAxEH-5TYbDfc"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // START: Launches in ContainerVC
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let containerViewController = ContainerVC()
+        
+        window!.rootViewController = containerViewController
+        window!.makeKeyAndVisible()
+        // END: Launches in ContainerVC
+        
+        
         // Override point for customization after application launch.
         GMSServices.provideAPIKey(_APIKEY)
         GMSPlacesClient.provideAPIKey(_APIKEY)

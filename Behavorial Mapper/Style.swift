@@ -21,13 +21,15 @@ extension UITextField{
 }
 
 struct Style {
+    static let iconPrimary = UIColor.fromHex(hex: 0xEF2D56) // Pink - primary color for entry icons
+    
     static let clickablePrimary = UIColor.fromHex(hex: 0x000000) // Black
     static let clickableSecondary = UIColor()
     static let clickableDestructive = UIColor()
     static let clickableBkg = UIColor.fromHex(hex: 0x000000) // Black
-    static let backgroundPrimary = UIColor.fromHex(hex: 0x303030) // Dark grey
+    static let backgroundPrimary = UIColor.fromHex(hex: 0x121212) // Jet Black //(hex: 0x303030) // Dark grey
     static let backgroundSecondary = UIColor.fromHex(hex: 0x45474A) // Medium grey
-    static let backgroundTextField = UIColor.fromHex(hex: 0x958F90) // Medium-light grey
+    static let backgroundTextField = UIColor.fromHex(hex: 0x857F80) // Medium-light grey
     static let backgroundTitleBar = UIColor.fromHex(hex: 0x31081F) // DeepWine
     static let backgroundTitleBarSecondary = UIColor.fromHex(hex: 0x564E58) // Lilac
     static let cellHighlighted = UIColor.fromHex(hex: 0x31081F)

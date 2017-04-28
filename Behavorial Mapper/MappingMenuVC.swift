@@ -10,19 +10,16 @@ import UIKit
 
 
 protocol MappingMenuDelegate {
-    
     func editProjectNotes()
-    
     func exportData()
-    
     func exportImage()
-    
     // func exportEntries()
-    
     func exportBackground()
-    
+}
+
+protocol MenuContainerDelegate {
+    func closeMenu()
     func exitProject()
-    
 }
 
 class MappingMenuVC: UIViewController {
@@ -36,7 +33,8 @@ class MappingMenuVC: UIViewController {
     
     
     
-    var delegate: MappingMenuDelegate?
+    var mappingDelegate: MappingMenuDelegate?
+    var containerDelegate: MenuContainerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,42 +42,36 @@ class MappingMenuVC: UIViewController {
     }
 
     func initStyle() {
-        projectNotesBtn.setTitleColor(Style.textSecondary, for: .normal)
-        exportDataBtn.setTitleColor(Style.textSecondary, for: .normal)
-        exportImageBtn.setTitleColor(Style.textSecondary, for: .normal)
-        exportBackgroundBtn.setTitleColor(Style.textSecondary, for: .normal)
-        exitBtn.setTitleColor(Style.textSecondary, for: .normal)
+     
     }
     
     @IBAction func projectNotesPressed(_ sender: Any) {
-        dismiss(animated: true) {
-            self.delegate?.editProjectNotes()
-        }
+        self.containerDelegate?.closeMenu()
+        self.mappingDelegate?.editProjectNotes()
+        
     }
     
     @IBAction func exportDataPressed(_ sender: Any) {
-        dismiss(animated: true) {
-            self.delegate?.exportData()
-        }
+        self.containerDelegate?.closeMenu()
+        self.mappingDelegate?.exportData()
     }
 
     @IBAction func exportImagePressed(_ sender: Any) {
-        dismiss(animated: true) {
-            self.delegate?.exportImage()
-        }
+        self.containerDelegate?.closeMenu()
+        self.mappingDelegate?.exportImage()
     }
         
 
 
     @IBAction func exportBackgroundPressed(_ sender: Any) {
-        dismiss(animated: true) {
-            self.delegate?.exportBackground()
-        }
+        self.containerDelegate?.closeMenu()
+        self.mappingDelegate?.exportBackground()
+        
     }
     
     
     @IBAction func exitPressed(_ sender: Any) {
-        delegate?.exitProject()
+        self.containerDelegate?.exitProject()
     }
 
 }

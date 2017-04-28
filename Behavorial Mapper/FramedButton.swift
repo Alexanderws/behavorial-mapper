@@ -10,25 +10,14 @@ import UIKit
 import QuartzCore
 
 class FramedButton: UIButton {
-
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
       
         layer.borderWidth = 1
         layer.borderColor = Style.textPrimary.cgColor
-        // self.backgroundColor = Style.clickablePrimary
         
+        self.setTitleColor(Style.textPrimary, for: .normal)
+        self.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 20)
     }
-
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

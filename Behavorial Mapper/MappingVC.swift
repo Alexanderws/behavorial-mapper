@@ -10,8 +10,11 @@ import UIKit
 import Foundation
 import GoogleMaps
 
-class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, MappingViewDelegate, ProjectDelegate, EntryNoteDelegate, MappingMenuDelegate, AddLegendDelegate {
-    
+protocol MappingVCDelegate {
+    func toggleMenu()
+}
+
+class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, ProjectDelegate, MappingMenuDelegate {
     
     @IBOutlet weak var legendTableView: UITableView!
     @IBOutlet weak var entryTableView: UITableView!
@@ -31,33 +34,27 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     @IBOutlet weak var legendTitleView: UIView!
     @IBOutlet weak var historyTitleView: UIView!
     
-    private var _project: Project!
-    private var _selectedLegend: Legend!
-    private var _selectedEntry: Entry!
-    private var _selectedIndex: Int!
-    private var _firstCell = true
+    var _menuVC: MappingMenuVC?
     
-    private var _tagNumber = 0
-    private var _touchesMovedDeadZone = DEADZONE_START_VALUE
-    private var _centerPos: CGPoint!
-    private var _angleInDegrees: CGFloat = 999
-    private var _arrowIcon: UIImageView!
+    private var _project: Project!
+   
+    var _selectedLegend: Legend!
+    var _selectedEntry: Entry!
+    var _selectedIndex: Int!
+    var _firstCell = true
+    
+    // MappingViewDelegate
+    var tagNumber = 0
+    var touchesMovedDeadZone = DEADZONE_START_VALUE
+    var _centerPos: CGPoint!
+    var _angleInDegrees: CGFloat = 999
+    var _arrowIcon: UIImageView!
+    
+    
     private var _viewMode: Int = VIEW_ALL
+    private var _menuShowing = false
 
-
-    // TODO: START - Test Stuff !!!
-    /*
-    private var _visibleRegion: GMSVisibleRegion!
-
-    var visibleRegion: GMSVisibleRegion {
-        get {
-            return _visibleRegion
-        } set {
-            _visibleRegion = newValue
-        }
-    }
-    */
-    // TODO: END - Test Stuff !!!
+    var delegate: MappingVCDelegate?
     
     var project: Project {
         get {
@@ -75,30 +72,17 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         }
     }
     
-    var tagNumber: Int {
-        return _tagNumber
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initStyle()
         initTableViews()
-        initBackgroundScale()
         initEntries()
         initBackground()
     }
     
-    func initBackgroundScale() {
-        if _project.backgroundType == BACKGROUND_IMAGE_UPLOADED {
-            mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFit
-        } else {
-            mappingBgImageView.contentMode = UIViewContentMode.scaleAspectFill
-        }
-    }
-    
     func initEntries() {
         if _project.entries.count > 0 {
-            _tagNumber = _project.entries[_project.entries.count - 1].tagId
+            tagNumber = _project.entries[_project.entries.count - 1].tagId
             for entry in _project.entries {
                 createEntryIcon(xPos: entry.position.x, yPos: entry.position.y, targetView: mappingView, angleInDegrees: entry.angleInDegrees, tagId: entry.tagId, icon: entry.legend.icon)
             }
@@ -106,14 +90,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     func initBackground() {
-        if project.background == BACKGROUND_BLANK_STRING {
-            mappingBgImageView.image = getWhiteBackground(width: 2000, height: 2000)
-        } else {
-            let mapFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                .appendingPathComponent("/maps/\(project.name)").appendingPathExtension("map.png")
-            let data = try? Data.init(contentsOf: mapFile)
-            mappingBgImageView.image = UIImage.init(data: data!)
-        }
+        mappingBgImageView.image = getBackgroundImg(fromProject: _project)
     }
     
     func initStyle() {
@@ -145,12 +122,6 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "popoverMappingMenuVC" {
-            if let mappingMenu = segue.destination as? MappingMenuVC {
-                mappingMenu.delegate = self
-                mappingMenu.preferredContentSize = CGSize(width: 200, height: 220)
-            }
-        }
         if segue.identifier == "popoverAddLegendVC" {
             if let addLegendVC = segue.destination as? AddLegendVC {
                 addLegendVC.delegate = self
@@ -162,24 +133,53 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         project.saveProject()
     }
     
+    func highlightEntry(onEntry: Entry) {
+        if let entryIcon = mappingView.viewWithTag(onEntry.tagId) {
+            for i in 1...5 {
+                let delayTime = Double(i) * 0.04
+                delay(delayTime) {
+                    let circle = getCircle(forView: entryIcon, ofSize: HIGHLIGHT_CIRCLE_INIT_SIZE + CGFloat(i) * 3)
+                    circle.opacity = 1 / Float(i)
+                    self.mappingView.layer.addSublayer(circle)
+                    delay(delayTime + 0.04) {
+                        circle.removeFromSuperlayer()
+                    }
+                }
+            }
+        }
+    }
+    
+    func showEntryNote(indexPath: IndexPath, tableView: UITableView) {
+        _selectedEntry = project.entries[self.project.entries.count - (indexPath.row + 1)]
+        _selectedIndex = self.project.entries.count - (indexPath.row + 1)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let entryNoteVC = storyboard.instantiateViewController(withIdentifier: "EntryNoteVC") as! EntryNoteVC
+        entryNoteVC.entry = _selectedEntry
+        entryNoteVC.index = _selectedIndex
+        entryNoteVC.modalPresentationStyle = UIModalPresentationStyle.popover
+        entryNoteVC.entryNoteDelegate = self
+        
+        let popoverPresentationController = entryNoteVC.popoverPresentationController
+        
+        if let _popoverPresentationController = popoverPresentationController {
+            
+            let cell = entryTableView.cellForRow(at: indexPath)
+            
+            let rectOfCellInTableView = tableView.rectForRow(at: indexPath)
+            let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
+            
+            _popoverPresentationController.sourceView = cell
+            _popoverPresentationController.sourceRect = CGRect(x: rectOfCellInSuperview.origin.x, y: rectOfCellInSuperview.origin.x, width: rectOfCellInSuperview.width, height: rectOfCellInSuperview.height)
+            
+            self.present(entryNoteVC, animated: true, completion: nil)
+        }
+    }
+    
     // PROJECT FUNCTIONS
     func entryDeleted(tagId: Int) {
         mappingView.viewWithTag(tagId)?.removeFromSuperview()
         mappingView.viewWithTag(tagId + 1)?.removeFromSuperview()
-    }
-    
-    // ENTRYNOTE FUNCTIONS
-    func noteAdded(note: String) {
-        project.entries[_selectedIndex].note = note
-        entryTableView.reloadData()
-        madeChange()
-    }
-    
-    // ADD LEGEND FUNCTIONS
-    func addLegend(legend: Legend) {
-        project.legend.append(legend)
-        resetLegendTableView()
-        madeChange()
     }
     
     // MAPPING MENU FUNCTIONS
@@ -189,13 +189,11 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     
     func exportData() {
         let csvString = generateCsvString(project: project)
-        // displayTextShare(shareContent: csvString, self: self, anchor: menuButton)
         displayCSVShare(shareContent: csvString, projectName: _project.name, self: self, anchor: menuButton)
     }
     
     func exportImage() {
         viewFilterView.isHidden = true
-        //let image = mappingTopView.snapshotImage()!
         let image = getImageSnapshot(fromView: mappingTopView)
         displayImageShare(shareContent: image, self: self, anchor: menuButton)
         viewFilterView.isHidden = false
@@ -211,85 +209,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     func exportBackground() {
         viewFilterView.isHidden = true
         let image = mappingBgImageView.snapshotImage()!
-        //let image = getImageSnapshot(fromView: mappingBgImageView)
         displayImageShare(shareContent: image, self: self, anchor: menuButton)
         viewFilterView.isHidden = false
     }
-    
-    func exitProject() {
-        madeChange()
-        performSegue(withIdentifier: "showStartVC", sender: nil)
-    }
-    
-    // MAPPING VIEW FUNCTIONS
-    func mappingViewTouchBegan(sender: MappingView, touches: Set<UITouch>) {
-        if let touch = touches.first {
-            _centerPos = touch.location(in: mappingView)
-        }
-        
-        _tagNumber += 2
-        _angleInDegrees = 999
-        
-        createEntryIcon(xPos: _centerPos.x, yPos: _centerPos.y, targetView: mappingView, angleInDegrees: _angleInDegrees, tagId: _tagNumber, icon: _selectedLegend.icon)
-    }
-    
-    func createEntryIcon(xPos: CGFloat, yPos: CGFloat, targetView: UIView, angleInDegrees: CGFloat, tagId: Int, icon: Int) {
-        let _centerIcon = UIImageView(frame: CGRect(x: xPos - (CENTER_ICON_SIZE/2), y: yPos - (CENTER_ICON_SIZE/2), width: (CENTER_ICON_SIZE), height: CGFloat(CENTER_ICON_SIZE)))
-        _centerIcon.image = UIImage(named: "entryIcon\(icon)")
-        _arrowIcon = UIImageView(frame: CGRect(x: xPos - (ARROW_ICON_SIZE/2), y: yPos - (ARROW_ICON_SIZE/2), width: (ARROW_ICON_SIZE), height: (ARROW_ICON_SIZE)))
-        _arrowIcon.image = UIImage(named: "arrow")
-        
-        _centerIcon.tag = tagId
-        _arrowIcon.tag = tagId + 1
 
-        targetView.addSubview(_arrowIcon)
-        mappingView.addSubview(_centerIcon)
-        
-        if (angleInDegrees == 999) {
-            _arrowIcon.isHidden = true
-        } else {
-            _arrowIcon.isHidden = false
-            rotateImage(imageId: _centerIcon.tag, angleToRotate: angleInDegrees)
-        }
-        
-        targetView.addSubview(_arrowIcon)
-        mappingView.addSubview(_centerIcon)
-
-
-        // TODO: TEST STUFF
-
-        // print("\(xPos), \(yPos)")
-        // print(getGPSCoordinates(screenBounds: _visibleRegion, point: CGPoint(x: xPos, y: yPos)))
-
-    }
     
-    func rotateImage(imageId: Int, angleToRotate: CGFloat) {
-        mappingView.viewWithTag(imageId)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(Double.pi/180))
-        mappingView.viewWithTag(imageId + 1)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(Double.pi/180))
-    }
-    
-    func mappingViewTouchMoved(sender: MappingView, touches: Set<UITouch>) {
-        if(_touchesMovedDeadZone == 0) {
-            if(_arrowIcon.isHidden) {
-                _arrowIcon.isHidden = false
-            }
-            if let touch = touches.first {
-                let newPos = touch.location(in: mappingView)
-                let mPoint = bearingPoint(point0: _centerPos, point1: newPos)
-                _angleInDegrees = pointToDegrees(x: mPoint.x, y: mPoint.y)
-                rotateImage(imageId: tagNumber, angleToRotate: _angleInDegrees)
-                //_arrowIcon.transform = CGAffineTransform(rotationAngle: -_angleInDegrees * CGFloat(M_PI/180))
-            }
-        } else {
-            _touchesMovedDeadZone -= 1
-        }
-    }
-    
-    func mappingViewTouchEnded(sender: MappingView, touches: Set<UITouch>) {
-        _touchesMovedDeadZone = DEADZONE_START_VALUE
-        _project.addEntry(legend: selectedLegend, angleInDegrees: _angleInDegrees, position: _centerPos!, tagId: _tagNumber)
-        entryTableView.reloadData()
-    }
+   
     
     // TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -339,47 +264,25 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             selectedCell.contentView.backgroundColor = Style.cellHighlighted
         }
         if tableView == entryTableView {
-            _selectedEntry = project.entries[self.project.entries.count - (indexPath.row + 1)]
-            _selectedIndex = self.project.entries.count - (indexPath.row + 1)
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let entryNoteVC = storyboard.instantiateViewController(withIdentifier: "EntryNoteVC") as! EntryNoteVC
-            entryNoteVC.entry = _selectedEntry
-            entryNoteVC.index = _selectedIndex
-            entryNoteVC.modalPresentationStyle = UIModalPresentationStyle.popover
-            entryNoteVC.entryNoteDelegate = self
-            
-            let popoverPresentationController = entryNoteVC.popoverPresentationController
-                
-            if let _popoverPresentationController = popoverPresentationController {
-                
-                let cell = entryTableView.cellForRow(at: indexPath)
-                
-                let rectOfCellInTableView = tableView.rectForRow(at: indexPath)
-                let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
-                
-                _popoverPresentationController.sourceView = cell
-                _popoverPresentationController.sourceRect = CGRect(x: rectOfCellInSuperview.origin.x, y: rectOfCellInSuperview.origin.x, width: rectOfCellInSuperview.width, height: rectOfCellInSuperview.height)
-
-                self.present(entryNoteVC, animated: true, completion: nil)
-            }
+            highlightEntry(onEntry: project.entries[self.project.entries.count - (indexPath.row + 1)])
         }
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if tableView == entryTableView {
+            let addNote = UITableViewRowAction(style: .normal, title: "Note") { action, index in
+                self.showEntryNote(indexPath: indexPath, tableView: tableView)
+            }
             let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
                 self.project.removeEntry(index: self.project.entries.count - (indexPath.row + 1))
-                // self.entryTableView.reloadData()
                 tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             }
-            return [delete]
+            return [delete, addNote]
         }
         if tableView == legendTableView {
             let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
                 if self.project.legend.count > 1 {
                     self.project.legend.remove(at: indexPath.row)
-                    // self.entryTableView.reloadData()
                     tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                     self.resetLegendTableView()
                 } else {
@@ -396,6 +299,13 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
             return true
         }
         return false
+    }
+    
+    func removeAllEntries(action: UIAlertAction) {
+        for i in (0..<project.entries.count).reversed() {
+            project.removeEntry(index: i)
+        }
+        entryTableView.reloadData()
     }
     
     func showAllEntries() {
@@ -426,9 +336,20 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         mappingView.viewWithTag(project.entries[index].tagId + 1)?.isHidden = true
     }
     
+    @IBAction func menuBtnPressed(_ sender: Any) {
+        madeChange()
+        delegate?.toggleMenu()
+    }
     
     @IBAction func addLegendPressed(_ sender: Any) {
         // Segue: AddLegendVC as Popover
+    }
+    
+    @IBAction func deleteHistoryPressed(_ sender: Any) {
+        let alert = UIAlertController(title: DELETE_ALL_ENTRIES_TITLE, message: DELETE_ALL_ENTRIES_MSG, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: removeAllEntries))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func viewAllPressed(_ sender: Any) {
@@ -436,7 +357,6 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
         showAllEntries()
     }
     
-   
     @IBAction func viewLast10Pressed(_ sender: Any) {
         if (project.entries.count > 10) {
             let maxMinus10: Int = project.entries.count - 10
@@ -458,5 +378,82 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, M
     @IBAction func viewNonePressed(_ sender: Any) {
         _viewMode = VIEW_NONE
         hideAllEntries()
+    }
+}
+
+extension MappingVC: MappingViewDelegate {
+    func mappingViewTouchBegan(sender: MappingView, touches: Set<UITouch>) {
+        if let touch = touches.first {
+            _centerPos = touch.location(in: mappingView)
+        }
+        tagNumber += 2
+        _angleInDegrees = 999
+        createEntryIcon(xPos: _centerPos.x, yPos: _centerPos.y, targetView: mappingView, angleInDegrees: _angleInDegrees, tagId: tagNumber, icon: selectedLegend.icon)
+    }
+    
+    func createEntryIcon(xPos: CGFloat, yPos: CGFloat, targetView: UIView, angleInDegrees: CGFloat, tagId: Int, icon: Int) {
+        let _centerIcon = UIImageView(frame: CGRect(x: xPos - (CENTER_ICON_SIZE/2), y: yPos - (CENTER_ICON_SIZE/2), width: (CENTER_ICON_SIZE), height: CGFloat(CENTER_ICON_SIZE)))
+        _centerIcon.image = UIImage(named: "entryIcon\(icon)")
+        _arrowIcon = UIImageView(frame: CGRect(x: xPos - (ARROW_ICON_SIZE/2), y: yPos - (ARROW_ICON_SIZE/2), width: (ARROW_ICON_SIZE), height: (ARROW_ICON_SIZE)))
+        _arrowIcon.image = UIImage(named: "arrow")
+        
+        _centerIcon.tag = tagId
+        _arrowIcon.tag = tagId + 1
+        
+        targetView.addSubview(_arrowIcon)
+        mappingView.addSubview(_centerIcon)
+        
+        if (angleInDegrees == 999) {
+            _arrowIcon.isHidden = true
+        } else {
+            _arrowIcon.isHidden = false
+            rotateImage(imageId: _centerIcon.tag, angleToRotate: angleInDegrees)
+        }
+        targetView.addSubview(_arrowIcon)
+        mappingView.addSubview(_centerIcon)
+    }
+    
+    func rotateImage(imageId: Int, angleToRotate: CGFloat) {
+        mappingView.viewWithTag(imageId)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(Double.pi/180))
+        mappingView.viewWithTag(imageId + 1)?.transform = CGAffineTransform(rotationAngle: -angleToRotate * CGFloat(Double.pi/180))
+    }
+    
+    func mappingViewTouchMoved(sender: MappingView, touches: Set<UITouch>) {
+        if(touchesMovedDeadZone == 0) {
+            if(_arrowIcon.isHidden) {
+                _arrowIcon.isHidden = false
+            }
+            if let touch = touches.first {
+                let newPos = touch.location(in: mappingView)
+                let mPoint = bearingPoint(point0: _centerPos, point1: newPos)
+                _angleInDegrees = pointToDegrees(x: mPoint.x, y: mPoint.y)
+                rotateImage(imageId: tagNumber, angleToRotate: _angleInDegrees)
+            }
+        } else {
+            touchesMovedDeadZone -= 1
+        }
+    }
+    
+    func mappingViewTouchEnded(sender: MappingView, touches: Set<UITouch>) {
+        touchesMovedDeadZone = DEADZONE_START_VALUE
+        project.addEntry(legend: selectedLegend, angleInDegrees: _angleInDegrees, position: _centerPos!, tagId: tagNumber)
+        entryTableView.reloadData()
+        madeChange()
+    }
+}
+
+extension MappingVC: AddLegendDelegate {
+    func addLegend(legend: Legend) {
+        project.legend.append(legend)
+        resetLegendTableView()
+        madeChange()
+    }
+}
+
+extension MappingVC: EntryNoteDelegate {
+    func noteAdded(note: String) {
+        project.entries[_selectedIndex].note = note
+        entryTableView.reloadData()
+        madeChange()
     }
 }
