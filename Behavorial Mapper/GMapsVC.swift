@@ -29,6 +29,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     var delegate: GMapsVCDelegate?
     
     @IBOutlet weak var _toolBar: UIToolbar!
+    @IBOutlet weak var _searchButton: UIBarButtonItem!
     @IBOutlet weak var _screenshotButton: UIBarButtonItem!
     @IBOutlet weak var _cancelButton: UIBarButtonItem!
     @IBOutlet weak var _typeNormalButton: UIBarButtonItem!
@@ -43,6 +44,9 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        _toolBar.barTintColor = Style.backgroundPrimary
+        _searchButton.tintColor = Style.textPrimary
+        
         _leftBorder.layer.borderWidth = 1
         _leftBorder.layer.borderColor = Style.textPrimary.cgColor
         _leftBorder.alpha = 0.5
@@ -54,29 +58,33 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         self.view.insertSubview(_mapView, at: 0)
         
         _screenshotButton.style = .done
+        _screenshotButton.tintColor = Style.textPrimary
         _screenshotButton.title = "Take Screenshot"
         _screenshotButton.action = #selector(GMapsVC.takeScreenshot)
 
-        _typeNormalButton.style = .done
-        _typeNormalButton.tintColor = UIColor.blue
+        _typeNormalButton.style = .plain
+        _typeNormalButton.tintColor = Style.textPrimary
         _typeNormalButton.title = "Normal"
         _typeNormalButton.tag = Int(GMSMapViewType.normal.rawValue)
         _typeNormalButton.target = self
         _typeNormalButton.action = #selector(setMapType(withSender:))
 
         _typeSatelliteButton.style = .plain
+        _typeSatelliteButton.tintColor = Style.textPrimary
         _typeSatelliteButton.title = "Satellite"
         _typeSatelliteButton.tag = Int(GMSMapViewType.satellite.rawValue)
         _typeSatelliteButton.target = self
         _typeSatelliteButton.action = #selector(setMapType(withSender:))
 
         _typeHybridButton.style = .plain
+        _typeHybridButton.tintColor = Style.textPrimary
         _typeHybridButton.title = "Hybrid"
         _typeHybridButton.tag = Int(GMSMapViewType.hybrid.rawValue)
         _typeHybridButton.target = self
         _typeHybridButton.action = #selector(setMapType(withSender:))
 
         _typeTerrainButton.style = .plain
+        _typeTerrainButton.tintColor = Style.textPrimary
         _typeTerrainButton.title = "Terrain"
         _typeTerrainButton.tag = Int(GMSMapViewType.terrain.rawValue)
         _typeTerrainButton.target = self
@@ -89,7 +97,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         
         _cancelButton.style = .done
         _cancelButton.title = "Cancel"
-        _cancelButton.tintColor = UIColor.red
+        _cancelButton.tintColor = Style.textPrimary
         _cancelButton.action = #selector(GMapsVC.cancelButtonClicked)
         
         _mapView.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleLeftMargin,
@@ -108,7 +116,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
                 button.tintColor = UIColor.blue
             } else {
                 button.style = .plain
-                button.tintColor = self.view.tintColor
+                button.tintColor = Style.textPrimary
             }
         }
     }
@@ -116,20 +124,14 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
     // This function dismissed the GMapsVC
     func takeScreenshot() {
         _toolBar.isHidden = true
-        //UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, 3.0)
-        //UIGraphicsBeginImageContextWithOptions(MAPPING_VIEW_SIZE, false, 3.0)
-        //self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
-        //self.view.drawHierarchy(in: CGRect(x: 100, y: 0, width: 824, height: 768), afterScreenUpdates: true)
         let image = self.view.snapshot(of: CGRect(x: 100, y: 0, width: 824, height: 768))
  
-        //UIGraphicsEndImageContext()
         _toolBar.isHidden = false
         
         if let vc = self.presentingViewController as? CreateProjectVC {
             vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
             vc.backgroundImage = image!
             vc.updateImageButtons()
-            // vc.visibleRegion = _mapView.projection.visibleRegion()
         }
         
         delegate?.getScreenShot(image: image!)

@@ -44,21 +44,7 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
     private var _chosenBackground = BACKGROUND_BLANK
 
     var containerVC: ContainerVC?
-    
-    // TODO: START - Test Stuff !!!
-    /*
-    private var _visibleRegion: GMSVisibleRegion!
 
-    var visibleRegion: GMSVisibleRegion {
-        get {
-            return _visibleRegion
-        } set {
-            _visibleRegion = newValue
-        }
-    }
-    */
-    // TODO: END - Test Stuff !!!
-    
     var chosenBackground: Int {
         get {
             return _chosenBackground
@@ -182,15 +168,10 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
     
     @IBAction func cancelPressed(_ sender: UIButton) {
         delegate?.cancelCreateProject()
-        //dismiss(animated: true, completion: nil)
     }
     
     @IBAction func createPressed(_ sender: UIButton) {
         if createProject() {
-            //performSegue(withIdentifier: "showDetailMappingVC", sender: sender)
-             /* containerVC = ContainerVC()
-            containerVC?.project = project
-            present(containerVC!, animated: true, completion: nil) */
             delegate?.createProject(project: project)
         }
     }
@@ -222,7 +203,7 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
         loadPictureButton.layer.borderWidth = 0
         createMapButton.layer.borderWidth = 0
         blankBackgroundButton.layer.borderWidth = 0
-        // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
+        blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
         switch chosenBackground {
         case BACKGROUND_IMAGE_UPLOADED:
             loadPictureButton.setImage(_backgroundImage, for: .normal)
@@ -231,20 +212,13 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
             createMapButton.setImage(_backgroundImage, for: .normal)
             createMapButton.layer.borderWidth = 3
         case BACKGROUND_BLANK:
-            // TO DO: blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
+            blankBackgroundButton.setImage(UIImage(named: BACKGROUND_BLANK_STRING), for: .normal)
             blankBackgroundButton.layer.borderWidth = 3
         default: break
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /* if segue.identifier == "showDetailMappingVC" {
-            if let mappingVC = segue.destination as? MappingVC {
-                mappingVC.project = project
-
-                //mappingVC.visibleRegion = _visibleRegion
-            }
-        } */
         if segue.identifier == "GMapsSegue" {
             if let gMap = segue.destination as? GMapsVC {
                 gMap.delegate = self

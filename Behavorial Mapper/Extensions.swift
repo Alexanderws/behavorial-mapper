@@ -27,6 +27,10 @@ extension UIStoryboard {
     class func startVC() -> StartVC? {
         return mainStoryboard().instantiateViewController(withIdentifier: "StartVC") as? StartVC
     }
+    
+    class func noteVC() -> NoteVC? {
+        return mainStoryboard().instantiateViewController(withIdentifier: "NoteVC") as? NoteVC
+    }
 }
 
 /**

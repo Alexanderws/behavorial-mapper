@@ -87,7 +87,9 @@ func getBackgroundImg(fromProject: Project) -> UIImage? {
         let mapFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             .appendingPathComponent("/maps/\(fromProject.name)").appendingPathExtension("map.png")
         let data = try? Data.init(contentsOf: mapFile)
-        bkgImage = UIImage.init(data: data!)
+        if let image = UIImage.init(data: data!) {
+            bkgImage = image
+        }
     }
     return bkgImage!
 }

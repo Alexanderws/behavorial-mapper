@@ -52,8 +52,8 @@ class EntryCell: UITableViewCell {
         entryTitleBarView.backgroundColor = Style.backgroundPrimary
         detailsView.backgroundColor = Style.backgroundPrimary
         spacerView.backgroundColor = Style.backgroundSecondary
-        noteImageView.image = UIImage(named: "note")
-
+        noteImageView.image = UIImage(named: "noteIcon")
+    
         
         if (!entry.note.isEmpty) {
             noteImageView.isHidden = false

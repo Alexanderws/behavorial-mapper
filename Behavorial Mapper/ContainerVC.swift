@@ -187,7 +187,9 @@ extension ContainerVC: MappingVCDelegate {
         menuShowing = false
         animateMainViewXPosition(targetPosition: 0) { finished in
             self.mappingVC!.view.layer.shadowOpacity = 0.0
-            self.menuVC!.view.removeFromSuperview()
+            if let menuVC = self.menuVC {
+                menuVC.view.removeFromSuperview()
+            }
             self.menuVC = nil
         }
     }

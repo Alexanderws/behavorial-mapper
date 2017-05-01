@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // GENERAL STRINGS
-let TITLE_LABEL = "Behavioral Mapping"
+let TITLE_LABEL = "Behavioral Mapper"
 
 // StartVC
 let INITIAL_NOTES_TEXT = "No project selected"
@@ -30,6 +30,10 @@ let HIGHLIGHT_CIRCLE_INIT_SIZE: CGFloat = 3
 // GoogleMapsVC
 let MAPPING_VIEW_SIZE = CGSize(width: 824, height: 768)
 
+// NoteVC
+let NOTE_TYPE_ENTRY: Int = 1
+let NOTE_TYPE_PROJECT: Int = 2
+
 // Icons in CreateProjectVC
 let NUMBER_OF_ICONS = 25
 let ICON_CELL_SIZE = 35
@@ -40,9 +44,9 @@ let BACKGROUND_IMAGE_UPLOADED = 1
 let BACKGROUND_GOOGLE_MAPS = 2
 let BACKGROUND_BLANK = 3
 
-let BACKGROUND_GOOGLE_MAPS_STRING = "maps-icon-16"
-let BACKGROUND_IMAGE_UPLOADED_STRING = "ImageIcon"
-let BACKGROUND_BLANK_STRING = "BLANK"
+let BACKGROUND_GOOGLE_MAPS_STRING = "mapsIcon"
+let BACKGROUND_IMAGE_UPLOADED_STRING = "imageIcon"
+let BACKGROUND_BLANK_STRING = "blankIcon"
 
 // WARNING MESSAGES
 let NO_PROJECT_NAME_TITLE = "No project name"
@@ -56,6 +60,8 @@ let DELETE_LAST_LEGEND_MSG = "You need at least 1 legend."
 let ALERT_CANCEL_TITLE = "Dismiss"
 let DELETE_ALL_ENTRIES_TITLE = "Delete entries"
 let DELETE_ALL_ENTRIES_MSG = "Delete all recorded entries?"
+let NO_PROJECT_SELECTED_TITLE = "No project selected"
+let NO_PROJECT_SELECTED_MSG = "You need to select a project to do this."
 
 // Sizes
 let LEGEND_TABLEVIEW_CELL_HEIGHT = 47

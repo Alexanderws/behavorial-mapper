@@ -35,11 +35,22 @@ class LegendCell: UITableViewCell {
     func configureCell (legend: Legend) {
         
         bkgView.backgroundColor = Style.backgroundPrimary
-        spacerView.backgroundColor = UIColor.clear
+        spacerView.backgroundColor = Style.backgroundSecondary
+        legendNameLbl.textColor = Style.textPrimary
         
         self.legend = legend
         self.iconImg.image = UIImage(named: "entryIcon\(legend.icon)")
         self.legendNameLbl.text = legend.name
+    }
+    
+    func styleHighlighted() {
+        bkgView.backgroundColor = UIColor.white
+        legendNameLbl.textColor = Style.textSecondary
+    }
+    
+    func styleNormal() {
+        bkgView.backgroundColor = Style.backgroundPrimary
+        legendNameLbl.textColor = Style.textPrimary
     }
     
 }

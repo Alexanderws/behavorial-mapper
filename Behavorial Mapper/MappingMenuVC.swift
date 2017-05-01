@@ -11,9 +11,10 @@ import UIKit
 
 protocol MappingMenuDelegate {
     func editProjectNotes()
+    func exportProjectNotes()
     func exportData()
     func exportImage()
-    // func exportEntries()
+    func exportEntries()
     func exportBackground()
 }
 
@@ -46,9 +47,13 @@ class MappingMenuVC: UIViewController {
     }
     
     @IBAction func projectNotesPressed(_ sender: Any) {
-        self.containerDelegate?.closeMenu()
         self.mappingDelegate?.editProjectNotes()
-        
+        self.containerDelegate?.closeMenu()
+    }
+    
+    @IBAction func exportNotesPressed(_ sender: Any) {
+        self.mappingDelegate?.exportProjectNotes()
+        self.containerDelegate?.closeMenu()
     }
     
     @IBAction func exportDataPressed(_ sender: Any) {
@@ -60,13 +65,15 @@ class MappingMenuVC: UIViewController {
         self.containerDelegate?.closeMenu()
         self.mappingDelegate?.exportImage()
     }
-        
-
+    
+    @IBAction func exportEntriesPressed(_ sender: Any) {
+        self.containerDelegate?.closeMenu()
+        self.mappingDelegate?.exportEntries()
+    }
 
     @IBAction func exportBackgroundPressed(_ sender: Any) {
         self.containerDelegate?.closeMenu()
         self.mappingDelegate?.exportBackground()
-        
     }
     
     

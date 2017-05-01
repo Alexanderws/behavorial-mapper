@@ -101,6 +101,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
         
         viewLbl.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
         viewLblContainerView.backgroundColor = Style.backgroundPrimary
+        viewFilterView.backgroundColor = Style.backgroundPrimary
     }
 
     func initTableViews() {
@@ -153,26 +154,24 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
         _selectedEntry = project.entries[self.project.entries.count - (indexPath.row + 1)]
         _selectedIndex = self.project.entries.count - (indexPath.row + 1)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let entryNoteVC = storyboard.instantiateViewController(withIdentifier: "EntryNoteVC") as! EntryNoteVC
-        entryNoteVC.entry = _selectedEntry
-        entryNoteVC.index = _selectedIndex
-        entryNoteVC.modalPresentationStyle = UIModalPresentationStyle.popover
-        entryNoteVC.entryNoteDelegate = self
+        if let noteVC = UIStoryboard.noteVC() {
+            noteVC.currentNote = _selectedEntry.note
+            noteVC.senderType = NOTE_TYPE_ENTRY
+            noteVC.noteDelegate = self
+            noteVC.modalPresentationStyle = UIModalPresentationStyle.popover
+
         
-        let popoverPresentationController = entryNoteVC.popoverPresentationController
+            let popoverPresentationController = noteVC.popoverPresentationController
         
-        if let _popoverPresentationController = popoverPresentationController {
+            if let _popoverPresentationController = popoverPresentationController {
+                let cell = entryTableView.cellForRow(at: indexPath)
+                let rectOfCellInTableView = tableView.rectForRow(at: indexPath)
+                let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
+                _popoverPresentationController.sourceView = cell
+                _popoverPresentationController.sourceRect = CGRect(x: rectOfCellInSuperview.origin.x, y: rectOfCellInSuperview.origin.x, width: rectOfCellInSuperview.width, height: rectOfCellInSuperview.height)
             
-            let cell = entryTableView.cellForRow(at: indexPath)
-            
-            let rectOfCellInTableView = tableView.rectForRow(at: indexPath)
-            let rectOfCellInSuperview = tableView.convert(rectOfCellInTableView, to: tableView.superview)
-            
-            _popoverPresentationController.sourceView = cell
-            _popoverPresentationController.sourceRect = CGRect(x: rectOfCellInSuperview.origin.x, y: rectOfCellInSuperview.origin.x, width: rectOfCellInSuperview.width, height: rectOfCellInSuperview.height)
-            
-            self.present(entryNoteVC, animated: true, completion: nil)
+                self.present(noteVC, animated: false, completion: nil)
+            }
         }
     }
     
@@ -184,7 +183,25 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
     
     // MAPPING MENU FUNCTIONS
     func editProjectNotes() {
-        displayTextEntry(title: "Project Notes", placeholder: "Enter notes", self: self)
+        if let noteVC = UIStoryboard.noteVC() {
+            noteVC.currentNote = project.note
+            noteVC.senderType = NOTE_TYPE_PROJECT
+            noteVC.noteDelegate = self
+            noteVC.modalPresentationStyle = UIModalPresentationStyle.popover
+            
+            let popoverPresentationController = noteVC.popoverPresentationController
+            
+            if let _popoverPresentationController = popoverPresentationController {
+                _popoverPresentationController.sourceView = self.view
+                _popoverPresentationController.sourceRect = CGRect(x: self.view.frame.origin.x - 200, y: self.view.frame.origin.x, width: self.view.frame.width, height: self.view.frame.height)
+                
+                self.present(noteVC, animated: false, completion: nil)
+            }
+        }
+    }
+    
+    func exportProjectNotes () {
+        displayTextShare(shareContent: project.note, self: self, anchor: menuButton)
     }
     
     func exportData() {
@@ -199,16 +216,18 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
         viewFilterView.isHidden = false
     }
     
-//    func exportEntries() {
-//        mappingBgImageView.isHidden = true
-//        let image = mappingView.snapshotImage()!
-//        displayImageShare(shareContent: image, self: self, anchor: menuButton)
-//        mappingBgImageView.isHidden = false
-//    }
+    func exportEntries() {
+        mappingBgImageView.isHidden = true
+        viewFilterView.isHidden = true
+        let image = mappingView.snapshot()!
+        displayImageShare(shareContent: image, self: self, anchor: menuButton)
+        mappingBgImageView.isHidden = false
+        viewFilterView.isHidden = false
+    }
     
     func exportBackground() {
         viewFilterView.isHidden = true
-        let image = mappingBgImageView.snapshotImage()!
+        let image = mappingBgImageView.snapshot()!
         displayImageShare(shareContent: image, self: self, anchor: menuButton)
         viewFilterView.isHidden = false
     }
@@ -223,8 +242,10 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
             cell.configureCell(legend: project.legend[indexPath.row])
             if (_firstCell == true) {
                 legendTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                cell.contentView.backgroundColor = Style.cellHighlighted
+                cell.styleHighlighted()
                 _firstCell = false
+            } else {
+                cell.styleNormal()
             }
 
             return cell
@@ -260,11 +281,18 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == legendTableView {
             selectedLegend = project.legend[indexPath.row]
-            let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
-            selectedCell.contentView.backgroundColor = Style.cellHighlighted
+            let selectedCell:LegendCell = tableView.cellForRow(at: indexPath)! as! LegendCell
+            selectedCell.styleHighlighted()
         }
         if tableView == entryTableView {
             highlightEntry(onEntry: project.entries[self.project.entries.count - (indexPath.row + 1)])
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView == legendTableView {
+            let selectedCell:LegendCell = tableView.cellForRow(at: indexPath)! as! LegendCell
+            selectedCell.styleNormal()
         }
     }
     
@@ -273,7 +301,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
             let addNote = UITableViewRowAction(style: .normal, title: "Note") { action, index in
                 self.showEntryNote(indexPath: indexPath, tableView: tableView)
             }
-            let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
+            addNote.backgroundColor = Style.backgroundSecondary
+            let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
                 self.project.removeEntry(index: self.project.entries.count - (indexPath.row + 1))
                 tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             }
@@ -450,10 +479,16 @@ extension MappingVC: AddLegendDelegate {
     }
 }
 
-extension MappingVC: EntryNoteDelegate {
-    func noteAdded(note: String) {
-        project.entries[_selectedIndex].note = note
-        entryTableView.reloadData()
-        madeChange()
+extension MappingVC: NoteVCDelegate {
+    func addNote(note: String, ofType: Int) {
+        if ofType == NOTE_TYPE_ENTRY {
+            project.entries[_selectedIndex].note = note
+            entryTableView.reloadData()
+            madeChange()
+        }
+        if ofType == NOTE_TYPE_PROJECT {
+            project.note = note
+            madeChange()
+        }
     }
 }

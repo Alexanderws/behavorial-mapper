@@ -49,6 +49,8 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let proxyLabel = UILabel.appearance()
         
         proxyTextField.textColor = Style.textPrimary
+        proxyTextField.backgroundColor = Style.backgroundTextField
+        proxyTextView.backgroundColor = Style.backgroundTextField
         proxyTextView.textColor = Style.textPrimary
         proxyButton.setTitleColor(Style.textPrimary, for: .normal)
         proxyButton.layer.borderColor = Style.textPrimary.cgColor
@@ -81,18 +83,21 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBAction func newProjectPressed(_ sender: Any) {
         delegate?.createNewProject()
-        //performSegue(withIdentifier: "showCreateProjectVC", sender: sender)
     }
     
     @IBAction func loadProjectPressed(_ sender: Any) {
         if let loadedProject = Project(projectName: _selectedProject) {
             delegate?.loadProject(fromProject: loadedProject)
+        } else {
+            displayMessage(title: NO_PROJECT_SELECTED_TITLE, message: NO_PROJECT_SELECTED_MSG, self: self)
         }
     }
     
     @IBAction func newFromTemplatePressed(_ sender: Any) {
         if let loadedProject = Project(projectName: _selectedProject) {
             delegate?.loadFromTemplate(fromProject: loadedProject)
+        } else {
+            displayMessage(title: NO_PROJECT_SELECTED_TITLE, message: NO_PROJECT_SELECTED_MSG, self: self)
         }
     }
     
@@ -105,22 +110,15 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }
             clearProjectDetails()
             storedProjectsTableView.reloadData()
+        } else {
+            displayMessage(title: NO_PROJECT_SELECTED_TITLE, message: NO_PROJECT_SELECTED_MSG, self: self)
         }
     }
-
-    /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetailMappingVC" {
-            if let mappingVC = segue.destination as? MappingVC {
-                mappingVC.project = Project(projectName: _selectedProject)!
-            }
-        }
-    }*/
     
     // TABLE VIEW FUNCTIONS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _selectedProject = _storedProjects[indexPath.row]
         if let selectedCell = tableView.cellForRow(at: indexPath) as! ProjectCell? {
-            //selectedCell.backgroundColor = Style.cellHighlighted
             selectedCell.styleHighlighted()
         }
         loadProjectDetails()
@@ -128,7 +126,6 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let selectedCell = tableView.cellForRow(at: indexPath) as! ProjectCell? {
-            //selectedCell.backgroundColor = UIColor.clear
             selectedCell.styleNormal()
         }
     }
@@ -141,13 +138,10 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell = storedProjectsTableView.dequeueReusableCell(withIdentifier: "ProjectCell", for: indexPath) as! ProjectCell
         cell.configureCell(project: Project(projectName: _storedProjects[indexPath.row])!)
         if _selectedProject == _storedProjects[indexPath.row] {
-            //cell.backgroundColor = Style.cellHighlighted
             cell.styleHighlighted()
         } else {
-            //cell.backgroundColor = UIColor.clear
             cell.styleNormal()
         }
         return cell
     }
-    
 }

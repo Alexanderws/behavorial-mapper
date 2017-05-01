@@ -31,7 +31,7 @@ class Project: JSONSerializable {
         get {
             return _note
         } set {
-            _note = note
+            _note = newValue
         }
     }
     
