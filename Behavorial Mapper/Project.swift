@@ -99,9 +99,7 @@ class Project: JSONSerializable {
     
     func removeEntry(index: Int){
         let entry = entries[index]
-        print("removeEntry: index = \(index)")
         entries.remove(at: index)
-        print("removeEntry: tagId = \(entry.tagId)")
         projectDelegate?.entryDeleted(tagId: entry.tagId)
     }
     

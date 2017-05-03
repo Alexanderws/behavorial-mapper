@@ -13,7 +13,7 @@ class MenuView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.layer.shadowOpacity = 0.8
+        self.layer.shadowOpacity = 0.0
     }
     
 }

@@ -21,28 +21,6 @@ protocol ContainerVCDelegate {
 
 class ContainerVC: UIViewController {
 
-   /* OLD: Only used for MappingVC
-     
-    var mappingVC: MappingVC!
-    var menuVC: MappingMenuVC?
-    
-    var menuShowing = false
-    var project: Project?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        mappingVC = UIStoryboard.mappingVC()
-        mappingVC.delegate = self
-        mappingVC.project = project!
-        
-        view.insertSubview(mappingVC.view, at: 1)
-    } */
-
-    // NEW: Loads StartVC
-    
-    
-    
     var startVC: StartVC?
     var createProjectVC: CreateProjectVC?
     var mappingVC: MappingVC?
@@ -50,7 +28,6 @@ class ContainerVC: UIViewController {
 
     var project: Project?
     
-    // To avoid errors
     var menuShowing = false
     var currentVC: VCType = .start
     
@@ -64,19 +41,18 @@ class ContainerVC: UIViewController {
     }
     
     func loadVC(ofType: VCType) {
-        if (ofType == .start) {
+        switch ofType {
+        case .start:
             if (startVC == nil) {
                 startVC = UIStoryboard.startVC()
                 startVC?.delegate = self
             }
-        }
-        if (ofType == .createProject) {
+        case .createProject:
             if (createProjectVC == nil) {
                 createProjectVC = UIStoryboard.createProjectVC()
                 createProjectVC?.delegate = self
             }
-        }
-        if (ofType == .mapping) {
+        case .mapping:
             if (mappingVC == nil) {
                 mappingVC = UIStoryboard.mappingVC()
                 mappingVC?.delegate = self
@@ -95,7 +71,6 @@ class ContainerVC: UIViewController {
         }
         deloadVC()
         currentVC = ofType
-        print("CurrentVC: \(ofType)")
     }
     
     func deloadVC() {
@@ -141,7 +116,6 @@ extension ContainerVC: CreateProjectVCDelegate {
         view.addSubview(mappingVC!.view)
         deloadVC()
         currentVC = .mapping
-        print("createProjectDelegate: createProject")
     }
     
     func cancelCreateProject() {

@@ -17,7 +17,7 @@ protocol CreateProjectVCDelegate {
 class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, GMapsVCDelegate {
 
     
-    @IBOutlet weak var bkgView: UIView!
+    @IBOutlet weak var bkgView: UIImageView!
     @IBOutlet weak var createProjectView: UIView!
     @IBOutlet weak var projectNameTxtFld: UITextField!
     @IBOutlet weak var projectNotesTxtView: UITextView!
@@ -81,7 +81,8 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
     
     func initStyle() {
         createProjectView.backgroundColor = Style.backgroundPrimary
-        bkgView.backgroundColor = Style.backgroundSecondary
+        bkgView.image = UIImage(named: "cityMapTealBkg")
+        //bkgView.backgroundColor = Style.backgroundSecondary
         legendIconImage.imageView?.contentMode = UIViewContentMode.scaleAspectFill
         legendIconImage.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         

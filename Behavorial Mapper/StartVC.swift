@@ -20,7 +20,7 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     
-    @IBOutlet weak var bkgView: UIView!
+    @IBOutlet weak var bkgView: UIImageView!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var leftSideView: UIView!
     @IBOutlet weak var storedProjectsTableView: UITableView!
@@ -56,7 +56,7 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         proxyButton.layer.borderColor = Style.textPrimary.cgColor
         proxyLabel.textColor = Style.textPrimary
         
-        bkgView.backgroundColor = Style.backgroundSecondary
+        bkgView.image = UIImage(named: "cityMapTealBkg")
         menuView.backgroundColor = Style.backgroundPrimary
     }
 
@@ -72,7 +72,11 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func loadProjectDetails() {
         if let loadedProject = Project(projectName: _selectedProject) {
             projectBkgImageView.image = getBackgroundImg(fromProject: loadedProject)
-            projectNotesTxtView.text = loadedProject.note
+            if loadedProject.note == "" {
+                projectNotesTxtView.text = NO_NOTE_FOUND_TEXT
+            } else {
+                projectNotesTxtView.text = loadedProject.note
+            }
         }
     }
     

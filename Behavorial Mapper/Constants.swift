@@ -9,22 +9,22 @@
 import Foundation
 import UIKit
 
-// GENERAL STRINGS
-let TITLE_LABEL = "Behavioral Mapper"
-
 // StartVC
 let INITIAL_NOTES_TEXT = "No project selected"
+let NO_NOTE_FOUND_TEXT = "No notes found"
 
 // MappingVC
 let VIEW_ALL = 1
 let VIEW_10 = 2
 let VIEW_NONE = 3
 
+let LEGEND_TABLEVIEW_CELL_HEIGHT = 47
+let ENTRY_TABLEVIEW_CELL_HEIGHT = 60
+let DEADZONE_START_VALUE = 5
+
 let CENTER_ICON_SIZE: CGFloat = 35
 let ARROW_ICON_SIZE: CGFloat = 35
-
-let MENU_EXPAND_OFFSET: CGFloat = 200
-
+let MENU_EXPAND_OFFSET: CGFloat = 210
 let HIGHLIGHT_CIRCLE_INIT_SIZE: CGFloat = 3
 
 // GoogleMapsVC
@@ -34,12 +34,10 @@ let MAPPING_VIEW_SIZE = CGSize(width: 824, height: 768)
 let NOTE_TYPE_ENTRY: Int = 1
 let NOTE_TYPE_PROJECT: Int = 2
 
-// Icons in CreateProjectVC
+// CreateProjectVC
 let NUMBER_OF_ICONS = 25
 let ICON_CELL_SIZE = 35
 
-
-// Map selection in CreateProjectVC
 let BACKGROUND_IMAGE_UPLOADED = 1
 let BACKGROUND_GOOGLE_MAPS = 2
 let BACKGROUND_BLANK = 3
@@ -63,19 +61,14 @@ let DELETE_ALL_ENTRIES_MSG = "Delete all recorded entries?"
 let NO_PROJECT_SELECTED_TITLE = "No project selected"
 let NO_PROJECT_SELECTED_MSG = "You need to select a project to do this."
 
-// Sizes
-let LEGEND_TABLEVIEW_CELL_HEIGHT = 47
-let ENTRY_TABLEVIEW_CELL_HEIGHT = 60
-let DEADZONE_START_VALUE = 5
-
 // CSV HEADERS
-let CSV_TIME = "Tidspunkt"
-let CSV_COORDINATES = "Koordinater"
-let CSV_ANGLE_IN_DEGREES = "Vinkel i grader"
-let CSV_ENTRY_NOTE = "Notat"
+let CSV_TIME = "Time"
+let CSV_COORDINATES = "Position"
+let CSV_ANGLE_IN_DEGREES = "Angle in degrees"
+let CSV_ENTRY_NOTE = "Note"
 let CSV_ENTRY_NAME = "Type"
-let CSV_ENTRY_ICON = "Ikon"
+let CSV_ENTRY_ICON = "Icon"
 let CSV_ENTRY_HEADER = "\(CSV_TIME);\(CSV_COORDINATES);\(CSV_ANGLE_IN_DEGREES);\(CSV_ENTRY_NOTE);\(CSV_ENTRY_NAME);\(CSV_ENTRY_ICON)"
-let CSV_X_COORDINATE = "X-koordinat"
-let CSV_Y_COORDINATE = "Y-koordinat"
-let CSV_LOCATION_NAME = "Ikke i bruk"
+let CSV_X_COORDINATE = "X-coordinate"
+let CSV_Y_COORDINATE = "Y-coordinate"
+let CSV_LOCATION_NAME = "Not in use"

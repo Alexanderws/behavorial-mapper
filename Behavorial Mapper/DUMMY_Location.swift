@@ -9,7 +9,7 @@
 import Foundation
 
 class Location: JSONSerializable, CSVSerializable {
-    
+    /*
     private var _name: String!
     private var _xCor: Int!
     private var _yCor: Int!
@@ -70,5 +70,5 @@ class Location: JSONSerializable, CSVSerializable {
         } else {
             return nil
         }
-    }
+    }*/
 }

@@ -10,8 +10,6 @@ import UIKit
 
 class EntryCell: UITableViewCell {
 
-    
-    
     @IBOutlet weak var entryNameLbl: UILabel!
     @IBOutlet weak var entryTimeTopLbl: UILabel!
     @IBOutlet weak var noteImageView: UIImageView!
@@ -20,8 +18,6 @@ class EntryCell: UITableViewCell {
     @IBOutlet weak var entryTitleBarView: UIView!
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var spacerView: UIView!
-    
-    
     
     private var entry: Entry!
    
@@ -41,8 +37,6 @@ class EntryCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
-    
     func configureCell (entry: Entry) {
         self.entry = entry
         self.entryNameLbl.text = entry.legend.name
@@ -54,7 +48,6 @@ class EntryCell: UITableViewCell {
         spacerView.backgroundColor = Style.backgroundSecondary
         noteImageView.image = UIImage(named: "noteIcon")
     
-        
         if (!entry.note.isEmpty) {
             noteImageView.isHidden = false
         } else {
@@ -64,6 +57,5 @@ class EntryCell: UITableViewCell {
         self.preservesSuperviewLayoutMargins = false
         self.separatorInset = UIEdgeInsets.zero
         self.layoutMargins = UIEdgeInsets.zero
-        
     }
 }

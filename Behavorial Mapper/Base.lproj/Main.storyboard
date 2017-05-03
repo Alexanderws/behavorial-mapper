@@ -22,17 +22,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0P-a6-0Fc">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N0P-a6-0Fc" customClass="UIImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkM-PZ-Sbp" customClass="MenuView" customModule="Behavorial_Mapper" customModuleProvider="target">
                                         <rect key="frame" x="262" y="225" width="500" height="318"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDg-4z-COt" userLabel="Title View">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="160"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="130"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Behavioral Mapper" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peQ-1f-MHr">
-                                                        <rect key="frame" x="36" y="23" width="178" height="115"/>
+                                                        <rect key="frame" x="36" y="8" width="178" height="115"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="115" id="690-64-nwj"/>
                                                             <constraint firstAttribute="width" constant="178" id="IfK-Ni-8yC"/>
@@ -47,14 +47,14 @@
                                                     <constraint firstItem="peQ-1f-MHr" firstAttribute="centerY" secondItem="eDg-4z-COt" secondAttribute="centerY" id="CFT-u4-o0v"/>
                                                     <constraint firstItem="peQ-1f-MHr" firstAttribute="centerX" secondItem="eDg-4z-COt" secondAttribute="centerX" id="Tdp-l0-mKS"/>
                                                     <constraint firstAttribute="width" constant="250" id="Xi0-oc-rqd"/>
-                                                    <constraint firstAttribute="height" constant="160" id="nh5-no-Nnb"/>
+                                                    <constraint firstAttribute="height" constant="130" id="nh5-no-Nnb"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrr-Sl-z6w">
-                                                <rect key="frame" x="0.0" y="160" width="250" height="158"/>
+                                                <rect key="frame" x="0.0" y="130" width="250" height="188"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jZO-Z5-QJU">
-                                                        <rect key="frame" x="23" y="0.0" width="174" height="150"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jZO-Z5-QJU">
+                                                        <rect key="frame" x="23" y="10" width="174" height="160"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="0Rd-5Z-Lfy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="120.5" height="33"/>
@@ -79,9 +79,12 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="33" id="KEy-35-QbL"/>
+                                                                </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="x74-3r-IX8">
-                                                                <rect key="frame" x="0.0" y="39" width="142.5" height="33"/>
+                                                                <rect key="frame" x="0.0" y="42.5" width="142.5" height="33"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRu-pi-018" customClass="LargeBtn" customModule="Behavorial_Mapper" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="103" height="21"/>
@@ -103,9 +106,12 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="33" id="AuX-Lr-WJH"/>
+                                                                </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iee-m2-Z6c">
-                                                                <rect key="frame" x="0.0" y="78" width="172.5" height="33"/>
+                                                                <rect key="frame" x="0.0" y="84.5" width="172.5" height="33"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsr-W4-Xjl" customClass="LargeBtn" customModule="Behavorial_Mapper" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="172.5" height="21"/>
@@ -127,9 +133,12 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="33" id="BU8-fw-Zf7"/>
+                                                                </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wdn-JZ-IwO">
-                                                                <rect key="frame" x="0.0" y="117" width="152.5" height="33"/>
+                                                                <rect key="frame" x="0.0" y="127" width="152.5" height="33"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3J-1k-T2Y" customClass="LargeBtn" customModule="Behavorial_Mapper" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="114" height="21"/>
@@ -151,19 +160,21 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="33" id="hau-f1-Sat"/>
+                                                                </constraints>
                                                             </stackView>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="174" id="FBc-gj-ftA"/>
-                                                            <constraint firstAttribute="height" constant="150" id="rSi-Pt-Hhd"/>
+                                                            <constraint firstAttribute="height" constant="160" id="rSi-Pt-Hhd"/>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="jZO-Z5-QJU" firstAttribute="top" secondItem="lrr-Sl-z6w" secondAttribute="top" id="AeK-Y5-H4q"/>
+                                                    <constraint firstItem="jZO-Z5-QJU" firstAttribute="top" secondItem="lrr-Sl-z6w" secondAttribute="top" constant="10" id="AeK-Y5-H4q"/>
                                                     <constraint firstAttribute="width" constant="250" id="LJc-Sc-bfc"/>
-                                                    <constraint firstAttribute="height" constant="158" id="lmI-Pg-H59"/>
                                                     <constraint firstItem="jZO-Z5-QJU" firstAttribute="leading" secondItem="lrr-Sl-z6w" secondAttribute="leading" constant="23" id="mkZ-if-fTU"/>
                                                 </constraints>
                                             </view>
@@ -1263,7 +1274,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkM-mr-YhC">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkM-mr-YhC" customClass="UIImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-6K-e3I" customClass="MenuView" customModule="Behavorial_Mapper" customModuleProvider="target">
@@ -1921,6 +1932,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cNs-AB-RCd"/>
-        <segue reference="pJ7-id-heG"/>
+        <segue reference="Bme-E5-FS8"/>
     </inferredMetricsTieBreakers>
 </document>

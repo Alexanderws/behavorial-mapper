@@ -59,7 +59,7 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
         
         _screenshotButton.style = .done
         _screenshotButton.tintColor = Style.textPrimary
-        _screenshotButton.title = "Take Screenshot"
+        _screenshotButton.title = "Create Background"
         _screenshotButton.action = #selector(GMapsVC.takeScreenshot)
 
         _typeNormalButton.style = .plain

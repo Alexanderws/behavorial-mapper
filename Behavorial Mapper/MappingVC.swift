@@ -137,12 +137,12 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
     func highlightEntry(onEntry: Entry) {
         if let entryIcon = mappingView.viewWithTag(onEntry.tagId) {
             for i in 1...5 {
-                let delayTime = Double(i) * 0.04
+                let delayTime = Double(i) * 0.05
                 delay(delayTime) {
                     let circle = getCircle(forView: entryIcon, ofSize: HIGHLIGHT_CIRCLE_INIT_SIZE + CGFloat(i) * 3)
                     circle.opacity = 1 / Float(i)
                     self.mappingView.layer.addSublayer(circle)
-                    delay(delayTime + 0.04) {
+                    delay(delayTime + 0.05) {
                         circle.removeFromSuperlayer()
                     }
                 }

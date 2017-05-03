@@ -51,8 +51,8 @@ extension CSVSerializable {
         var body = String()
         
         switch self {
-        case let main as Location:
-            body += main.name + ";" + String(main.xCor) + ";" + String(main.yCor) + ";"
+        /*case let main as Location:
+            body += main.name + ";" + String(main.xCor) + ";" + String(main.yCor) + ";"*/
         case let main as Legend:
             body += main.name + ";" + String(main.icon) + ";"
         case let main as Entry:
@@ -66,8 +66,8 @@ extension CSVSerializable {
         
         for case let (_, value) in Mirror(reflecting: self).children {
             switch value {
-            case let value as Location:
-                body += value.name + ";" + String(value.xCor) + ";" + String(value.yCor) + ";"
+           /* case let value as Location:
+                body += value.name + ";" + String(value.xCor) + ";" + String(value.yCor) + ";"*/
             case let value as Legend:
                 body += value.name + ";" + String(value.icon) + ";"
             case let value as Entry:
