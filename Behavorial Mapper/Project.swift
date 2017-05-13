@@ -103,6 +103,18 @@ class Project: JSONSerializable {
         projectDelegate?.entryDeleted(tagId: entry.tagId)
     }
     
+    func saveProject() {
+        self.lastSaved = Date()
+        
+        let data = self.toJSON()
+        
+        let projectDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("projects")
+        let projectPath = projectDir.appendingPathComponent(self.name).appendingPathExtension("proj")
+        try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
+        
+        print("Wrote project to \(projectPath.absoluteString)")
+    }
+    
     init?(json: [String: Any]) {
         guard let name = json["_name"],
             let created = json["_created"],
