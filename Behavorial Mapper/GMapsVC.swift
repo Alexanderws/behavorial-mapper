@@ -110,41 +110,19 @@ class GMapsVC: UIViewController, UISearchBarDelegate, GMSAutocompleteViewControl
 
     func setMapType(withSender sender: UIBarButtonItem) {
         _mapView.mapType = GMSMapViewType(rawValue: UInt(sender.tag)) ?? GMSMapViewType.normal
-        for button in _typeButtons {
-            if sender.isEqual(button) {
-                button.style = .done
-                button.tintColor = UIColor.blue
-            } else {
-                button.style = .plain
-                button.tintColor = Style.textPrimary
-            }
-        }
     }
 
-    // This function dismissed the GMapsVC
     func takeScreenshot() {
         _toolBar.isHidden = true
         let image = self.view.snapshot(of: CGRect(x: 100, y: 0, width: 824, height: 768))
- 
         _toolBar.isHidden = false
-        
-        if let vc = self.presentingViewController as? CreateProjectVC {
-            vc.chosenBackground = BACKGROUND_GOOGLE_MAPS
-            vc.backgroundImage = image!
-            vc.updateImageButtons()
-        }
-        
         delegate?.getScreenShot(image: image!)
-
-        print(_mapView.projection.visibleRegion())
-
         dismiss(animated: true, completion: nil)
     }
     
     func cancelButtonClicked() {
         dismiss(animated: true, completion: nil)
     }
-    
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         _camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude,

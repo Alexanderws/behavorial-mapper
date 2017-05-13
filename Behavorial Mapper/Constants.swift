@@ -47,6 +47,8 @@ let BACKGROUND_IMAGE_UPLOADED_STRING = "imageIcon"
 let BACKGROUND_BLANK_STRING = "blankIcon"
 
 // WARNING MESSAGES
+let DELETE_PROJECT_TITLE = "Delete project"
+let DELETE_PROJECT_MSG = "Delete project and contained data?"
 let NO_PROJECT_NAME_TITLE = "No project name"
 let NO_PROJECT_NAME_MSG = "Enter a name for your project."
 let NO_LEGEND_NAME_TITLE = "No legend name"

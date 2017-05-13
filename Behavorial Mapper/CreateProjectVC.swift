@@ -82,7 +82,6 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
     func initStyle() {
         createProjectView.backgroundColor = Style.backgroundPrimary
         bkgView.image = UIImage(named: "cityMapTealBkg")
-        //bkgView.backgroundColor = Style.backgroundSecondary
         legendIconImage.imageView?.contentMode = UIViewContentMode.scaleAspectFill
         legendIconImage.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4)
         
@@ -246,14 +245,6 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
         chosenBackground = BACKGROUND_IMAGE_UPLOADED
         _backgroundImage = newImage
         
-        /*
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let imagePath = paths[0].appendingPathComponent("map.png")
-        let data = UIImagePNGRepresentation(_backgroundImage)
-        try? data?.write(to: imagePath)
-        _backgroundString = imagePath.absoluteString
-         */
-        
         updateImageButtons()
         dismiss(animated: true)
     }
@@ -279,7 +270,7 @@ class CreateProjectVC: UIViewController, ContainerVCDelegate, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
             self.legendArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }

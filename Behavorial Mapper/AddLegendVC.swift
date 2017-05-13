@@ -17,7 +17,7 @@ class AddLegendVC: UIViewController {
     @IBOutlet weak var bkgView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var iconBtn: FramedButton!
+    @IBOutlet weak var iconBtn: FramedBtn!
     @IBOutlet weak var legendTitleLbl: UILabel!
     
     private var selectedIconId = 0

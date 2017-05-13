@@ -20,8 +20,8 @@ extension JSONSerializable{
         
         for case let (label?, value) in Mirror(reflecting: self).children {
             switch value {
-            case let value as Location:
-                jsonDict[label] = value.JSONRepresentation
+            /*case let value as Location:
+                jsonDict[label] = value.JSONRepresentation*/
                 
             case let value as Legend:
                 jsonDict[label] = value.JSONRepresentation

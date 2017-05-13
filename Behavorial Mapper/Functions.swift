@@ -206,56 +206,5 @@ func createProjectDirectories() {
 
 }
 
-// Doesn't work
-func getGPSCoordinates(screenBounds: GMSVisibleRegion, point: CGPoint) -> CLLocationCoordinate2D {
-    /*
-    let yStd = Double(point.y) / 768.0
-    let xStd = Double(point.x) / 824.0
 
-    let latitude = yStd * (screenBounds.farLeft.latitude - screenBounds.nearLeft.latitude) + screenBounds.nearLeft.latitude
-    let longitude = xStd * (screenBounds.nearRight.longitude - screenBounds.nearLeft.longitude) + screenBounds.nearLeft.longitude
-    */
 
-    let leftLong = screenBounds.farLeft.longitude
-    let eastLong = screenBounds.nearRight.longitude
-    let deltaLong = eastLong - leftLong
-
-    let northLat = screenBounds.farLeft.latitude
-    let southLat = screenBounds.nearLeft.latitude
-    let deltaLat = northLat - southLat
-
-    let longitude = eastLong - ((Double(point.x) * deltaLong) / 824)
-    let latitude = northLat - ((Double(point.y) * deltaLat) / 768)
-
-    return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-}
-
-extension Project {
-    func saveProject() {
-        self.lastSaved = Date()
-        
-        let data = self.toJSON()
-        
-        let projectDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("projects")      
-        let projectPath = projectDir.appendingPathComponent(self.name).appendingPathExtension("proj")
-        try? data?.write(to: projectPath, atomically: true, encoding: .utf8)
-        
-        print("Wrote project to \(projectPath.absoluteString)")
-    }
-}
-
-extension UIView {
-    func snapshotView() -> UIView? {
-        guard let image = snapshotImage() else { return nil }
-        return UIImageView(image: image)
-    }
-    
-    func snapshotImage() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 1.0)
-        defer { UIGraphicsEndImageContext() }
-        
-        drawHierarchy(in: bounds, afterScreenUpdates: false)
-        
-        return UIGraphicsGetImageFromCurrentImageContext()
-    }
-}

@@ -50,6 +50,8 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
     var _angleInDegrees: CGFloat = 999
     var _arrowIcon: UIImageView!
     
+    var detectionView: TouchDetectionView?
+
     
     private var _viewMode: Int = VIEW_ALL
     private var _menuShowing = false
@@ -247,7 +249,6 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
             } else {
                 cell.styleNormal()
             }
-
             return cell
         } else if tableView == entryTableView {
             let cell = entryTableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
@@ -308,7 +309,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
             }
             return [delete, addNote]
         }
-        if tableView == legendTableView {
+      /*  if tableView == legendTableView {
             let delete = UITableViewRowAction(style: .destructive, title: "X") { action, index in
                 if self.project.legend.count > 1 {
                     self.project.legend.remove(at: indexPath.row)
@@ -319,7 +320,7 @@ class MappingVC: UIViewController, UITableViewDataSource, UITableViewDelegate, P
                 }
             }
             return [delete]
-        }
+        } */
         return [UITableViewRowAction()]
     }
     

@@ -106,6 +106,13 @@ class StartVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     @IBAction func deleteProjectPressed(_ sender: Any) {
+        let alert = UIAlertController(title: DELETE_PROJECT_TITLE, message: DELETE_PROJECT_MSG, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: handleDeletePressed))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func handleDeletePressed(action: UIAlertAction) {
         if let _ = Project(projectName: _selectedProject) {
             deleteProject(projectName: _selectedProject)
             _storedProjects = getProjectFiles()

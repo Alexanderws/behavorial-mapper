@@ -44,12 +44,6 @@ class MappingView: UIView {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         mappingViewDelegate?.mappingViewTouchEnded(sender: self, touches: touches)
-        //  entries.append(Entry(start: centerPos, legend: legend, idTag: id))
     }
-    
-    
-    
-    
-    
     
 }

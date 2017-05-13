@@ -43,6 +43,5 @@ class Legend: JSONSerializable, CSVSerializable {
         }
         self._name = name as! String
         self._icon = icon as! Int
-        
     }
 }

@@ -147,6 +147,12 @@ extension ContainerVC: MappingVCDelegate {
             menuVC?.mappingDelegate = mappingVC
             menuVC?.containerDelegate = self
         }
+        
+        if let mappingVC = mappingVC {
+            mappingVC.detectionView = TouchDetectionView(frame: mappingVC.self.view.frame)
+            mappingVC.detectionView?.touchDetectionViewDelegate = self
+            mappingVC.self.view.addSubview(mappingVC.detectionView!)
+        }
         view.insertSubview(menuVC!.view, at: 0)
         
         addChildViewController(menuVC!)
@@ -158,6 +164,9 @@ extension ContainerVC: MappingVCDelegate {
     }
     
     func hideMenu() {
+        if let detectionView = mappingVC?.detectionView {
+            detectionView.removeFromSuperview()
+        }
         menuShowing = false
         animateMainViewXPosition(targetPosition: 0) { finished in
             self.mappingVC!.view.layer.shadowOpacity = 0.0
@@ -166,6 +175,7 @@ extension ContainerVC: MappingVCDelegate {
             }
             self.menuVC = nil
         }
+        
     }
     
     func killMenu() {
@@ -184,5 +194,12 @@ extension ContainerVC: MenuContainerDelegate {
         killMenu()
         loadVC(ofType: .start)
         presentVC(ofType: .start)
+    }
+}
+
+extension ContainerVC: TouchDetectionViewDelegate {
+    
+    func touchEnded() {
+        hideMenu()
     }
 }

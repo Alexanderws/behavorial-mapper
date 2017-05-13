@@ -67,4 +67,18 @@ extension UIView {
         guard let cgImage = image.cgImage?.cropping(to: scaledRect) else { return nil }
         return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
     }
+    
+    func snapshotView() -> UIView? {
+        guard let image = snapshotImage() else { return nil }
+        return UIImageView(image: image)
+    }
+    
+    func snapshotImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 1.0)
+        defer { UIGraphicsEndImageContext() }
+        
+        drawHierarchy(in: bounds, afterScreenUpdates: false)
+        
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
 }
